@@ -1,0 +1,24 @@
+Change Component Footprint: Designator=D1 Old Footprint=1N4007 New Footprint=DIODE_SMA
+Change Component Footprint: Designator=D2 Old Footprint=1N4007 New Footprint=DIODE_SMA
+Change Component Footprint: Designator=D3 Old Footprint=1N4007 New Footprint=DIODE_SMA
+Change Component Comment : Designator=D1 Old Comment=1N4007 New Comment=M7
+Change Component Comment : Designator=D2 Old Comment=1N4007 New Comment=M7
+Change Component Comment : Designator=D3 Old Comment=1N4007 New Comment=M7
+Change component parameters: Designator = "D1" ("D1"); Footprint = "1N4007"; UniqueID = "\TUYNFTYJ" ("\TUYNFTYJ")
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digikey PN"; Value = "3191-M7CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C330214"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "637-M7"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D2" ("D2"); Footprint = "1N4007"; UniqueID = "\YNSNKWWL" ("\YNSNKWWL")
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digikey PN"; Value = "3191-M7CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C330214"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "637-M7"; VariantName = "[No Variations]"
+Change component parameters: Designator = "D3" ("D3"); Footprint = "1N4007"; UniqueID = "\OHLERVYN" ("\OHLERVYN")
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digikey PN"; Value = "3191-M7CT-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C330214"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "637-M7"; VariantName = "[No Variations]"

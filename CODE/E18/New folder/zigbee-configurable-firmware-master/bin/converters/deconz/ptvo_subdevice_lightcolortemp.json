@@ -1,0 +1,74 @@
+    {
+      "type": "$TYPE_COLOR_TEMPERATURE_LIGHT",
+      "restapi": "/lights",
+      "uuid": [
+        "$address.ext",
+        "_endpoint_hex_"
+      ],
+      "items": [
+        {"name": "attr/id"},
+        {"name": "attr/lastannounced"},
+        {"name": "attr/lastseen"},
+        {"name": "attr/manufacturername"},
+        {"name": "attr/modelid"},
+        {"name": "attr/name"},
+        {"name": "attr/swversion"},
+        {"name": "attr/type"},
+        {"name": "attr/uniqueid"},
+        {"name": "config/reachable"},
+        {
+          "name": "cap/bri/move_with_onoff",
+          "description": "Device supports the _Move to Level (with On/Off)_ command.",
+          "static": true
+        },
+        {
+          "name": "cap/color/capabilities",
+          "description": "The supported color modes as bitmap.",
+          "refresh.interval": 86400
+        },
+        {
+          "name": "cap/color/ct/max",
+          "description": "Maximum supported color temperature.",
+          "refresh.interval": 86400,
+          "default": "0xfeff"
+        },
+        {
+          "name": "cap/color/ct/min",
+          "description": "Minimum supported color temperature.",
+          "refresh.interval": 86400,
+          "default": 0
+        },
+        {
+          "name": "cap/on/off_with_effect",
+          "description": "Device supports the _Off with Effect_ command.",
+          "static": true
+        },
+        {
+          "name": "config/bri/execute_if_off",
+          "description": "Execute brightness changes when the device is off.",
+          "refresh.interval": 3600,
+          "default": true
+        },
+        {"name": "state/lastupdated"},
+        {
+          "name": "state/bri",
+          "description": "The current brightness.",
+          "refresh.interval": 5
+        },
+        {
+          "name": "state/colormode",
+          "description": "The currently active color mode.",
+          "refresh.interval": 300
+        },
+        {
+          "name": "state/ct",
+          "description": "The current Mired color temperature of the light. Where Mired is 1000000 / color temperature (in kelvins).",
+          "refresh.interval": 5
+        },
+        {
+          "name": "state/on",
+          "description": "True when device is on; false when off.",
+          "refresh.interval": 5
+        },
+      ]
+    }

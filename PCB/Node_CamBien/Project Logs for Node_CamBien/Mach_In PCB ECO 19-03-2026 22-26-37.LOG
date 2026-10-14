@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=RESET Pin=J3-1
+Removed Pin From Net: NetName=DD Pin=J3-2
+Removed Pin From Net: NetName=DC Pin=J3-3
+Removed Pin From Net: NetName=GND Pin=J3-4
+Removed Pin From Net: NetName=+3.3 Pin=J3-5
+Removed Member From Class: ClassName=Nguyen_Ly Member=J3
+Added Component: Designator=J?(MALE-2.54-5P)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C492404"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=RESET Pin=J?-1
+Added Pin To Net: NetName=DD Pin=J?-2
+Added Pin To Net: NetName=DC Pin=J?-3
+Added Pin To Net: NetName=GND Pin=J?-4
+Added Pin To Net: NetName=+3.3 Pin=J?-5
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J? CC DEBUGGER

@@ -1,0 +1,12 @@
+{
+  "schema": "devcap1.schema.json",
+  "manufacturername": "_manufacturer_",
+  "modelid": "_model_",
+  "product": "_description_",
+  "sleeper": _sleep_,
+  "status": "Gold",
+  "supportsMgmtBind": true,
+  "subdevices": [
+_exposes_
+  ]
+}

@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=LED_BLUE Pin=U1-21
+Added Pin To Net: NetName=LED_BLUE Pin=U1-43
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C15 100uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C16 CAPACITOR 22

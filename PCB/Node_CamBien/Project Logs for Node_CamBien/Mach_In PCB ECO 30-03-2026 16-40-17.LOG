@@ -1,0 +1,12 @@
+Removed Pin From Net: NetName=GND Pin=C5-1
+Removed Pin From Net: NetName=GND Pin=J5-2
+Removed Pin From Net: NetName=GND Pin=R9-1
+Removed Pin From Net: NetName=GND Pin=U3-2
+Added Pin To Net: NetName=PIN - Pin=C5-1
+Added Pin To Net: NetName=PIN - Pin=J5-2
+Added Pin To Net: NetName=PIN - Pin=R9-1
+Added Pin To Net: NetName=PIN - Pin=U3-2
+Added Net: Name=PIN -
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C5 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C6 100uF/10V
+Added Rule: Name=Schematic Supply Nets_4

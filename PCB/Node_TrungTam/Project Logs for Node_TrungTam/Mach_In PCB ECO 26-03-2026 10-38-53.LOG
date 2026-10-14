@@ -1,0 +1,8 @@
+Change Component Footprint: Designator=U7 Old Footprint=TO_P2005G_DIO New Footprint=SOIC_B107S_RTN
+Change Component Comment : Designator=U7 Old Comment=KBP210G New Comment=DB107S
+Change component parameters: Designator = "U7" ("U7"); Footprint = "TO_P2005G_DIO"; UniqueID = "\EISFVTFJ" ("\EISFVTFJ")
+Change component parameters (AddParameter): Name = "Copyright"; Value = "Copyright (C) 2025 Ultra Librarian. All rights reserved."; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Name"; Value = "Rectron"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Manufacturer_Part_Number"; Value = "DB107S"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"

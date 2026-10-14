@@ -1,0 +1,26 @@
+Removed Pin From Net: NetName=BUTTON_1 Pin=R13-1
+Removed Pin From Net: NetName=+3.3 Pin=R13-2
+Removed Pin From Net: NetName=BUTTON_2 Pin=R16-1
+Removed Pin From Net: NetName=+3.3 Pin=R16-2
+Removed Pin From Net: NetName=BUTTON_3 Pin=R17-1
+Removed Pin From Net: NetName=+3.3 Pin=R17-2
+Removed Pin From Net: NetName=RESET_SYSTEM Pin=R18-1
+Removed Pin From Net: NetName=+3.3 Pin=R18-2
+Change Component Footprint: Designator=R13 Old Footprint=RESSITOR_PTH_12.5mm New Footprint=RESISTOR_0805
+Change Component Footprint: Designator=R16 Old Footprint=RESSITOR_PTH_12.5mm New Footprint=RESISTOR_0805
+Change Component Footprint: Designator=R17 Old Footprint=RESSITOR_PTH_12.5mm New Footprint=RESISTOR_0805
+Change Component Footprint: Designator=R18 Old Footprint=RESSITOR_PTH_12.5mm New Footprint=RESISTOR_0805
+Change Component Comment : Designator=R13 Old Comment=10K New Comment=RESISTOR_0805
+Change Component Comment : Designator=R16 Old Comment=10K New Comment=RESISTOR_0805
+Change Component Comment : Designator=R17 Old Comment=10K New Comment=RESISTOR_0805
+Change Component Comment : Designator=R18 Old Comment=10K New Comment=RESISTOR_0805
+Change Component Designator: OldDesignator=J? NewDesignator=J1
+Change Component Designator: OldDesignator=R? NewDesignator=R25
+Added Pin To Net: NetName=+3.3 Pin=R13-1
+Added Pin To Net: NetName=BUTTON_1 Pin=R13-2
+Added Pin To Net: NetName=+3.3 Pin=R16-1
+Added Pin To Net: NetName=BUTTON_2 Pin=R16-2
+Added Pin To Net: NetName=+3.3 Pin=R17-1
+Added Pin To Net: NetName=BUTTON_3 Pin=R17-2
+Added Pin To Net: NetName=+3.3 Pin=R18-1
+Added Pin To Net: NetName=RESET_SYSTEM Pin=R18-2

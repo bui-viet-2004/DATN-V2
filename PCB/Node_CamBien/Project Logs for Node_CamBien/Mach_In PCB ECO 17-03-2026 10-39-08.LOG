@@ -1,0 +1,47 @@
+Added Component: Designator=C?(CAPACITOR 0805)
+Added Component: Designator=C?(CAPACITOR 0805)
+Added Component: Designator=C?(CAPACITOR 0805)
+Added Component: Designator=J?(BORNE-5.00-3P)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C91154"; VariantName = "[No Variations]"
+Added Component: Designator=J?(BORNE-5.00-3P)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C91154"; VariantName = "[No Variations]"
+Added Component: Designator=J?(JST-2.54-6P)
+Added Component: Designator=R?(RESISTOR_0805)
+Added Component: Designator=S?(PUSH_BUTTON_SMD_3X4X2)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C231644"; VariantName = "[No Variations]"
+Added Component: Designator=U?(ACS712)
+Added Component: Designator=U?(E18-MS1-PCB_BYT)
+Add component (AddParameter): Name = "Copyright"; Value = "Copyright (C) 2026 Ultra Librarian. All rights reserved."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Chengdu Ebyte Elec Tech"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "E18-MS1-PCB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
+Added Component: Designator=U?(TP4056_6PINs)
+Added Pin To Net: NetName=+3.3 Pin=C?-2
+Added Pin To Net: NetName=+3.3 Pin=C?-2
+Added Pin To Net: NetName=+3.3 Pin=J?-5
+Added Pin To Net: NetName=+3.3 Pin=R?-2
+Added Pin To Net: NetName=+3.3 Pin=U?-2
+Added Net: Name=+3.3
+Added Pin To Net: NetName=DC Pin=J?-3
+Added Pin To Net: NetName=DC Pin=U?-3
+Added Net: Name=DC
+Added Pin To Net: NetName=DD Pin=J?-2
+Added Pin To Net: NetName=DD Pin=U?-4
+Added Net: Name=DD
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=C?-1
+Added Pin To Net: NetName=GND Pin=J?-4
+Added Pin To Net: NetName=GND Pin=S?-1
+Added Pin To Net: NetName=GND Pin=U?-1
+Added Net: Name=GND
+Added Pin To Net: NetName=RESET Pin=C?-2
+Added Pin To Net: NetName=RESET Pin=J?-1
+Added Pin To Net: NetName=RESET Pin=R?-1
+Added Pin To Net: NetName=RESET Pin=S?-2
+Added Pin To Net: NetName=RESET Pin=U?-24
+Added Net: Name=RESET
+Added Class: Name=Nguyen_Ly
+Added Rule: Name=Schematic Supply Nets
+Added Rule: Name=Schematic Supply Nets_1

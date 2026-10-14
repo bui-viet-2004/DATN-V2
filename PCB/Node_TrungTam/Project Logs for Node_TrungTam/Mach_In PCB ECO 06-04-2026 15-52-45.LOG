@@ -1,0 +1,16 @@
+Added Component: Designator=U?(FUSE_HOLDER_5X20)
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D5 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D6 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D7 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D8 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D9 SS34
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R13 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R15 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R17 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R19 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R20 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R21 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R22 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R23 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R25 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U? FUSE_HOLDER_5X20

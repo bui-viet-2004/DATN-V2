@@ -1,0 +1,28 @@
+#tests
+test
+coverage
+
+#build tools
+.travis.yml
+.jenkins.yml
+.codeclimate.yml
+.github
+babel.config.js
+tsconfig.tsbuildinfo
+
+#linters
+.jscsrc
+.jshintrc
+.eslintrc*
+.dockerignore
+.eslintignore
+.gitignore
+
+#editor settings
+.vscode
+
+#src
+lib
+docs
+docker
+images

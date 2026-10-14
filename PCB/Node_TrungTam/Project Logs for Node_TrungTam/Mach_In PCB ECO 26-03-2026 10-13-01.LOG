@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=GND Pin=C6-1
+Removed Pin From Net: NetName=+3.3 Pin=C6-2
+Removed Pin From Net: NetName=GND Pin=C15-1
+Removed Pin From Net: NetName=+12 Pin=C15-2
+Change Component Footprint: Designator=C6 Old Footprint=0.47uF/50V New Footprint=ALUMINUM_4mm
+Change Component Footprint: Designator=C15 Old Footprint=100uF/50V New Footprint=ALUMINUM_5mm
+Change Component Footprint: Designator=C16 Old Footprint=CAPACITOR 22 New Footprint=CAPACITOR 0805
+Change Component Comment : Designator=C6 Old Comment=10uF New Comment=10uF/25V
+Change Component Comment : Designator=C15 Old Comment=100uF New Comment=100uF/10V
+Change Component Comment : Designator=C16 Old Comment=CAPACITOR 22 New Comment=CAPACITOR 0805
+Added Pin To Net: NetName=+3.3 Pin=C6-1
+Added Pin To Net: NetName=GND Pin=C6-2
+Added Pin To Net: NetName=+12 Pin=C15-1
+Added Pin To Net: NetName=GND Pin=C15-2

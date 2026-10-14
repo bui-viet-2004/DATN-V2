@@ -1,0 +1,27 @@
+Removed Pin From Net: NetName=+3.3 Pin=C5-1
+Removed Pin From Net: NetName=GND Pin=C5-2
+Removed Pin From Net: NetName=GND Pin=D2-1
+Removed Pin From Net: NetName=+3.3 Pin=I1-2
+Removed Pin From Net: NetName=OUT + Pin=U3-1
+Removed Pin From Net: NetName=GND Pin=U3-3
+Removed Pin From Net: NetName=+3.3 Pin=U3-4
+Removed Pin From Net: NetName=GND Pin=U3-5
+Removed Pin From Net: NetName=GND Pin=U3-6
+Removed Member From Class: ClassName=Nguyen_Ly Member=C5
+Removed Member From Class: ClassName=Nguyen_Ly Member=D2
+Removed Member From Class: ClassName=Nguyen_Ly Member=I1
+Change Component Comment : Designator=R3 Old Comment=RESISTOR_0805 New Comment=10K
+Change Component Comment : Designator=R4 Old Comment=RESISTOR_0805 New Comment=10K
+Change Component Comment : Designator=R5 Old Comment=RESISTOR_0805 New Comment=10K
+Change Component Comment : Designator=R6 Old Comment=RESISTOR_0805 New Comment=10K
+Change Component Comment : Designator=R2 Old Comment=RESISTOR_0805 New Comment=220
+Change Component Comment : Designator=R7 Old Comment=RESISTOR_0805 New Comment=220
+Change Component Designator: OldDesignator=U4 NewDesignator=U3
+Added Component: Designator=U4(IC_HT7333)
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/HT7333/Holtek/view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Holtek Semiconductor"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "HT7333"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/HT7333/Holtek/view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J3 CC DEBUGGER

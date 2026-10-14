@@ -1,0 +1,5 @@
+Removed Pin From Net: NetName=+3.3 Pin=R25-1
+Removed Pin From Net: NetName=DATA_DHT Pin=R25-2
+Change Component Footprint: Designator=R25 Old Footprint=RESSITOR_PTH_12.5mm New Footprint=RESISTOR_0805
+Added Pin To Net: NetName=DATA_DHT Pin=R25-1
+Added Pin To Net: NetName=+3.3 Pin=R25-2

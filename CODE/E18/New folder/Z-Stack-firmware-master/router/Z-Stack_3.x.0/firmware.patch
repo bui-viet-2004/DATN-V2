@@ -1,0 +1,2221 @@
+From 3141c9a49a9e763c449b5731487eecaf8e6d56ca Mon Sep 17 00:00:00 2001
+From: Koen Kanters <koenkanters94@gmail.com>
+Date: Mon, 31 Oct 2022 20:04:41 +0100
+Subject: [PATCH 1/1] Own changes
+
+---
+ .../Application/zcl_genericapp.c              |  43 +-
+ .../Application/zcl_genericapp_data.c         |  50 ++-
+ .../Common/zcl/zcl.c                          |  10 +
+ .../Stack/Config/f8wrouter.opts               |   2 +
+ .../Stack/Config/preinclude.h                 |  51 +++
+ .../Stack/sys/zcomdef.h                       |   3 +
+ .../Stack/sys/zglobals.c                      |   2 +-
+ .../Stack/zdo/zd_app.c                        |  22 +-
+ .../cc13x2_cc26x2_tirtos7_ticlang.cmd         |   6 +-
+ .../ti_devices_config.c                       | 108 +++++
+ .../ti_drivers_config.h                       | 274 +++++++++++++
+ .../ti_radio_config.c                         | 385 ++++++++++++++++++
+ .../ti_radio_config.h                         |  83 ++++
+ .../zr_genericapp.syscfg                      |  11 +-
+ .../Application/zcl_genericapp.c              |  43 +-
+ .../Application/zcl_genericapp_data.c         |  50 ++-
+ .../Common/zcl/zcl.c                          |  10 +
+ .../Stack/Config/f8wrouter.opts               |   2 +
+ .../Stack/Config/preinclude.h                 |  33 ++
+ .../Stack/sys/zcomdef.h                       |   3 +
+ .../Stack/sys/zglobals.c                      |   2 +-
+ .../Stack/zdo/zd_app.c                        |  22 +-
+ .../cc13x2_cc26x2_tirtos7_ticlang.cmd         |   6 +-
+ .../zr_genericapp.syscfg                      |   7 +-
+ .../Application/zcl_genericapp.c              |  43 +-
+ .../Application/zcl_genericapp_data.c         |  50 ++-
+ .../Common/zcl/zcl.c                          |  10 +
+ .../Stack/Config/f8wrouter.opts               |   2 +
+ .../Stack/Config/preinclude.h                 |  33 ++
+ .../Stack/sys/zcomdef.h                       |   3 +
+ .../Stack/sys/zglobals.c                      |   2 +-
+ .../Stack/zdo/zd_app.c                        |  22 +-
+ .../cc13x2_cc26x2_tirtos7_ticlang.cmd         |   6 +-
+ .../zr_genericapp.syscfg                      |   7 +-
+ 34 files changed, 1268 insertions(+), 138 deletions(-)
+ create mode 100644 zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h
+ create mode 100644 zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_devices_config.c
+ create mode 100644 zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_drivers_config.h
+ create mode 100644 zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.c
+ create mode 100644 zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.h
+ create mode 100644 zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h
+ create mode 100644 zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/preinclude.h
+
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c
+index 550be7a..0725b39 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c
+@@ -53,6 +53,8 @@
+  * INCLUDES
+  */
+ 
++#include <driverlib/sys_ctrl.h>
++
+ #include "rom_jt_154.h"
+ #include "zcomdef.h"
+ 
+@@ -68,6 +70,8 @@
+ #include "zcl_genericapp.h"
+ #include "zcl_port.h"
+ 
++#include "osal_nv.h"
++
+ #include <ti/drivers/apps/Button.h>
+ #include "ti_drivers_config.h"
+ #include "util_timer.h"
+@@ -261,6 +265,14 @@ void sampleApp_task(NVINTF_nvFuncts_t *pfnNV)
+   pfnZdlNV = pfnNV;
+   zclport_registerNV(pfnZdlNV, ZCL_PORT_SCENE_TABLE_NV_ID);
+ 
++  // Init the transmit power NV item, this will be skipped if item is already initialized
++  int8_t transmitPower = TXPOWER;
++  osal_nv_item_init( ZCD_NV_TRANSMIT_POWER, sizeof(transmitPower), &transmitPower );
++
++  // Set transmit power
++  osal_nv_read( ZCD_NV_TRANSMIT_POWER, 0, sizeof( transmitPower ), &transmitPower );
++  ZMacSetTransmitPower( (ZMacTransmitPower_t)transmitPower );
++
+   // Initialize application
+   zclGenericApp_initialization();
+ 
+@@ -870,6 +882,7 @@ static void zclGenericApp_processAfIncomingMsgInd(zstack_afIncomingMsgInd_t *pIn
+  */
+ static void zclGenericApp_ProcessCommissioningStatus(bdbCommissioningModeMsg_t *bdbCommissioningModeMsg)
+ {
++  zstack_bdbStartCommissioningReq_t zstack_bdbStartCommissioningReq;
+   switch(bdbCommissioningModeMsg->bdbCommissioningMode)
+   {
+     case BDB_COMMISSIONING_FORMATION:
+@@ -909,6 +922,8 @@ static void zclGenericApp_ProcessCommissioningStatus(bdbCommissioningModeMsg_t *
+       }
+     break;
+     case BDB_COMMISSIONING_INITIALIZATION:
++      zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
++      Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+       //Initialization notification can only be successful. Failure on initialization
+       //only happens for ZED and is notified as BDB_COMMISSIONING_PARENT_LOST notification
+ 
+@@ -1209,28 +1224,16 @@ static void zclGenericApp_changeKeyCallback(Button_Handle _btn, Button_EventMask
+  */
+ static void zclGenericApp_processKey(Button_Handle _btn)
+ {
+-    zstack_bdbStartCommissioningReq_t zstack_bdbStartCommissioningReq;
+-    //Button 1
+-    if(_btn == gLeftButtonHandle)
+-    {
+-        if(ZG_BUILD_COORDINATOR_TYPE && ZG_DEVICE_COORDINATOR_TYPE)
+-        {
++    NLME_LeaveReq_t         req;
++    memset( &req, 0, sizeof( NLME_LeaveReq_t ) );
++    NLME_LeaveReq(&req);
++    // Sleep for 2 seconds, otherwise leave request is not send
++    Task_sleep(2000 * (1000 / ClockP_getSystemTickPeriod()));
+ 
+-            zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_FORMATION | BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
+-            Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+-        }
+-        else if (ZG_BUILD_JOINING_TYPE && ZG_DEVICE_JOINING_TYPE)
+-        {
+-            zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
+-            Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+-        }
+-    }
+-    //Button 2
+-    if(_btn == gRightButtonHandle)
+-    {
+-        Zstackapi_bdbResetLocalActionReq(appServiceTaskId);
+-    }
++    zgWriteStartupOptions( ZG_STARTUP_SET,
++                         ZCD_STARTOPT_DEFAULT_NETWORK_STATE | ZCD_STARTOPT_DEFAULT_CONFIG_STATE);
+ 
++    SysCtrlSystemReset();
+ }
+ 
+ 
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c
+index c0e473d..4d08810 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c
+@@ -49,6 +49,8 @@
+ #include "zcl_general.h"
+ #include "zcl_ha.h"
+ 
++#include "osal_nv.h"
++
+ /* GENERICAPP_TODO: Include any of the header files below to access specific cluster data
+ #include "zcl_poll_control.h"
+ #include "zcl_electrical_measurement.h"
+@@ -96,8 +98,11 @@ const uint16_t zclGenericApp_identify_clusterRevision = 0x0001;
+ const uint8_t zclGenericApp_HWRevision = GENERICAPP_HWVERSION;
+ const uint8_t zclGenericApp_ZCLVersion = GENERICAPP_ZCLVERSION;
+ const uint8_t zclGenericApp_ManufacturerName[] = { 16, 'T','e','x','a','s','I','n','s','t','r','u','m','e','n','t','s' };
++const uint8_t zclGenericApp_ModelID[] = { 9, 't','i','.','r','o','u','t','e','r' };
++const uint8_t zclGenericApp_SwBuildID[] = { 8, '2','0','2','2','1','1','0','2' };
+ const uint8_t zclGenericApp_PowerSource = POWER_SOURCE_MAINS_1_PHASE;
+ uint8_t zclGenericApp_PhysicalEnvironment = PHY_UNSPECIFIED_ENV;
++int8_t zclGenericApp_TransmitPower;
+ 
+ #ifdef ZCL_IDENTIFY
+ // Identify Cluster
+@@ -134,7 +139,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
+       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
+-      ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),                // Variable access control - found in zcl.h
+       (void *)&zclGenericApp_HWRevision  // Pointer to attribute variable
+     }
+   },
+@@ -143,16 +148,34 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_ZCL_VERSION,
+       ZCL_DATATYPE_UINT8,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_REPORTABLE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_ZCLVersion
+     }
+   },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    { // Attribute record
++      ATTRID_BASIC_MODEL_IDENTIFIER,
++      ZCL_DATATYPE_CHAR_STR,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
++      (void *)zclGenericApp_ModelID
++    }
++  },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    { // Attribute record
++      ATTRID_BASIC_SW_BUILD_ID,
++      ZCL_DATATYPE_CHAR_STR,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
++      (void *)zclGenericApp_SwBuildID
++    }
++  },
+   {
+     ZCL_CLUSTER_ID_GENERAL_BASIC,
+     { // Attribute record
+       ATTRID_BASIC_MANUFACTURER_NAME,
+       ZCL_DATATYPE_CHAR_STR,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)zclGenericApp_ManufacturerName
+     }
+   },
+@@ -161,7 +184,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_POWER_SOURCE,
+       ZCL_DATATYPE_ENUM8,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_PowerSource
+     }
+   },
+@@ -170,7 +193,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
+       ZCL_DATATYPE_ENUM8,
+-      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_PhysicalEnvironment
+     }
+   },
+@@ -179,10 +202,20 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_CLUSTER_REVISION,
+       ZCL_DATATYPE_UINT16,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_basic_clusterRevision
+     }
+   },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    {  // Attribute record
++     ATTRID_BASIC_TRANSMIT_POWER,
++     ZCL_DATATYPE_INT8,
++     (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
++     (void *)&zclGenericApp_TransmitPower
++    }
++  },
++
+ 
+ #ifdef ZCL_IDENTIFY
+   // *** Identify Cluster Attribute ***
+@@ -191,7 +224,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_IDENTIFY_IDENTIFY_TIME,
+       ZCL_DATATYPE_UINT16,
+-      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_IdentifyTime
+     }
+   },
+@@ -201,7 +234,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_CLUSTER_REVISION,
+       ZCL_DATATYPE_UINT16,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_identify_clusterRevision
+     }
+   },
+@@ -276,6 +309,7 @@ void zclGenericApp_ResetAttributesToDefaultValues(void)
+ {
+ 
+   zclGenericApp_PhysicalEnvironment = PHY_UNSPECIFIED_ENV;
++  osal_nv_read( ZCD_NV_TRANSMIT_POWER, 0, sizeof( zclGenericApp_TransmitPower ), &zclGenericApp_TransmitPower );
+ 
+ #ifdef ZCL_IDENTIFY
+   zclGenericApp_IdentifyTime = 0;
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c
+index 51902c4..9afcba3 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c
+@@ -47,6 +47,8 @@
+ #include "zcl.h"
+ #include "zcl_general.h"
+ 
++#include "osal_nv.h"
++
+ #if defined ( INTER_PAN ) || defined ( BDB_TL_INITIATOR ) || defined ( BDB_TL_TARGET )
+   #include "stub_aps.h"
+ #endif
+@@ -4675,6 +4677,14 @@ static uint8_t zclProcessInWriteCmd( zclIncoming_t *pInMsg )
+             status = zclWriteAttrData( pInMsg->msg->endPoint, &(pInMsg->msg->srcAddr),
+                                        &attrRec, statusRec );
+           }
++
++          if((pInMsg->msg->clusterId == ZCL_CLUSTER_ID_GENERAL_BASIC) && (statusRec->attrID == ATTRID_BASIC_TRANSMIT_POWER))
++          {
++              int8_t transmitPower;
++              OsalPort_memcpy((int8_t*)&transmitPower,statusRec->attrData,sizeof(int8_t));
++              ZMacSetTransmitPower( (ZMacTransmitPower_t)transmitPower );
++              osal_nv_write( ZCD_NV_TRANSMIT_POWER, sizeof( transmitPower ), &transmitPower );
++          }
+         }
+         else // Use CB
+         {
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts
+index b841d60..ed396c2 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts
+@@ -9,3 +9,5 @@
+ -DADDRMGR_NV_SINGLES
+ -DBINDINGTABLE_NV_SINGLES
+ -DASSOCLIST_NV_SINGLES
++
++-include preinclude.h
+\ No newline at end of file
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h
+new file mode 100644
+index 0000000..1d0429a
+--- /dev/null
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h
+@@ -0,0 +1,51 @@
++// Increase MAC buffers
++#undef MAC_CFG_TX_DATA_MAX
++#define MAC_CFG_TX_DATA_MAX 20
++#undef MAC_CFG_TX_MAX
++#define MAC_CFG_TX_MAX 32
++#undef MAC_CFG_RX_MAX
++#define MAC_CFG_RX_MAX 20
++
++// Increase NV pages to 3 to allow for bigger device tables
++#undef NVOCMP_NVPAGES
++#define NVOCMP_NVPAGES 3
++
++// Increase the max number of boardcasts, the default broadcast delivery time is 3 seconds
++// with the value below this will allow for 1 broadcast every 0.15 second
++#define MAX_BCAST 30
++
++#define ZCL_REPORT_DESTINATION_DEVICE
++#define BDB_REPORTING
++#define CUI_DISABLE
++#define NWK_MAX_DEVICE_LIST     50
++#define MAX_NEIGHBOR_ENTRIES    50
++#define MAX_RTG_ENTRIES         150
++#define ZDO_API_ADVANCED
++
++// From https://www.ti.com/lit/an/swra650b/swra650b.pdf
++#define LINK_DOWN_TRIGGER 12
++#define NWK_ROUTE_AGE_LIMIT 5
++#define DEF_NWK_RADIUS 15
++#define DEFAULT_ROUTE_REQUEST_RADIUS 8
++#define ZDNWKMGR_MIN_TRANSMISSIONS 0
++#define ROUTE_DISCOVERY_TIME 13
++
++/**
++ * Set default transmit power to 9
++ */
++#define TXPOWER 9
++
++#define ATTRID_BASIC_TRANSMIT_POWER 0x1337
++
++// Different configs, uncomment for for launchpad firmware
++#define LAUNCHPAD_CONFIG 1
++
++#ifdef LAUNCHPAD_CONFIG
++#define CONFIG_RF_24GHZ                         0x0000001c
++#define CONFIG_RF_HIGH_PA                       0x0000001d
++#define SET_CCFG_MODE_CONF_XOSC_CAPARRAY_DELTA  0xc1
++#else
++#define CONFIG_RF_24GHZ                         0x0000006
++#define CONFIG_RF_HIGH_PA                       0x0000005
++#define SET_CCFG_MODE_CONF_XOSC_CAPARRAY_DELTA  0xfa
++#endif
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h
+index 26c0b45..8a338c1 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h
+@@ -123,6 +123,9 @@ extern "C"
+ #define ZCD_NV_STARTUP_OPTION             0x0003
+ #define ZCD_NV_START_DELAY                0x0004
+ 
++// Custom transmit power NV item
++#define ZCD_NV_TRANSMIT_POWER             0x0010
++
+ // NWK Layer NV item IDs
+ #define ZCD_NV_NIB                        0x0021
+ #define ZCD_NV_DEVICE_LIST                0x0022
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c
+index 706736b..b63af7b 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c
+@@ -225,7 +225,7 @@ uint8_t zgEndDeviceConfiguration = END_DEV_CONFIGURATION;
+ //
+ // NOTICE:  Before enabling Child Aging make sure to review all the related
+ // definitions in this file, especially zgNwkParentInformation.
+-uint8_t zgChildAgingEnable = TRUE;
++uint8_t zgChildAgingEnable = FALSE;
+ 
+ //==========    TouchLink NWK configuration    ===============
+ // Values used by Router when starts a network as initiator
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c
+index 1f30180..0fd57f5 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c
+@@ -441,12 +441,11 @@ uint32_t ZDApp_event_loop( uint8_t task_id, uint32_t events )
+           ZDApp_ChangeState( DEV_ROUTER );
+         }
+ 
+-        if ( zgChildAgingEnable == TRUE )
+-        {
+-          // Once the device has changed its state to a ROUTER set the timer to send
+-          // Parent annce
+-          ZDApp_SetParentAnnceTimer();
+-        }
++        // As we cannot enable child aging as Xiaomi devices will drop off
++        // but we stil want to have the parent announces we always enable it here.
++        // Otherwise some end devices could be unreachable when they changed parent
++        // while the coordinator was powered off.
++        ZDApp_SetParentAnnceTimer();
+       }
+       else
+       {
+@@ -907,12 +906,11 @@ void ZDApp_NetworkStartEvt( void )
+         bdb_reportCommissioningState(BDB_INITIALIZATION,TRUE);
+       }
+ 
+-      if ( zgChildAgingEnable == TRUE )
+-      {
+-        // Once the device has changed its state to a COORDINATOR set the timer to send
+-        // Parent annce
+-        ZDApp_SetParentAnnceTimer();
+-      }
++      // As we cannot enable child aging as Xiaomi devices will drop off
++      // but we stil want to have the parent announces we always enable it here.
++      // Otherwise some end devices could be unreachable when they changed parent
++      // while the coordinator was powered off.
++      ZDApp_SetParentAnnceTimer();
+     }
+     else
+     {
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
+index da62af1..234ac56 100755
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
+@@ -71,9 +71,9 @@
+ #endif
+ 
+ #define FLASH_BASE              0x00000000
+-#define FLASH_SIZE              (0x56000 - (NVOCMP_NVPAGES * 0x2000))
+-#define FLASH_NV_BASE           (0x56000 - (NVOCMP_NVPAGES * 0x2000))
+-#define FLASH_NV_SIZE           (NVOCMP_NVPAGES * 0x2000)
++#define FLASH_SIZE              0x50000
++#define FLASH_NV_BASE           0x50000
++#define FLASH_NV_SIZE           0x6000
+ #define FLASH_LAST_BASE         0x56000
+ #define FLASH_LAST_SIZE         0x2000
+ 
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_devices_config.c b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_devices_config.c
+new file mode 100644
+index 0000000..c80aafd
+--- /dev/null
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_devices_config.c
+@@ -0,0 +1,108 @@
++/*
++ *  ======== ti_devices_config.c ========
++ *  Customer Configuration for CC26XX and CC13XX devices.
++ *
++ *  DO NOT EDIT - This file is generated by the SysConfig tool.
++ *
++ */
++
++//#####################################
++// Force VDDR high setting (Higher output power but also higher power consumption)
++// This is also called "boost mode"
++//#####################################
++
++// Force VDDR voltage to the factory HH setting (FCFG1..VDDR_TRIM_HH)
++#define CCFG_FORCE_VDDR_HH                              0x1
++
++
++//#####################################
++// Power settings
++//#####################################
++
++// Do not use the DC/DC during recharge in powerdown
++#define SET_CCFG_MODE_CONF_DCDC_RECHARGE                0x1
++
++// Do not use the DC/DC during active mode
++#define SET_CCFG_MODE_CONF_DCDC_ACTIVE                  0x1
++
++
++//#####################################
++// Clock settings
++//#####################################
++
++// LF XOSC
++#define SET_CCFG_MODE_CONF_SCLK_LF_OPTION               0x2
++
++// Apply cap-array delta
++#define SET_CCFG_MODE_CONF_XOSC_CAP_MOD                 0x0
++// CUSTOM: set in preinclude.h
++// #define SET_CCFG_MODE_CONF_XOSC_CAPARRAY_DELTA          0xc1
++
++//#####################################
++// Special HF clock source setting
++//#####################################
++
++// HF source is a 48 MHz xtal
++#define SET_CCFG_MODE_CONF_XOSC_FREQ                    0x2
++
++//#####################################
++// Bootloader settings
++//#####################################
++
++// Enable ROM boot loader
++#define SET_CCFG_BL_CONFIG_BOOTLOADER_ENABLE            0xC5
++
++// Enabled boot loader backdoor
++#define SET_CCFG_BL_CONFIG_BL_ENABLE                    0xC5
++
++// DIO number for boot loader backdoor
++#define SET_CCFG_BL_CONFIG_BL_PIN_NUMBER                0xf
++
++// Active low to open boot loader backdoor
++#define SET_CCFG_BL_CONFIG_BL_LEVEL                     0x0
++
++
++// Default address in IMAGE_VALID_CONF register
++#define SET_CCFG_IMAGE_VALID_CONF_IMAGE_VALID           0x00000000
++
++//#####################################
++// Debug access settings
++//#####################################
++
++// Disable unlocking of TI Failure Analysis option
++#define SET_CCFG_CCFG_TI_OPTIONS_TI_FA_ENABLE           0x00
++
++// Disable customer key CKEY0-3 to be XOR'ed with TI FA option unlock key
++#define SET_CCFG_CCFG_TI_OPTIONS_C_FA_DIS               0xC5
++
++// Access enabled if also enabled in FCFG
++#define SET_CCFG_CCFG_TAP_DAP_0_CPU_DAP_ENABLE          0xC5
++
++// Access enabled if also enabled in FCFG
++#define SET_CCFG_CCFG_TAP_DAP_0_PWRPROF_TAP_ENABLE      0xC5
++
++// Access disabled
++#define SET_CCFG_CCFG_TAP_DAP_0_TEST_TAP_ENABLE         0x00
++
++// Access disabled
++#define SET_CCFG_CCFG_TAP_DAP_1_PBIST2_TAP_ENABLE       0x00
++
++// Access disabled
++#define SET_CCFG_CCFG_TAP_DAP_1_PBIST1_TAP_ENABLE       0x00
++
++// Access disabled
++#define SET_CCFG_CCFG_TAP_DAP_1_AON_TAP_ENABLE          0x00
++
++//#####################################
++// Select between cache or GPRAM
++//#####################################
++
++// Cache is enabled and GPRAM is disabled (unavailable)
++#define SET_CCFG_SIZE_AND_DIS_FLAGS_DIS_GPRAM           0x1
++
++/*
++ *  ======== Include Base Settings for device ========
++ */
++
++#include <ti/devices/DeviceFamily.h>
++#include DeviceFamily_constructPath(startup_files/ccfg.c)
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_drivers_config.h b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_drivers_config.h
+new file mode 100644
+index 0000000..6a57a31
+--- /dev/null
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_drivers_config.h
+@@ -0,0 +1,274 @@
++/*
++ *  ======== ti_drivers_config.h ========
++ *  Configured TI-Drivers module declarations
++ *
++ *  The macros defines herein are intended for use by applications which
++ *  directly include this header. These macros should NOT be hard coded or
++ *  copied into library source code.
++ *
++ *  Symbols declared as const are intended for use with libraries.
++ *  Library source code must extern the correct symbol--which is resolved
++ *  when the application is linked.
++ *
++ *  DO NOT EDIT - This file is generated for the CC1352P_2_LAUNCHXL
++ *  by the SysConfig tool.
++ */
++#ifndef ti_drivers_config_h
++#define ti_drivers_config_h
++
++#define CONFIG_SYSCONFIG_PREVIEW
++
++#define CONFIG_CC1352P_2_LAUNCHXL
++#ifndef DeviceFamily_CC13X2
++#define DeviceFamily_CC13X2
++#endif
++
++#include <ti/devices/DeviceFamily.h>
++
++#include <stdint.h>
++
++/* support C++ sources */
++#ifdef __cplusplus
++extern "C" {
++#endif
++
++
++/*
++ *  ======== CCFG ========
++ */
++
++
++/*
++ *  ======== AESCBC ========
++ */
++
++extern const uint_least8_t                  CONFIG_AESCBC_0_CONST;
++#define CONFIG_AESCBC_0                     0
++#define CONFIG_TI_DRIVERS_AESCBC_COUNT      1
++
++
++/*
++ *  ======== AESCCM ========
++ */
++
++extern const uint_least8_t                  CONFIG_AESCCM_0_CONST;
++#define CONFIG_AESCCM_0                     0
++#define CONFIG_TI_DRIVERS_AESCCM_COUNT      1
++
++
++/*
++ *  ======== AESECB ========
++ */
++
++extern const uint_least8_t                  CONFIG_AESECB_0_CONST;
++#define CONFIG_AESECB_0                     0
++#define CONFIG_TI_DRIVERS_AESECB_COUNT      1
++
++
++/*
++ *  ======== ECDH ========
++ */
++
++extern const uint_least8_t              CONFIG_ECDH_0_CONST;
++#define CONFIG_ECDH_0                   0
++#define CONFIG_TI_DRIVERS_ECDH_COUNT    1
++
++
++/*
++ *  ======== ECDSA ========
++ */
++
++extern const uint_least8_t                  CONFIG_ECDSA_0_CONST;
++#define CONFIG_ECDSA_0                      0
++#define CONFIG_TI_DRIVERS_ECDSA_COUNT       1
++
++
++/*
++ *  ======== GPIO ========
++ */
++/* Owned by CONFIG_DISPLAY_UART as  */
++extern const uint_least8_t CONFIG_GPIO_DISPLAY_UART_TX_CONST;
++#define CONFIG_GPIO_DISPLAY_UART_TX 13
++
++/* Owned by CONFIG_DISPLAY_UART as  */
++extern const uint_least8_t CONFIG_GPIO_DISPLAY_UART_RX_CONST;
++#define CONFIG_GPIO_DISPLAY_UART_RX 12
++
++/* Owned by /ti/drivers/RF as  */
++extern const uint_least8_t CONFIG_RF_24GHZ_CONST;
++// CUSTOM: set in preinclude.h
++// #define CONFIG_RF_24GHZ 28
++
++/* Owned by /ti/drivers/RF as  */
++extern const uint_least8_t CONFIG_RF_HIGH_PA_CONST;
++// CUSTOM: set in preinclude.h
++// #define CONFIG_RF_HIGH_PA 29
++
++/* Owned by /ti/drivers/RF as  */
++extern const uint_least8_t CONFIG_RF_SUB1GHZ_CONST;
++#define CONFIG_RF_SUB1GHZ 30
++
++/* Owned by CONFIG_BTN_LEFT as  */
++extern const uint_least8_t CONFIG_GPIO_BTN1_CONST;
++#define CONFIG_GPIO_BTN1 15
++
++/* Owned by CONFIG_BTN_RIGHT as  */
++extern const uint_least8_t CONFIG_GPIO_BTN2_CONST;
++#define CONFIG_GPIO_BTN2 14
++
++/* Owned by CONFIG_LED_RED as  */
++extern const uint_least8_t CONFIG_GPIO_RLED_CONST;
++#define CONFIG_GPIO_RLED 6
++
++/* Owned by CONFIG_LED_GREEN as  */
++extern const uint_least8_t CONFIG_GPIO_GLED_CONST;
++#define CONFIG_GPIO_GLED 7
++
++/* Owned by CONFIG_NVS_SPI_0 as  */
++extern const uint_least8_t CONFIG_GPIO_0_CONST;
++#define CONFIG_GPIO_0 20
++
++/* Owned by CONFIG_SPI_0 as  */
++extern const uint_least8_t CONFIG_PIN_SPI_SCLK_CONST;
++#define CONFIG_PIN_SPI_SCLK 10
++
++/* Owned by CONFIG_SPI_0 as  */
++extern const uint_least8_t CONFIG_PIN_SPI_MISO_CONST;
++#define CONFIG_PIN_SPI_MISO 8
++
++/* Owned by CONFIG_SPI_0 as  */
++extern const uint_least8_t CONFIG_PIN_SPI_MOSI_CONST;
++#define CONFIG_PIN_SPI_MOSI 9
++
++/* The range of pins available on this device */
++extern const uint_least8_t GPIO_pinLowerBound;
++extern const uint_least8_t GPIO_pinUpperBound;
++
++/* LEDs are active high */
++#define CONFIG_GPIO_LED_ON  (1)
++#define CONFIG_GPIO_LED_OFF (0)
++
++#define CONFIG_LED_ON  (CONFIG_GPIO_LED_ON)
++#define CONFIG_LED_OFF (CONFIG_GPIO_LED_OFF)
++
++
++/*
++ *  ======== NVS ========
++ */
++
++extern const uint_least8_t              CONFIG_NVSINTERNAL_CONST;
++#define CONFIG_NVSINTERNAL              0
++/*
++ *  MOSI: DIO9
++ *  MISO: DIO8
++ *  SCLK: DIO10
++ *  LaunchPad SPI Bus
++ *  SS: undefined
++ */
++extern const uint_least8_t              CONFIG_NVSEXTERNAL_CONST;
++#define CONFIG_NVSEXTERNAL              1
++#define CONFIG_TI_DRIVERS_NVS_COUNT     2
++
++
++/*
++ *  ======== RF ========
++ */
++#define Board_DIO_30_RFSW 0x0000001e
++
++
++/*
++ *  ======== SHA2 ========
++ */
++
++extern const uint_least8_t              CONFIG_SHA2_0_CONST;
++#define CONFIG_SHA2_0                   0
++#define CONFIG_TI_DRIVERS_SHA2_COUNT    1
++
++
++/*
++ *  ======== SPI ========
++ */
++
++/*
++ *  MOSI: DIO9
++ *  MISO: DIO8
++ *  SCLK: DIO10
++ *  LaunchPad SPI Bus
++ */
++extern const uint_least8_t              CONFIG_SPI_0_CONST;
++#define CONFIG_SPI_0                    0
++#define CONFIG_TI_DRIVERS_SPI_COUNT     1
++
++
++/*
++ *  ======== TRNG ========
++ */
++
++extern const uint_least8_t              CONFIG_TRNG_0_CONST;
++#define CONFIG_TRNG_0                   0
++#define CONFIG_TI_DRIVERS_TRNG_COUNT    1
++
++
++/*
++ *  ======== UART2 ========
++ */
++
++/*
++ *  TX: DIO13
++ *  RX: DIO12
++ *  XDS110 UART
++ */
++extern const uint_least8_t                  CONFIG_DISPLAY_UART_CONST;
++#define CONFIG_DISPLAY_UART                 0
++#define CONFIG_TI_DRIVERS_UART2_COUNT       1
++
++
++/*
++ *  ======== Button ========
++ */
++
++extern const uint_least8_t                  CONFIG_BTN_LEFT_CONST;
++#define CONFIG_BTN_LEFT                     0
++extern const uint_least8_t                  CONFIG_BTN_RIGHT_CONST;
++#define CONFIG_BTN_RIGHT                    1
++#define CONFIG_TI_DRIVERS_BUTTON_COUNT      2
++
++
++/*
++ *  ======== LED ========
++ */
++
++extern const uint_least8_t              CONFIG_LED_RED_CONST;
++#define CONFIG_LED_RED                  0
++extern const uint_least8_t              CONFIG_LED_GREEN_CONST;
++#define CONFIG_LED_GREEN                1
++#define CONFIG_TI_DRIVERS_LED_COUNT     2
++
++
++/*
++ *  ======== Board_init ========
++ *  Perform all required TI-Drivers initialization
++ *
++ *  This function should be called once at a point before any use of
++ *  TI-Drivers.
++ */
++extern void Board_init(void);
++
++/*
++ *  ======== Board_initGeneral ========
++ *  (deprecated)
++ *
++ *  Board_initGeneral() is defined purely for backward compatibility.
++ *
++ *  All new code should use Board_init() to do any required TI-Drivers
++ *  initialization _and_ use <Driver>_init() for only where specific drivers
++ *  are explicitly referenced by the application.  <Driver>_init() functions
++ *  are idempotent.
++ */
++#define Board_initGeneral Board_init
++
++#ifdef __cplusplus
++}
++#endif
++
++#endif /* include guard */
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.c b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.c
+new file mode 100644
+index 0000000..229cea7
+--- /dev/null
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.c
+@@ -0,0 +1,385 @@
++/*
++ *  ======== ti_radio_config.c ========
++ *  Configured RadioConfig module definitions
++ *
++ *  DO NOT EDIT - This file is generated for the CC1352P1F3RGZ
++ *  by the SysConfig tool.
++ *
++ *  Radio Config module version : 1.14
++ *  SmartRF Studio data version : 2.27.0
++ */
++
++#include "ti_radio_config.h"
++#include DeviceFamily_constructPath(rf_patches/rf_patch_cpe_ieee_802_15_4.h)
++
++
++// *********************************************************************************
++//   RF Frontend configuration
++// *********************************************************************************
++// RF design based on: LAUNCHXL-CC1352P-2
++
++// TX Power tables
++// The RF_TxPowerTable_DEFAULT_PA_ENTRY and RF_TxPowerTable_HIGH_PA_ENTRY macros are defined in RF.h.
++// The following arguments are required:
++// RF_TxPowerTable_DEFAULT_PA_ENTRY(bias, gain, boost, coefficient)
++// RF_TxPowerTable_HIGH_PA_ENTRY(bias, ibboost, boost, coefficient, ldoTrim)
++// See the Technical Reference Manual for further details about the "txPower" Command field.
++// The PA settings require the CCFG_FORCE_VDDR_HH = 0 unless stated otherwise.
++
++// 868 MHz, 13 dBm
++RF_TxPowerTable_Entry txPowerTable_868_pa13[TXPOWERTABLE_868_PA13_SIZE] =
++{
++    {-20, RF_TxPowerTable_DEFAULT_PA_ENTRY(0, 3, 0, 2) }, // 0x04C0
++    {-15, RF_TxPowerTable_DEFAULT_PA_ENTRY(1, 3, 0, 3) }, // 0x06C1
++    {-10, RF_TxPowerTable_DEFAULT_PA_ENTRY(2, 3, 0, 5) }, // 0x0AC2
++    {-7, RF_TxPowerTable_DEFAULT_PA_ENTRY(3, 3, 0, 5) }, // 0x0AC3
++    {-5, RF_TxPowerTable_DEFAULT_PA_ENTRY(4, 3, 0, 5) }, // 0x0AC4
++    {-3, RF_TxPowerTable_DEFAULT_PA_ENTRY(5, 3, 0, 6) }, // 0x0CC5
++    {0, RF_TxPowerTable_DEFAULT_PA_ENTRY(8, 3, 0, 8) }, // 0x10C8
++    {1, RF_TxPowerTable_DEFAULT_PA_ENTRY(9, 3, 0, 9) }, // 0x12C9
++    {2, RF_TxPowerTable_DEFAULT_PA_ENTRY(10, 3, 0, 9) }, // 0x12CA
++    {3, RF_TxPowerTable_DEFAULT_PA_ENTRY(11, 3, 0, 10) }, // 0x14CB
++    {4, RF_TxPowerTable_DEFAULT_PA_ENTRY(13, 3, 0, 11) }, // 0x16CD
++    {5, RF_TxPowerTable_DEFAULT_PA_ENTRY(14, 3, 0, 14) }, // 0x1CCE
++    {6, RF_TxPowerTable_DEFAULT_PA_ENTRY(17, 3, 0, 16) }, // 0x20D1
++    {7, RF_TxPowerTable_DEFAULT_PA_ENTRY(20, 3, 0, 19) }, // 0x26D4
++    {8, RF_TxPowerTable_DEFAULT_PA_ENTRY(24, 3, 0, 22) }, // 0x2CD8
++    {9, RF_TxPowerTable_DEFAULT_PA_ENTRY(28, 3, 0, 31) }, // 0x3EDC
++    {10, RF_TxPowerTable_DEFAULT_PA_ENTRY(18, 2, 0, 31) }, // 0x3E92
++    {11, RF_TxPowerTable_DEFAULT_PA_ENTRY(26, 2, 0, 51) }, // 0x669A
++    {12, RF_TxPowerTable_DEFAULT_PA_ENTRY(16, 0, 0, 82) }, // 0xA410
++    // The original PA value (12.5 dBm) has been rounded to an integer value.
++    {13, RF_TxPowerTable_DEFAULT_PA_ENTRY(36, 0, 0, 89) }, // 0xB224
++    // This setting requires CCFG_FORCE_VDDR_HH = 1.
++    {14, RF_TxPowerTable_DEFAULT_PA_ENTRY(63, 0, 1, 0) }, // 0x013F
++    RF_TxPowerTable_TERMINATION_ENTRY
++};
++
++
++// 2400 MHz, 5 dBm
++RF_TxPowerTable_Entry txPowerTable_2400_pa5[TXPOWERTABLE_2400_PA5_SIZE] =
++{
++    {-20, RF_TxPowerTable_DEFAULT_PA_ENTRY(6, 3, 0, 2) }, // 0x04C6
++    {-18, RF_TxPowerTable_DEFAULT_PA_ENTRY(8, 3, 0, 3) }, // 0x06C8
++    {-15, RF_TxPowerTable_DEFAULT_PA_ENTRY(10, 3, 0, 3) }, // 0x06CA
++    {-12, RF_TxPowerTable_DEFAULT_PA_ENTRY(12, 3, 0, 5) }, // 0x0ACC
++    {-10, RF_TxPowerTable_DEFAULT_PA_ENTRY(15, 3, 0, 5) }, // 0x0ACF
++    {-9, RF_TxPowerTable_DEFAULT_PA_ENTRY(16, 3, 0, 5) }, // 0x0AD0
++    {-6, RF_TxPowerTable_DEFAULT_PA_ENTRY(20, 3, 0, 8) }, // 0x10D4
++    {-5, RF_TxPowerTable_DEFAULT_PA_ENTRY(22, 3, 0, 9) }, // 0x12D6
++    {-3, RF_TxPowerTable_DEFAULT_PA_ENTRY(19, 2, 0, 12) }, // 0x1893
++    {0, RF_TxPowerTable_DEFAULT_PA_ENTRY(19, 1, 0, 20) }, // 0x2853
++    {1, RF_TxPowerTable_DEFAULT_PA_ENTRY(22, 1, 0, 20) }, // 0x2856
++    {2, RF_TxPowerTable_DEFAULT_PA_ENTRY(25, 1, 0, 25) }, // 0x3259
++    {3, RF_TxPowerTable_DEFAULT_PA_ENTRY(29, 1, 0, 28) }, // 0x385D
++    {4, RF_TxPowerTable_DEFAULT_PA_ENTRY(35, 1, 0, 39) }, // 0x4E63
++    {5, RF_TxPowerTable_DEFAULT_PA_ENTRY(23, 0, 0, 57) }, // 0x7217
++    RF_TxPowerTable_TERMINATION_ENTRY
++};
++
++// 2400 MHz, 5 + 20 dBm
++RF_TxPowerTable_Entry txPowerTable_2400_pa5_20[TXPOWERTABLE_2400_PA5_20_SIZE] =
++{
++    {-20, RF_TxPowerTable_DEFAULT_PA_ENTRY(6, 3, 0, 2) }, // 0x04C6
++    {-18, RF_TxPowerTable_DEFAULT_PA_ENTRY(8, 3, 0, 3) }, // 0x06C8
++    {-15, RF_TxPowerTable_DEFAULT_PA_ENTRY(10, 3, 0, 3) }, // 0x06CA
++    {-12, RF_TxPowerTable_DEFAULT_PA_ENTRY(12, 3, 0, 5) }, // 0x0ACC
++    {-10, RF_TxPowerTable_DEFAULT_PA_ENTRY(15, 3, 0, 5) }, // 0x0ACF
++    {-9, RF_TxPowerTable_DEFAULT_PA_ENTRY(16, 3, 0, 5) }, // 0x0AD0
++    {-6, RF_TxPowerTable_DEFAULT_PA_ENTRY(20, 3, 0, 8) }, // 0x10D4
++    {-5, RF_TxPowerTable_DEFAULT_PA_ENTRY(22, 3, 0, 9) }, // 0x12D6
++    {-3, RF_TxPowerTable_DEFAULT_PA_ENTRY(19, 2, 0, 12) }, // 0x1893
++    {0, RF_TxPowerTable_DEFAULT_PA_ENTRY(19, 1, 0, 20) }, // 0x2853
++    {1, RF_TxPowerTable_DEFAULT_PA_ENTRY(22, 1, 0, 20) }, // 0x2856
++    {2, RF_TxPowerTable_DEFAULT_PA_ENTRY(25, 1, 0, 25) }, // 0x3259
++    {3, RF_TxPowerTable_DEFAULT_PA_ENTRY(29, 1, 0, 28) }, // 0x385D
++    {4, RF_TxPowerTable_DEFAULT_PA_ENTRY(35, 1, 0, 39) }, // 0x4E63
++    {5, RF_TxPowerTable_DEFAULT_PA_ENTRY(23, 0, 0, 57) }, // 0x7217
++
++    // CUSTOM: allow transmit power 6 - 13 dbm
++    {6, .value.rawValue = (0x144f2a), .value.paType = RF_TxPowerTable_HighPA },
++    {7, .value.rawValue = (0x14285f), .value.paType = RF_TxPowerTable_HighPA },
++    {8, .value.rawValue = (0x10335a), .value.paType = RF_TxPowerTable_HighPA },
++    {9, .value.rawValue = (0x103f5f), .value.paType = RF_TxPowerTable_HighPA },
++    {10, .value.rawValue = (0x104f66), .value.paType = RF_TxPowerTable_HighPA },
++    {11, .value.rawValue = (0x3021cb), .value.paType = RF_TxPowerTable_HighPA },
++    {12, .value.rawValue = (0x3f27cc), .value.paType = RF_TxPowerTable_HighPA },
++    {13, .value.rawValue = (0x3fc3cd), .value.paType = RF_TxPowerTable_HighPA },
++
++    {14, RF_TxPowerTable_HIGH_PA_ENTRY(22, 3, 1, 19, 27) }, // 0x1B27D6
++    {15, RF_TxPowerTable_HIGH_PA_ENTRY(26, 3, 1, 23, 27) }, // 0x1B2FDA
++    {16, RF_TxPowerTable_HIGH_PA_ENTRY(30, 3, 1, 28, 27) }, // 0x1B39DE
++    {17, RF_TxPowerTable_HIGH_PA_ENTRY(37, 3, 1, 39, 27) }, // 0x1B4FE5
++    {18, RF_TxPowerTable_HIGH_PA_ENTRY(32, 3, 1, 35, 48) }, // 0x3047E0
++    {19, RF_TxPowerTable_HIGH_PA_ENTRY(34, 3, 1, 48, 63) }, // 0x3F61E2
++    {20, RF_TxPowerTable_HIGH_PA_ENTRY(53, 3, 1, 58, 63) }, // 0x3F75F5
++    RF_TxPowerTable_TERMINATION_ENTRY
++};
++
++
++
++//*********************************************************************************
++//  RF Setting:   IEEE 802.15.4-2006, 250 kbps, OQPSK, DSSS = 1:8
++//
++//  PHY:          ieee154
++//  Setting file: setting_ieee_802_15_4.json
++//*********************************************************************************
++
++// PARAMETER SUMMARY
++// Channel - Frequency (MHz): 2405
++// TX Power (dBm): 20
++
++// TI-RTOS RF Mode Object
++RF_Mode RF_prop_ieee154 =
++{
++    .rfMode = RF_MODE_AUTO,
++    .cpePatchFxn = &rf_patch_cpe_ieee_802_15_4,
++    .mcePatchFxn = 0,
++    .rfePatchFxn = 0
++};
++
++// Overrides for CMD_RADIO_SETUP_PA
++uint32_t pOverrides_ieee154[] =
++{
++    // override_ieee_802_15_4.json
++    // Rx: Set LNA bias current offset to +15 to saturate trim to max (default: 0)
++    (uint32_t)0x000F8883,
++    // Tx: Set DCDC settings IPEAK=3, dither = off
++    (uint32_t)0x00F388D3,
++    (uint32_t)0xFFFFFFFF
++};
++
++// Overrides for CMD_RADIO_SETUP_PA
++uint32_t pOverrides_ieee154TxStd[] =
++{
++    // override_txstd_placeholder.json
++    // TX Standard power override
++    TX_STD_POWER_OVERRIDE(0x7217),
++    // The ANADIV radio parameter based on LO divider and front end settings
++    (uint32_t)0x05320703,
++    // override_txstd_settings.json
++    // Set RTIM offset to default for standard PA
++    (uint32_t)0x00008783,
++    // Set synth mux to default value for standard PA
++    (uint32_t)0x050206C3,
++    // Set TXRX pin to 0 in RX and high impedance in idle/TX. 
++    HW_REG_OVERRIDE(0x60A8,0x0401),
++    (uint32_t)0xFFFFFFFF
++};
++
++// Overrides for CMD_RADIO_SETUP_PA
++uint32_t pOverrides_ieee154Tx20[] =
++{
++    // override_tx20_placeholder.json
++    // TX HighPA power override
++    TX20_POWER_OVERRIDE(0x003F75F5),
++    // The ANADIV radio parameter based on LO divider and front end settings
++    (uint32_t)0x01C20703,
++    // override_tx20_settings.json
++    // Set RTIM offset to 3 for high power PA
++    (uint32_t)0x00038783,
++    // Set synth mux for high power PA
++    (uint32_t)0x010206C3,
++    // Set TXRX pin to 0 in RX/TX and high impedance in idle. 
++    HW_REG_OVERRIDE(0x60A8,0x0001),
++    (uint32_t)0xFFFFFFFF
++};
++
++
++
++// CMD_RADIO_SETUP_PA
++// Radio Setup Command for Pre-Defined Schemes
++const rfc_CMD_RADIO_SETUP_PA_t RF_cmdRadioSetup_ieee154 =
++{
++    .commandNo = 0x0802,
++    .status = 0x0000,
++    .pNextOp = 0,
++    .startTime = 0x00000000,
++    .startTrigger.triggerType = 0x0,
++    .startTrigger.bEnaCmd = 0x0,
++    .startTrigger.triggerNo = 0x0,
++    .startTrigger.pastTrig = 0x0,
++    .condition.rule = 0x1,
++    .condition.nSkip = 0x0,
++    .mode = 0x01,
++    .loDivider = 0x00,
++    .config.frontEndMode = 0x0,
++    .config.biasMode = 0x1,
++    .config.analogCfgMode = 0x0,
++    .config.bNoFsPowerUp = 0x0,
++    .config.bSynthNarrowBand = 0x0,
++    .txPower = 0xFFFF,
++    .pRegOverride = pOverrides_ieee154,
++    .pRegOverrideTxStd = pOverrides_ieee154TxStd,
++    .pRegOverrideTx20 = pOverrides_ieee154Tx20
++};
++
++// CMD_FS
++// Frequency Synthesizer Programming Command
++const rfc_CMD_FS_t RF_cmdFs_ieee154 =
++{
++    .commandNo = 0x0803,
++    .status = 0x0000,
++    .pNextOp = 0,
++    .startTime = 0x00000000,
++    .startTrigger.triggerType = 0x0,
++    .startTrigger.bEnaCmd = 0x0,
++    .startTrigger.triggerNo = 0x0,
++    .startTrigger.pastTrig = 0x0,
++    .condition.rule = 0x1,
++    .condition.nSkip = 0x0,
++    .frequency = 0x0965,
++    .fractFreq = 0x0000,
++    .synthConf.bTxMode = 0x0,
++    .synthConf.refFreq = 0x0,
++    .__dummy0 = 0x00,
++    .__dummy1 = 0x00,
++    .__dummy2 = 0x00,
++    .__dummy3 = 0x0000
++};
++
++// CMD_IEEE_TX
++// IEEE 802.15.4 Transmit Command
++const rfc_CMD_IEEE_TX_t RF_cmdIeeeTx_ieee154 =
++{
++    .commandNo = 0x2C01,
++    .status = 0x0000,
++    .pNextOp = 0,
++    .startTime = 0x00000000,
++    .startTrigger.triggerType = 0x0,
++    .startTrigger.bEnaCmd = 0x0,
++    .startTrigger.triggerNo = 0x0,
++    .startTrigger.pastTrig = 0x0,
++    .condition.rule = 0x1,
++    .condition.nSkip = 0x0,
++    .txOpt.bIncludePhyHdr = 0x0,
++    .txOpt.bIncludeCrc = 0x0,
++    .txOpt.payloadLenMsb = 0x0,
++    .payloadLen = 0x1E,
++    .pPayload = 0,
++    .timeStamp = 0x00000000
++};
++
++// CMD_IEEE_RX
++// IEEE 802.15.4 Receive Command
++const rfc_CMD_IEEE_RX_t RF_cmdIeeeRx_ieee154 =
++{
++    .commandNo = 0x2801,
++    .status = 0x0000,
++    .pNextOp = 0,
++    .startTime = 0x00000000,
++    .startTrigger.triggerType = 0x0,
++    .startTrigger.bEnaCmd = 0x0,
++    .startTrigger.triggerNo = 0x0,
++    .startTrigger.pastTrig = 0x0,
++    .condition.rule = 0x1,
++    .condition.nSkip = 0x0,
++    .channel = 0x00,
++    .rxConfig.bAutoFlushCrc = 0x0,
++    .rxConfig.bAutoFlushIgn = 0x0,
++    .rxConfig.bIncludePhyHdr = 0x0,
++    .rxConfig.bIncludeCrc = 0x0,
++    .rxConfig.bAppendRssi = 0x1,
++    .rxConfig.bAppendCorrCrc = 0x1,
++    .rxConfig.bAppendSrcInd = 0x0,
++    .rxConfig.bAppendTimestamp = 0x0,
++    .pRxQ = 0,
++    .pOutput = 0,
++    .frameFiltOpt.frameFiltEn = 0x0,
++    .frameFiltOpt.frameFiltStop = 0x0,
++    .frameFiltOpt.autoAckEn = 0x0,
++    .frameFiltOpt.slottedAckEn = 0x0,
++    .frameFiltOpt.autoPendEn = 0x0,
++    .frameFiltOpt.defaultPend = 0x0,
++    .frameFiltOpt.bPendDataReqOnly = 0x0,
++    .frameFiltOpt.bPanCoord = 0x0,
++    .frameFiltOpt.maxFrameVersion = 0x3,
++    .frameFiltOpt.fcfReservedMask = 0x0,
++    .frameFiltOpt.modifyFtFilter = 0x0,
++    .frameFiltOpt.bStrictLenFilter = 0x0,
++    .frameTypes.bAcceptFt0Beacon = 0x1,
++    .frameTypes.bAcceptFt1Data = 0x1,
++    .frameTypes.bAcceptFt2Ack = 0x1,
++    .frameTypes.bAcceptFt3MacCmd = 0x1,
++    .frameTypes.bAcceptFt4Reserved = 0x1,
++    .frameTypes.bAcceptFt5Reserved = 0x1,
++    .frameTypes.bAcceptFt6Reserved = 0x1,
++    .frameTypes.bAcceptFt7Reserved = 0x1,
++    .ccaOpt.ccaEnEnergy = 0x0,
++    .ccaOpt.ccaEnCorr = 0x0,
++    .ccaOpt.ccaEnSync = 0x0,
++    .ccaOpt.ccaCorrOp = 0x1,
++    .ccaOpt.ccaSyncOp = 0x1,
++    .ccaOpt.ccaCorrThr = 0x0,
++    .ccaRssiThr = 0x64,
++    .__dummy0 = 0x00,
++    .numExtEntries = 0x00,
++    .numShortEntries = 0x00,
++    .pExtEntryList = 0,
++    .pShortEntryList = 0,
++    .localExtAddr = 0x12345678,
++    .localShortAddr = 0xABBA,
++    .localPanID = 0x0000,
++    .__dummy1 = 0x000000,
++    .endTrigger.triggerType = 0x1,
++    .endTrigger.bEnaCmd = 0x0,
++    .endTrigger.triggerNo = 0x0,
++    .endTrigger.pastTrig = 0x0,
++    .endTime = 0x00000000
++};
++
++// CMD_IEEE_CSMA
++// IEEE 802.15.4 CSMA-CA Command
++const rfc_CMD_IEEE_CSMA_t RF_cmdIeeeCsma_ieee154 =
++{
++    .commandNo = 0x2C02,
++    .status = 0x0000,
++    .pNextOp = 0,
++    .startTime = 0x00000000,
++    .startTrigger.triggerType = 0x0,
++    .startTrigger.bEnaCmd = 0x0,
++    .startTrigger.triggerNo = 0x0,
++    .startTrigger.pastTrig = 0x0,
++    .condition.rule = 0x0,
++    .condition.nSkip = 0x0,
++    .randomState = 0x0000,
++    .macMaxBE = 0x00,
++    .macMaxCSMABackoffs = 0x00,
++    .csmaConfig.initCW = 0x0,
++    .csmaConfig.bSlotted = 0x0,
++    .csmaConfig.rxOffMode = 0x0,
++    .NB = 0x00,
++    .BE = 0x00,
++    .remainingPeriods = 0x00,
++    .lastRssi = 0x00,
++    .endTrigger.triggerType = 0x0,
++    .endTrigger.bEnaCmd = 0x0,
++    .endTrigger.triggerNo = 0x0,
++    .endTrigger.pastTrig = 0x0,
++    .lastTimeStamp = 0x00000000,
++    .endTime = 0x00000000
++};
++
++// CMD_IEEE_RX_ACK
++// IEEE 802.15.4 Receive Acknowledgement Command
++const rfc_CMD_IEEE_RX_ACK_t RF_cmdIeeeRxAck_ieee154 =
++{
++    .commandNo = 0x2C03,
++    .status = 0x0000,
++    .pNextOp = 0,
++    .startTime = 0x00000000,
++    .startTrigger.triggerType = 0x0,
++    .startTrigger.bEnaCmd = 0x0,
++    .startTrigger.triggerNo = 0x0,
++    .startTrigger.pastTrig = 0x0,
++    .condition.rule = 0x0,
++    .condition.nSkip = 0x0,
++    .seqNo = 0x00,
++    .endTrigger.triggerType = 0x0,
++    .endTrigger.bEnaCmd = 0x0,
++    .endTrigger.triggerNo = 0x0,
++    .endTrigger.pastTrig = 0x0,
++    .endTime = 0x00000000
++};
++
++
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.h b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.h
+new file mode 100644
+index 0000000..870127b
+--- /dev/null
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/ti_radio_config.h
+@@ -0,0 +1,83 @@
++/*
++ *  ======== ti_radio_config.h ========
++ *  Configured RadioConfig module definitions
++ *
++ *  DO NOT EDIT - This file is generated for the CC1352P1F3RGZ
++ *  by the SysConfig tool.
++ *
++ *  Radio Config module version : 1.14
++ *  SmartRF Studio data version : 2.27.0
++ */
++#ifndef _TI_RADIO_CONFIG_H_
++#define _TI_RADIO_CONFIG_H_
++
++#include <ti/devices/DeviceFamily.h>
++#include DeviceFamily_constructPath(driverlib/rf_mailbox.h)
++#include DeviceFamily_constructPath(driverlib/rf_common_cmd.h)
++#include DeviceFamily_constructPath(driverlib/rf_ieee_cmd.h)
++#include <ti/drivers/rf/RF.h>
++
++/* SmartRF Studio version that the RF data is fetched from */
++#define SMARTRF_STUDIO_VERSION "2.27.0"
++
++// *********************************************************************************
++//   RF Frontend configuration
++// *********************************************************************************
++// RF design based on: LAUNCHXL-CC1352P-2
++#define LAUNCHXL_CC1352P_2
++
++// High-Power Amplifier supported
++#define SUPPORT_HIGH_PA
++
++// RF frontend configuration
++#define FRONTEND_SUB1G_DIFF_RF
++#define FRONTEND_SUB1G_EXT_BIAS
++#define FRONTEND_24G_DIFF_RF
++#define FRONTEND_24G_EXT_BIAS
++
++// Supported frequency bands
++#define SUPPORT_FREQBAND_868
++#define SUPPORT_FREQBAND_2400
++
++// TX power table size definitions
++#define TXPOWERTABLE_868_PA13_SIZE 22 // 868 MHz, 13 dBm
++#define TXPOWERTABLE_2400_PA5_SIZE 16 // 2400 MHz, 5 dBm
++// CUSTOM: account for extra entities in ti_radio_config.c txPowerTable_2400_pa5_20
++#define TXPOWERTABLE_2400_PA5_20_SIZE 31 // 2400 MHz, 5 + 20 dBm
++
++// TX power tables
++extern RF_TxPowerTable_Entry txPowerTable_868_pa13[]; // 868 MHz, 13 dBm
++extern RF_TxPowerTable_Entry txPowerTable_2400_pa5[]; // 2400 MHz, 5 dBm
++extern RF_TxPowerTable_Entry txPowerTable_2400_pa5_20[]; // 2400 MHz, 5 + 20 dBm
++
++
++
++//*********************************************************************************
++//  RF Setting:   IEEE 802.15.4-2006, 250 kbps, OQPSK, DSSS = 1:8
++//
++//  PHY:          ieee154
++//  Setting file: setting_ieee_802_15_4.json
++//*********************************************************************************
++
++// PA table usage
++#define TX_POWER_TABLE_SIZE_ieee154 TXPOWERTABLE_2400_PA5_20_SIZE
++
++#define txPowerTable_ieee154 txPowerTable_2400_pa5_20
++
++// TI-RTOS RF Mode object
++extern RF_Mode RF_prop_ieee154;
++
++// RF Core API commands
++extern const rfc_CMD_RADIO_SETUP_PA_t RF_cmdRadioSetup_ieee154;
++extern const rfc_CMD_FS_t RF_cmdFs_ieee154;
++extern const rfc_CMD_IEEE_TX_t RF_cmdIeeeTx_ieee154;
++extern const rfc_CMD_IEEE_RX_t RF_cmdIeeeRx_ieee154;
++extern const rfc_CMD_IEEE_CSMA_t RF_cmdIeeeCsma_ieee154;
++extern const rfc_CMD_IEEE_RX_ACK_t RF_cmdIeeeRxAck_ieee154;
++
++// RF Core API overrides
++extern uint32_t pOverrides_ieee154[];
++extern uint32_t pOverrides_ieee154TxStd[];
++extern uint32_t pOverrides_ieee154Tx20[];
++
++#endif // _TI_RADIO_CONFIG_H_
+diff --git a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg
+index 1b16340..f700be5 100644
+--- a/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg
++++ b/zr_genericapp_CC1352P_2_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg
+@@ -4,6 +4,10 @@
+  * @cliArgs --board "/ti/boards/CC1352P_2_LAUNCHXL" --rtos "tirtos7" --product "simplelink_cc13xx_cc26xx_sdk@6.30.00.84"
+  * @versions {"tool":"1.14.0+2667"}
+  */
++scripting.excludeFromBuild("ti_devices_config.c");
++scripting.excludeFromBuild("ti_radio_config.c");
++scripting.excludeFromBuild("ti_radio_config.h");
++scripting.excludeFromBuild("ti_drivers_config.h");
+ 
+ /**
+  * Import the modules used in this configuration.
+@@ -65,6 +69,7 @@ CCFG.enableBootloaderBackdoor = true;
+ CCFG.dioBootloaderBackdoor    = 15;
+ CCFG.levelBootloaderBackdoor  = "Active low";
+ CCFG.forceVddr                = true;
++CCFG.enableDCDC               = false;
+ CCFG.ccfgTemplate.$name       = "ti_devices_CCFG_CCFGCC26XXTemplate0";
+ 
+ rfdesign.rfDesign = "LAUNCHXL-CC1352P-2";
+@@ -87,8 +92,8 @@ ECDSA1.$name = "CONFIG_ECDSA_0";
+ 
+ NVS1.$name                    = "CONFIG_NVSINTERNAL";
+ NVS1.internalFlash.$name      = "ti_drivers_nvs_NVSCC26XX0";
+-NVS1.internalFlash.regionSize = 0x4000;
+-NVS1.internalFlash.regionBase = 0x52000;
++NVS1.internalFlash.regionBase = 0x50000;
++NVS1.internalFlash.regionSize = 0x6000;
+ 
+ NVS2.$name                          = "CONFIG_NVSEXTERNAL";
+ NVS2.nvsType                        = "External";
+@@ -179,6 +184,8 @@ zstack.deviceTypeReadOnly                    = true;
+ zstack.touchlink.$name                       = "ti_zstack_touchlink_zstack_touchlink0";
+ zstack.pm.$name                              = "ti_zstack_pm_zstack_pm0";
+ zstack.rf.$name                              = "ti_zstack_rf_zstack_rf0";
++zstack.rf.txPower                            = "20";
++zstack.rf.primaryChannels                    = [11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
+ zstack.rf.radioConfig.$name                  = "ti_devices_radioconfig_settings_ieee_15_40";
+ zstack.rf.radioConfig.codeExportConfig.$name = "ti_devices_radioconfig_code_export_param0";
+ zstack.rf.coexSettings.$name                 = "ti_zstack_rf_zstack_coex_mod0";
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c
+index 550be7a..0725b39 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp.c
+@@ -53,6 +53,8 @@
+  * INCLUDES
+  */
+ 
++#include <driverlib/sys_ctrl.h>
++
+ #include "rom_jt_154.h"
+ #include "zcomdef.h"
+ 
+@@ -68,6 +70,8 @@
+ #include "zcl_genericapp.h"
+ #include "zcl_port.h"
+ 
++#include "osal_nv.h"
++
+ #include <ti/drivers/apps/Button.h>
+ #include "ti_drivers_config.h"
+ #include "util_timer.h"
+@@ -261,6 +265,14 @@ void sampleApp_task(NVINTF_nvFuncts_t *pfnNV)
+   pfnZdlNV = pfnNV;
+   zclport_registerNV(pfnZdlNV, ZCL_PORT_SCENE_TABLE_NV_ID);
+ 
++  // Init the transmit power NV item, this will be skipped if item is already initialized
++  int8_t transmitPower = TXPOWER;
++  osal_nv_item_init( ZCD_NV_TRANSMIT_POWER, sizeof(transmitPower), &transmitPower );
++
++  // Set transmit power
++  osal_nv_read( ZCD_NV_TRANSMIT_POWER, 0, sizeof( transmitPower ), &transmitPower );
++  ZMacSetTransmitPower( (ZMacTransmitPower_t)transmitPower );
++
+   // Initialize application
+   zclGenericApp_initialization();
+ 
+@@ -870,6 +882,7 @@ static void zclGenericApp_processAfIncomingMsgInd(zstack_afIncomingMsgInd_t *pIn
+  */
+ static void zclGenericApp_ProcessCommissioningStatus(bdbCommissioningModeMsg_t *bdbCommissioningModeMsg)
+ {
++  zstack_bdbStartCommissioningReq_t zstack_bdbStartCommissioningReq;
+   switch(bdbCommissioningModeMsg->bdbCommissioningMode)
+   {
+     case BDB_COMMISSIONING_FORMATION:
+@@ -909,6 +922,8 @@ static void zclGenericApp_ProcessCommissioningStatus(bdbCommissioningModeMsg_t *
+       }
+     break;
+     case BDB_COMMISSIONING_INITIALIZATION:
++      zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
++      Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+       //Initialization notification can only be successful. Failure on initialization
+       //only happens for ZED and is notified as BDB_COMMISSIONING_PARENT_LOST notification
+ 
+@@ -1209,28 +1224,16 @@ static void zclGenericApp_changeKeyCallback(Button_Handle _btn, Button_EventMask
+  */
+ static void zclGenericApp_processKey(Button_Handle _btn)
+ {
+-    zstack_bdbStartCommissioningReq_t zstack_bdbStartCommissioningReq;
+-    //Button 1
+-    if(_btn == gLeftButtonHandle)
+-    {
+-        if(ZG_BUILD_COORDINATOR_TYPE && ZG_DEVICE_COORDINATOR_TYPE)
+-        {
++    NLME_LeaveReq_t         req;
++    memset( &req, 0, sizeof( NLME_LeaveReq_t ) );
++    NLME_LeaveReq(&req);
++    // Sleep for 2 seconds, otherwise leave request is not send
++    Task_sleep(2000 * (1000 / ClockP_getSystemTickPeriod()));
+ 
+-            zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_FORMATION | BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
+-            Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+-        }
+-        else if (ZG_BUILD_JOINING_TYPE && ZG_DEVICE_JOINING_TYPE)
+-        {
+-            zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
+-            Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+-        }
+-    }
+-    //Button 2
+-    if(_btn == gRightButtonHandle)
+-    {
+-        Zstackapi_bdbResetLocalActionReq(appServiceTaskId);
+-    }
++    zgWriteStartupOptions( ZG_STARTUP_SET,
++                         ZCD_STARTOPT_DEFAULT_NETWORK_STATE | ZCD_STARTOPT_DEFAULT_CONFIG_STATE);
+ 
++    SysCtrlSystemReset();
+ }
+ 
+ 
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c
+index c0e473d..4d08810 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Application/zcl_genericapp_data.c
+@@ -49,6 +49,8 @@
+ #include "zcl_general.h"
+ #include "zcl_ha.h"
+ 
++#include "osal_nv.h"
++
+ /* GENERICAPP_TODO: Include any of the header files below to access specific cluster data
+ #include "zcl_poll_control.h"
+ #include "zcl_electrical_measurement.h"
+@@ -96,8 +98,11 @@ const uint16_t zclGenericApp_identify_clusterRevision = 0x0001;
+ const uint8_t zclGenericApp_HWRevision = GENERICAPP_HWVERSION;
+ const uint8_t zclGenericApp_ZCLVersion = GENERICAPP_ZCLVERSION;
+ const uint8_t zclGenericApp_ManufacturerName[] = { 16, 'T','e','x','a','s','I','n','s','t','r','u','m','e','n','t','s' };
++const uint8_t zclGenericApp_ModelID[] = { 9, 't','i','.','r','o','u','t','e','r' };
++const uint8_t zclGenericApp_SwBuildID[] = { 8, '2','0','2','2','1','1','0','2' };
+ const uint8_t zclGenericApp_PowerSource = POWER_SOURCE_MAINS_1_PHASE;
+ uint8_t zclGenericApp_PhysicalEnvironment = PHY_UNSPECIFIED_ENV;
++int8_t zclGenericApp_TransmitPower;
+ 
+ #ifdef ZCL_IDENTIFY
+ // Identify Cluster
+@@ -134,7 +139,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
+       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
+-      ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),                // Variable access control - found in zcl.h
+       (void *)&zclGenericApp_HWRevision  // Pointer to attribute variable
+     }
+   },
+@@ -143,16 +148,34 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_ZCL_VERSION,
+       ZCL_DATATYPE_UINT8,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_REPORTABLE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_ZCLVersion
+     }
+   },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    { // Attribute record
++      ATTRID_BASIC_MODEL_IDENTIFIER,
++      ZCL_DATATYPE_CHAR_STR,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
++      (void *)zclGenericApp_ModelID
++    }
++  },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    { // Attribute record
++      ATTRID_BASIC_SW_BUILD_ID,
++      ZCL_DATATYPE_CHAR_STR,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
++      (void *)zclGenericApp_SwBuildID
++    }
++  },
+   {
+     ZCL_CLUSTER_ID_GENERAL_BASIC,
+     { // Attribute record
+       ATTRID_BASIC_MANUFACTURER_NAME,
+       ZCL_DATATYPE_CHAR_STR,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)zclGenericApp_ManufacturerName
+     }
+   },
+@@ -161,7 +184,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_POWER_SOURCE,
+       ZCL_DATATYPE_ENUM8,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_PowerSource
+     }
+   },
+@@ -170,7 +193,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
+       ZCL_DATATYPE_ENUM8,
+-      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_PhysicalEnvironment
+     }
+   },
+@@ -179,10 +202,20 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_CLUSTER_REVISION,
+       ZCL_DATATYPE_UINT16,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_basic_clusterRevision
+     }
+   },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    {  // Attribute record
++     ATTRID_BASIC_TRANSMIT_POWER,
++     ZCL_DATATYPE_INT8,
++     (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
++     (void *)&zclGenericApp_TransmitPower
++    }
++  },
++
+ 
+ #ifdef ZCL_IDENTIFY
+   // *** Identify Cluster Attribute ***
+@@ -191,7 +224,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_IDENTIFY_IDENTIFY_TIME,
+       ZCL_DATATYPE_UINT16,
+-      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_IdentifyTime
+     }
+   },
+@@ -201,7 +234,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_CLUSTER_REVISION,
+       ZCL_DATATYPE_UINT16,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_identify_clusterRevision
+     }
+   },
+@@ -276,6 +309,7 @@ void zclGenericApp_ResetAttributesToDefaultValues(void)
+ {
+ 
+   zclGenericApp_PhysicalEnvironment = PHY_UNSPECIFIED_ENV;
++  osal_nv_read( ZCD_NV_TRANSMIT_POWER, 0, sizeof( zclGenericApp_TransmitPower ), &zclGenericApp_TransmitPower );
+ 
+ #ifdef ZCL_IDENTIFY
+   zclGenericApp_IdentifyTime = 0;
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c
+index 51902c4..9afcba3 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Common/zcl/zcl.c
+@@ -47,6 +47,8 @@
+ #include "zcl.h"
+ #include "zcl_general.h"
+ 
++#include "osal_nv.h"
++
+ #if defined ( INTER_PAN ) || defined ( BDB_TL_INITIATOR ) || defined ( BDB_TL_TARGET )
+   #include "stub_aps.h"
+ #endif
+@@ -4675,6 +4677,14 @@ static uint8_t zclProcessInWriteCmd( zclIncoming_t *pInMsg )
+             status = zclWriteAttrData( pInMsg->msg->endPoint, &(pInMsg->msg->srcAddr),
+                                        &attrRec, statusRec );
+           }
++
++          if((pInMsg->msg->clusterId == ZCL_CLUSTER_ID_GENERAL_BASIC) && (statusRec->attrID == ATTRID_BASIC_TRANSMIT_POWER))
++          {
++              int8_t transmitPower;
++              OsalPort_memcpy((int8_t*)&transmitPower,statusRec->attrData,sizeof(int8_t));
++              ZMacSetTransmitPower( (ZMacTransmitPower_t)transmitPower );
++              osal_nv_write( ZCD_NV_TRANSMIT_POWER, sizeof( transmitPower ), &transmitPower );
++          }
+         }
+         else // Use CB
+         {
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts
+index b841d60..ed396c2 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/f8wrouter.opts
+@@ -9,3 +9,5 @@
+ -DADDRMGR_NV_SINGLES
+ -DBINDINGTABLE_NV_SINGLES
+ -DASSOCLIST_NV_SINGLES
++
++-include preinclude.h
+\ No newline at end of file
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h
+new file mode 100644
+index 0000000..1ce7b56
+--- /dev/null
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/Config/preinclude.h
+@@ -0,0 +1,33 @@
++// Increase MAC buffers
++#undef MAC_CFG_TX_DATA_MAX
++#define MAC_CFG_TX_DATA_MAX 20
++#undef MAC_CFG_TX_MAX
++#define MAC_CFG_TX_MAX 32
++#undef MAC_CFG_RX_MAX
++#define MAC_CFG_RX_MAX 20
++
++// Increase NV pages to 3 to allow for bigger device tables
++#undef NVOCMP_NVPAGES
++#define NVOCMP_NVPAGES 3
++
++// Increase the max number of boardcasts, the default broadcast delivery time is 3 seconds
++// with the value below this will allow for 1 broadcast every 0.15 second
++#define MAX_BCAST 30
++
++#define ZCL_REPORT_DESTINATION_DEVICE
++#define BDB_REPORTING
++#define CUI_DISABLE
++#define NWK_MAX_DEVICE_LIST     50
++#define MAX_NEIGHBOR_ENTRIES    50
++#define MAX_RTG_ENTRIES         150
++#define ZDO_API_ADVANCED
++
++#define ATTRID_BASIC_TRANSMIT_POWER 0x1337
++
++// From https://www.ti.com/lit/an/swra650b/swra650b.pdf
++#define LINK_DOWN_TRIGGER 12
++#define NWK_ROUTE_AGE_LIMIT 5
++#define DEF_NWK_RADIUS 15
++#define DEFAULT_ROUTE_REQUEST_RADIUS 8
++#define ZDNWKMGR_MIN_TRANSMISSIONS 0
++#define ROUTE_DISCOVERY_TIME 13
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h
+index 26c0b45..8a338c1 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zcomdef.h
+@@ -123,6 +123,9 @@ extern "C"
+ #define ZCD_NV_STARTUP_OPTION             0x0003
+ #define ZCD_NV_START_DELAY                0x0004
+ 
++// Custom transmit power NV item
++#define ZCD_NV_TRANSMIT_POWER             0x0010
++
+ // NWK Layer NV item IDs
+ #define ZCD_NV_NIB                        0x0021
+ #define ZCD_NV_DEVICE_LIST                0x0022
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c
+index 706736b..b63af7b 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/sys/zglobals.c
+@@ -225,7 +225,7 @@ uint8_t zgEndDeviceConfiguration = END_DEV_CONFIGURATION;
+ //
+ // NOTICE:  Before enabling Child Aging make sure to review all the related
+ // definitions in this file, especially zgNwkParentInformation.
+-uint8_t zgChildAgingEnable = TRUE;
++uint8_t zgChildAgingEnable = FALSE;
+ 
+ //==========    TouchLink NWK configuration    ===============
+ // Values used by Router when starts a network as initiator
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c
+index 1f30180..0fd57f5 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/Stack/zdo/zd_app.c
+@@ -441,12 +441,11 @@ uint32_t ZDApp_event_loop( uint8_t task_id, uint32_t events )
+           ZDApp_ChangeState( DEV_ROUTER );
+         }
+ 
+-        if ( zgChildAgingEnable == TRUE )
+-        {
+-          // Once the device has changed its state to a ROUTER set the timer to send
+-          // Parent annce
+-          ZDApp_SetParentAnnceTimer();
+-        }
++        // As we cannot enable child aging as Xiaomi devices will drop off
++        // but we stil want to have the parent announces we always enable it here.
++        // Otherwise some end devices could be unreachable when they changed parent
++        // while the coordinator was powered off.
++        ZDApp_SetParentAnnceTimer();
+       }
+       else
+       {
+@@ -907,12 +906,11 @@ void ZDApp_NetworkStartEvt( void )
+         bdb_reportCommissioningState(BDB_INITIALIZATION,TRUE);
+       }
+ 
+-      if ( zgChildAgingEnable == TRUE )
+-      {
+-        // Once the device has changed its state to a COORDINATOR set the timer to send
+-        // Parent annce
+-        ZDApp_SetParentAnnceTimer();
+-      }
++      // As we cannot enable child aging as Xiaomi devices will drop off
++      // but we stil want to have the parent announces we always enable it here.
++      // Otherwise some end devices could be unreachable when they changed parent
++      // while the coordinator was powered off.
++      ZDApp_SetParentAnnceTimer();
+     }
+     else
+     {
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
+index da62af1..234ac56 100755
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
+@@ -71,9 +71,9 @@
+ #endif
+ 
+ #define FLASH_BASE              0x00000000
+-#define FLASH_SIZE              (0x56000 - (NVOCMP_NVPAGES * 0x2000))
+-#define FLASH_NV_BASE           (0x56000 - (NVOCMP_NVPAGES * 0x2000))
+-#define FLASH_NV_SIZE           (NVOCMP_NVPAGES * 0x2000)
++#define FLASH_SIZE              0x50000
++#define FLASH_NV_BASE           0x50000
++#define FLASH_NV_SIZE           0x6000
+ #define FLASH_LAST_BASE         0x56000
+ #define FLASH_LAST_SIZE         0x2000
+ 
+diff --git a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg
+index 7af3313..300960f 100644
+--- a/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg
++++ b/zr_genericapp_CC26X2R1_LAUNCHXL_tirtos7_ticlang/zr_genericapp.syscfg
+@@ -62,6 +62,7 @@ CCFG.enableBootloader         = true;
+ CCFG.enableBootloaderBackdoor = true;
+ CCFG.dioBootloaderBackdoor    = 13;
+ CCFG.levelBootloaderBackdoor  = "Active low";
++CCFG.enableDCDC               = false;
+ CCFG.ccfgTemplate.$name       = "ti_devices_CCFG_CCFGCC26XXTemplate0";
+ 
+ Display1.$hardware  = system.deviceData.board.components.XDS110UART;
+@@ -82,8 +83,8 @@ ECDSA1.$name = "CONFIG_ECDSA_0";
+ 
+ NVS1.$name                    = "CONFIG_NVSINTERNAL";
+ NVS1.internalFlash.$name      = "ti_drivers_nvs_NVSCC26XX0";
+-NVS1.internalFlash.regionSize = 0x4000;
+-NVS1.internalFlash.regionBase = 0x52000;
++NVS1.internalFlash.regionBase = 0x50000;
++NVS1.internalFlash.regionSize = 0x6000;
+ 
+ NVS2.$name                          = "CONFIG_NVSEXTERNAL";
+ NVS2.nvsType                        = "External";
+@@ -172,6 +173,8 @@ zstack.deviceTypeReadOnly                    = true;
+ zstack.touchlink.$name                       = "ti_zstack_touchlink_zstack_touchlink0";
+ zstack.pm.$name                              = "ti_zstack_pm_zstack_pm0";
+ zstack.rf.$name                              = "ti_zstack_rf_zstack_rf0";
++zstack.rf.primaryChannels                    = [11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
++zstack.rf.txPower                            = "5";
+ zstack.rf.radioConfig.$name                  = "ti_devices_radioconfig_settings_ieee_15_40";
+ zstack.rf.radioConfig.codeExportConfig.$name = "ti_devices_radioconfig_code_export_param0";
+ zstack.rf.coexSettings.$name                 = "ti_zstack_rf_zstack_coex_mod0";
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp.c b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp.c
+index 550be7a..0725b39 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp.c
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp.c
+@@ -53,6 +53,8 @@
+  * INCLUDES
+  */
+ 
++#include <driverlib/sys_ctrl.h>
++
+ #include "rom_jt_154.h"
+ #include "zcomdef.h"
+ 
+@@ -68,6 +70,8 @@
+ #include "zcl_genericapp.h"
+ #include "zcl_port.h"
+ 
++#include "osal_nv.h"
++
+ #include <ti/drivers/apps/Button.h>
+ #include "ti_drivers_config.h"
+ #include "util_timer.h"
+@@ -261,6 +265,14 @@ void sampleApp_task(NVINTF_nvFuncts_t *pfnNV)
+   pfnZdlNV = pfnNV;
+   zclport_registerNV(pfnZdlNV, ZCL_PORT_SCENE_TABLE_NV_ID);
+ 
++  // Init the transmit power NV item, this will be skipped if item is already initialized
++  int8_t transmitPower = TXPOWER;
++  osal_nv_item_init( ZCD_NV_TRANSMIT_POWER, sizeof(transmitPower), &transmitPower );
++
++  // Set transmit power
++  osal_nv_read( ZCD_NV_TRANSMIT_POWER, 0, sizeof( transmitPower ), &transmitPower );
++  ZMacSetTransmitPower( (ZMacTransmitPower_t)transmitPower );
++
+   // Initialize application
+   zclGenericApp_initialization();
+ 
+@@ -870,6 +882,7 @@ static void zclGenericApp_processAfIncomingMsgInd(zstack_afIncomingMsgInd_t *pIn
+  */
+ static void zclGenericApp_ProcessCommissioningStatus(bdbCommissioningModeMsg_t *bdbCommissioningModeMsg)
+ {
++  zstack_bdbStartCommissioningReq_t zstack_bdbStartCommissioningReq;
+   switch(bdbCommissioningModeMsg->bdbCommissioningMode)
+   {
+     case BDB_COMMISSIONING_FORMATION:
+@@ -909,6 +922,8 @@ static void zclGenericApp_ProcessCommissioningStatus(bdbCommissioningModeMsg_t *
+       }
+     break;
+     case BDB_COMMISSIONING_INITIALIZATION:
++      zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
++      Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+       //Initialization notification can only be successful. Failure on initialization
+       //only happens for ZED and is notified as BDB_COMMISSIONING_PARENT_LOST notification
+ 
+@@ -1209,28 +1224,16 @@ static void zclGenericApp_changeKeyCallback(Button_Handle _btn, Button_EventMask
+  */
+ static void zclGenericApp_processKey(Button_Handle _btn)
+ {
+-    zstack_bdbStartCommissioningReq_t zstack_bdbStartCommissioningReq;
+-    //Button 1
+-    if(_btn == gLeftButtonHandle)
+-    {
+-        if(ZG_BUILD_COORDINATOR_TYPE && ZG_DEVICE_COORDINATOR_TYPE)
+-        {
++    NLME_LeaveReq_t         req;
++    memset( &req, 0, sizeof( NLME_LeaveReq_t ) );
++    NLME_LeaveReq(&req);
++    // Sleep for 2 seconds, otherwise leave request is not send
++    Task_sleep(2000 * (1000 / ClockP_getSystemTickPeriod()));
+ 
+-            zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_FORMATION | BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
+-            Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+-        }
+-        else if (ZG_BUILD_JOINING_TYPE && ZG_DEVICE_JOINING_TYPE)
+-        {
+-            zstack_bdbStartCommissioningReq.commissioning_mode = BDB_COMMISSIONING_MODE_NWK_STEERING | BDB_COMMISSIONING_MODE_FINDING_BINDING;
+-            Zstackapi_bdbStartCommissioningReq(appServiceTaskId,&zstack_bdbStartCommissioningReq);
+-        }
+-    }
+-    //Button 2
+-    if(_btn == gRightButtonHandle)
+-    {
+-        Zstackapi_bdbResetLocalActionReq(appServiceTaskId);
+-    }
++    zgWriteStartupOptions( ZG_STARTUP_SET,
++                         ZCD_STARTOPT_DEFAULT_NETWORK_STATE | ZCD_STARTOPT_DEFAULT_CONFIG_STATE);
+ 
++    SysCtrlSystemReset();
+ }
+ 
+ 
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp_data.c b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp_data.c
+index c0e473d..4d08810 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp_data.c
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Application/zcl_genericapp_data.c
+@@ -49,6 +49,8 @@
+ #include "zcl_general.h"
+ #include "zcl_ha.h"
+ 
++#include "osal_nv.h"
++
+ /* GENERICAPP_TODO: Include any of the header files below to access specific cluster data
+ #include "zcl_poll_control.h"
+ #include "zcl_electrical_measurement.h"
+@@ -96,8 +98,11 @@ const uint16_t zclGenericApp_identify_clusterRevision = 0x0001;
+ const uint8_t zclGenericApp_HWRevision = GENERICAPP_HWVERSION;
+ const uint8_t zclGenericApp_ZCLVersion = GENERICAPP_ZCLVERSION;
+ const uint8_t zclGenericApp_ManufacturerName[] = { 16, 'T','e','x','a','s','I','n','s','t','r','u','m','e','n','t','s' };
++const uint8_t zclGenericApp_ModelID[] = { 9, 't','i','.','r','o','u','t','e','r' };
++const uint8_t zclGenericApp_SwBuildID[] = { 8, '2','0','2','2','1','1','0','2' };
+ const uint8_t zclGenericApp_PowerSource = POWER_SOURCE_MAINS_1_PHASE;
+ uint8_t zclGenericApp_PhysicalEnvironment = PHY_UNSPECIFIED_ENV;
++int8_t zclGenericApp_TransmitPower;
+ 
+ #ifdef ZCL_IDENTIFY
+ // Identify Cluster
+@@ -134,7 +139,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_BASIC_HW_VERSION,            // Attribute ID - Found in Cluster Library header (ie. zcl_general.h)
+       ZCL_DATATYPE_UINT8,                 // Data Type - found in zcl.h
+-      ACCESS_CONTROL_READ,                // Variable access control - found in zcl.h
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),                // Variable access control - found in zcl.h
+       (void *)&zclGenericApp_HWRevision  // Pointer to attribute variable
+     }
+   },
+@@ -143,16 +148,34 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_ZCL_VERSION,
+       ZCL_DATATYPE_UINT8,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_REPORTABLE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_ZCLVersion
+     }
+   },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    { // Attribute record
++      ATTRID_BASIC_MODEL_IDENTIFIER,
++      ZCL_DATATYPE_CHAR_STR,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
++      (void *)zclGenericApp_ModelID
++    }
++  },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    { // Attribute record
++      ATTRID_BASIC_SW_BUILD_ID,
++      ZCL_DATATYPE_CHAR_STR,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
++      (void *)zclGenericApp_SwBuildID
++    }
++  },
+   {
+     ZCL_CLUSTER_ID_GENERAL_BASIC,
+     { // Attribute record
+       ATTRID_BASIC_MANUFACTURER_NAME,
+       ZCL_DATATYPE_CHAR_STR,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)zclGenericApp_ManufacturerName
+     }
+   },
+@@ -161,7 +184,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_POWER_SOURCE,
+       ZCL_DATATYPE_ENUM8,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_PowerSource
+     }
+   },
+@@ -170,7 +193,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_BASIC_PHYSICAL_ENVIRONMENT,
+       ZCL_DATATYPE_ENUM8,
+-      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_PhysicalEnvironment
+     }
+   },
+@@ -179,10 +202,20 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_CLUSTER_REVISION,
+       ZCL_DATATYPE_UINT16,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_basic_clusterRevision
+     }
+   },
++  {
++    ZCL_CLUSTER_ID_GENERAL_BASIC,
++    {  // Attribute record
++     ATTRID_BASIC_TRANSMIT_POWER,
++     ZCL_DATATYPE_INT8,
++     (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
++     (void *)&zclGenericApp_TransmitPower
++    }
++  },
++
+ 
+ #ifdef ZCL_IDENTIFY
+   // *** Identify Cluster Attribute ***
+@@ -191,7 +224,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     { // Attribute record
+       ATTRID_IDENTIFY_IDENTIFY_TIME,
+       ZCL_DATATYPE_UINT16,
+-      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE),
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_WRITE | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_IdentifyTime
+     }
+   },
+@@ -201,7 +234,7 @@ CONST zclAttrRec_t zclGenericApp_Attrs[] =
+     {  // Attribute record
+       ATTRID_CLUSTER_REVISION,
+       ZCL_DATATYPE_UINT16,
+-      ACCESS_CONTROL_READ,
++      (ACCESS_CONTROL_READ | ACCESS_CONTROL_AUTH_READ),
+       (void *)&zclGenericApp_identify_clusterRevision
+     }
+   },
+@@ -276,6 +309,7 @@ void zclGenericApp_ResetAttributesToDefaultValues(void)
+ {
+ 
+   zclGenericApp_PhysicalEnvironment = PHY_UNSPECIFIED_ENV;
++  osal_nv_read( ZCD_NV_TRANSMIT_POWER, 0, sizeof( zclGenericApp_TransmitPower ), &zclGenericApp_TransmitPower );
+ 
+ #ifdef ZCL_IDENTIFY
+   zclGenericApp_IdentifyTime = 0;
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Common/zcl/zcl.c b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Common/zcl/zcl.c
+index 51902c4..9afcba3 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Common/zcl/zcl.c
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Common/zcl/zcl.c
+@@ -47,6 +47,8 @@
+ #include "zcl.h"
+ #include "zcl_general.h"
+ 
++#include "osal_nv.h"
++
+ #if defined ( INTER_PAN ) || defined ( BDB_TL_INITIATOR ) || defined ( BDB_TL_TARGET )
+   #include "stub_aps.h"
+ #endif
+@@ -4675,6 +4677,14 @@ static uint8_t zclProcessInWriteCmd( zclIncoming_t *pInMsg )
+             status = zclWriteAttrData( pInMsg->msg->endPoint, &(pInMsg->msg->srcAddr),
+                                        &attrRec, statusRec );
+           }
++
++          if((pInMsg->msg->clusterId == ZCL_CLUSTER_ID_GENERAL_BASIC) && (statusRec->attrID == ATTRID_BASIC_TRANSMIT_POWER))
++          {
++              int8_t transmitPower;
++              OsalPort_memcpy((int8_t*)&transmitPower,statusRec->attrData,sizeof(int8_t));
++              ZMacSetTransmitPower( (ZMacTransmitPower_t)transmitPower );
++              osal_nv_write( ZCD_NV_TRANSMIT_POWER, sizeof( transmitPower ), &transmitPower );
++          }
+         }
+         else // Use CB
+         {
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/f8wrouter.opts b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/f8wrouter.opts
+index b841d60..ed396c2 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/f8wrouter.opts
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/f8wrouter.opts
+@@ -9,3 +9,5 @@
+ -DADDRMGR_NV_SINGLES
+ -DBINDINGTABLE_NV_SINGLES
+ -DASSOCLIST_NV_SINGLES
++
++-include preinclude.h
+\ No newline at end of file
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/preinclude.h b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/preinclude.h
+new file mode 100644
+index 0000000..1ce7b56
+--- /dev/null
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/Config/preinclude.h
+@@ -0,0 +1,33 @@
++// Increase MAC buffers
++#undef MAC_CFG_TX_DATA_MAX
++#define MAC_CFG_TX_DATA_MAX 20
++#undef MAC_CFG_TX_MAX
++#define MAC_CFG_TX_MAX 32
++#undef MAC_CFG_RX_MAX
++#define MAC_CFG_RX_MAX 20
++
++// Increase NV pages to 3 to allow for bigger device tables
++#undef NVOCMP_NVPAGES
++#define NVOCMP_NVPAGES 3
++
++// Increase the max number of boardcasts, the default broadcast delivery time is 3 seconds
++// with the value below this will allow for 1 broadcast every 0.15 second
++#define MAX_BCAST 30
++
++#define ZCL_REPORT_DESTINATION_DEVICE
++#define BDB_REPORTING
++#define CUI_DISABLE
++#define NWK_MAX_DEVICE_LIST     50
++#define MAX_NEIGHBOR_ENTRIES    50
++#define MAX_RTG_ENTRIES         150
++#define ZDO_API_ADVANCED
++
++#define ATTRID_BASIC_TRANSMIT_POWER 0x1337
++
++// From https://www.ti.com/lit/an/swra650b/swra650b.pdf
++#define LINK_DOWN_TRIGGER 12
++#define NWK_ROUTE_AGE_LIMIT 5
++#define DEF_NWK_RADIUS 15
++#define DEFAULT_ROUTE_REQUEST_RADIUS 8
++#define ZDNWKMGR_MIN_TRANSMISSIONS 0
++#define ROUTE_DISCOVERY_TIME 13
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zcomdef.h b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zcomdef.h
+index 26c0b45..8a338c1 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zcomdef.h
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zcomdef.h
+@@ -123,6 +123,9 @@ extern "C"
+ #define ZCD_NV_STARTUP_OPTION             0x0003
+ #define ZCD_NV_START_DELAY                0x0004
+ 
++// Custom transmit power NV item
++#define ZCD_NV_TRANSMIT_POWER             0x0010
++
+ // NWK Layer NV item IDs
+ #define ZCD_NV_NIB                        0x0021
+ #define ZCD_NV_DEVICE_LIST                0x0022
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zglobals.c b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zglobals.c
+index 706736b..b63af7b 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zglobals.c
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/sys/zglobals.c
+@@ -225,7 +225,7 @@ uint8_t zgEndDeviceConfiguration = END_DEV_CONFIGURATION;
+ //
+ // NOTICE:  Before enabling Child Aging make sure to review all the related
+ // definitions in this file, especially zgNwkParentInformation.
+-uint8_t zgChildAgingEnable = TRUE;
++uint8_t zgChildAgingEnable = FALSE;
+ 
+ //==========    TouchLink NWK configuration    ===============
+ // Values used by Router when starts a network as initiator
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/zdo/zd_app.c b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/zdo/zd_app.c
+index 1f30180..0fd57f5 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/zdo/zd_app.c
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/Stack/zdo/zd_app.c
+@@ -441,12 +441,11 @@ uint32_t ZDApp_event_loop( uint8_t task_id, uint32_t events )
+           ZDApp_ChangeState( DEV_ROUTER );
+         }
+ 
+-        if ( zgChildAgingEnable == TRUE )
+-        {
+-          // Once the device has changed its state to a ROUTER set the timer to send
+-          // Parent annce
+-          ZDApp_SetParentAnnceTimer();
+-        }
++        // As we cannot enable child aging as Xiaomi devices will drop off
++        // but we stil want to have the parent announces we always enable it here.
++        // Otherwise some end devices could be unreachable when they changed parent
++        // while the coordinator was powered off.
++        ZDApp_SetParentAnnceTimer();
+       }
+       else
+       {
+@@ -907,12 +906,11 @@ void ZDApp_NetworkStartEvt( void )
+         bdb_reportCommissioningState(BDB_INITIALIZATION,TRUE);
+       }
+ 
+-      if ( zgChildAgingEnable == TRUE )
+-      {
+-        // Once the device has changed its state to a COORDINATOR set the timer to send
+-        // Parent annce
+-        ZDApp_SetParentAnnceTimer();
+-      }
++      // As we cannot enable child aging as Xiaomi devices will drop off
++      // but we stil want to have the parent announces we always enable it here.
++      // Otherwise some end devices could be unreachable when they changed parent
++      // while the coordinator was powered off.
++      ZDApp_SetParentAnnceTimer();
+     }
+     else
+     {
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
+index da62af1..234ac56 100755
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/cc13x2_cc26x2_tirtos7_ticlang.cmd
+@@ -71,9 +71,9 @@
+ #endif
+ 
+ #define FLASH_BASE              0x00000000
+-#define FLASH_SIZE              (0x56000 - (NVOCMP_NVPAGES * 0x2000))
+-#define FLASH_NV_BASE           (0x56000 - (NVOCMP_NVPAGES * 0x2000))
+-#define FLASH_NV_SIZE           (NVOCMP_NVPAGES * 0x2000)
++#define FLASH_SIZE              0x50000
++#define FLASH_NV_BASE           0x50000
++#define FLASH_NV_SIZE           0x6000
+ #define FLASH_LAST_BASE         0x56000
+ #define FLASH_LAST_SIZE         0x2000
+ 
+diff --git a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/zr_genericapp.syscfg b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/zr_genericapp.syscfg
+index 94e3ede..3d2f361 100644
+--- a/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/zr_genericapp.syscfg
++++ b/zr_genericapp_LP_CC2652RB_tirtos7_ticlang/zr_genericapp.syscfg
+@@ -63,6 +63,7 @@ CCFG.enableBootloaderBackdoor = true;
+ CCFG.dioBootloaderBackdoor    = 13;
+ CCFG.levelBootloaderBackdoor  = "Active low";
+ CCFG.srcClkLF                 = "Derived from HF XOSC";
++CCFG.enableDCDC               = false;
+ CCFG.ccfgTemplate.$name       = "ti_devices_CCFG_CCFGCC26XXTemplate0";
+ 
+ Display1.$hardware  = system.deviceData.board.components.XDS110UART;
+@@ -83,8 +84,8 @@ ECDSA1.$name = "CONFIG_ECDSA_0";
+ 
+ NVS1.$name                    = "CONFIG_NVSINTERNAL";
+ NVS1.internalFlash.$name      = "ti_drivers_nvs_NVSCC26XX0";
+-NVS1.internalFlash.regionSize = 0x4000;
+-NVS1.internalFlash.regionBase = 0x52000;
++NVS1.internalFlash.regionBase = 0x50000;
++NVS1.internalFlash.regionSize = 0x6000;
+ 
+ NVS2.$name                          = "CONFIG_NVSEXTERNAL";
+ NVS2.nvsType                        = "External";
+@@ -173,6 +174,8 @@ zstack.deviceTypeReadOnly                    = true;
+ zstack.touchlink.$name                       = "ti_zstack_touchlink_zstack_touchlink0";
+ zstack.pm.$name                              = "ti_zstack_pm_zstack_pm0";
+ zstack.rf.$name                              = "ti_zstack_rf_zstack_rf0";
++zstack.rf.txPower                            = "5";
++zstack.rf.primaryChannels                    = [11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
+ zstack.rf.radioConfig.$name                  = "ti_devices_radioconfig_settings_ieee_15_40";
+ zstack.rf.radioConfig.codeExportConfig.$name = "ti_devices_radioconfig_code_export_param0";
+ zstack.rf.coexSettings.$name                 = "ti_zstack_rf_zstack_coex_mod0";
+-- 
+2.37.0
+

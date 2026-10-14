@@ -1,0 +1,15 @@
+Board type: CC2530
+Device type: Router
+Disable periodic On/Off reports for GPIO outputs: Yes
+Status LED: P12, Sending reports
+Set default reporting interval (s): 5
+
+Output pins:
+P00: Output 1, GPIO, Pull-down (Role: Generic)
+
+Input pins:
+P02: Input 1, DS18B20, External pull-up
+P03: Input 2, ADC (max 3.3V)
+P01: Input 3, ADC (max 3.3V)
+P04: Input 4, ADC (max 3.3V)
+P05: Input 5, GPIO, External pull-down (Bind command: Toggle)

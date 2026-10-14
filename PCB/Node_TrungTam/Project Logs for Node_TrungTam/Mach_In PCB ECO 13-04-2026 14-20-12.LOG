@@ -1,0 +1,6 @@
+Change Component Footprint: Designator=J2 Old Footprint=JST-2.54-4P New Footprint=MALE-2.54-4P
+Change Component Footprint: Designator=J3 Old Footprint=JST-2.54-6P New Footprint=MALE-2.54-5P
+Change component parameters: Designator = "J2" ("J2"); Footprint = "JST-2.54-4P"; UniqueID = "\TCSYUFJK" ("\TCSYUFJK")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C492403"; VariantName = "[No Variations]"
+Change component parameters: Designator = "J3" ("J3"); Footprint = "JST-2.54-6P"; UniqueID = "\VMXNXRYS" ("\VMXNXRYS")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C492404"; VariantName = "[No Variations]"

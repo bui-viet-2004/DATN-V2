@@ -1,0 +1,67 @@
+Change Component Designator: OldDesignator=D5 NewDesignator=D6
+Change Component Designator: OldDesignator=D6 NewDesignator=D8
+Change Component Designator: OldDesignator=D7 NewDesignator=D9
+Change Component Designator: OldDesignator=D8 NewDesignator=D11
+Change Component Designator: OldDesignator=D9 NewDesignator=D13
+Change Component Designator: OldDesignator=R13 NewDesignator=R14
+Change Component Designator: OldDesignator=R14 NewDesignator=R15
+Change Component Designator: OldDesignator=R15 NewDesignator=R16
+Change Component Designator: OldDesignator=R16 NewDesignator=R17
+Change Component Designator: OldDesignator=R17 NewDesignator=R18
+Change Component Designator: OldDesignator=R18 NewDesignator=R20
+Change Component Designator: OldDesignator=R19 NewDesignator=R21
+Change Component Designator: OldDesignator=R20 NewDesignator=R22
+Change Component Designator: OldDesignator=R21 NewDesignator=R24
+Change Component Designator: OldDesignator=R22 NewDesignator=R25
+Change Component Designator: OldDesignator=R23 NewDesignator=R27
+Change Component Designator: OldDesignator=R24 NewDesignator=R28
+Change Component Designator: OldDesignator=R25 NewDesignator=R29
+Added Component: Designator=D5(LED_5mm_RED)
+Added Component: Designator=D7(LED_5mm_RED)
+Added Component: Designator=D10(LED_5mm_RED)
+Added Component: Designator=D12(LED_5mm_RED)
+Added Component: Designator=R13(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R19(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R23(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R26(RESSITOR_PTH_12.5mm)
+Added Pin To Net: NetName=NetD5_1 Pin=D5-2
+Added Pin To Net: NetName=NetD6_1 Pin=D7-2
+Added Pin To Net: NetName=NetD8_1 Pin=D10-2
+Added Pin To Net: NetName=NetD9_1 Pin=D12-2
+Added Pin To Net: NetName=+5 Pin=R13-2
+Added Pin To Net: NetName=+5 Pin=R19-2
+Added Pin To Net: NetName=+5 Pin=R23-2
+Added Pin To Net: NetName=+5 Pin=R26-2
+Change Net Name : Old Net Name=NetD5_1 New Net Name=NetD5_2
+Change Net Name : Old Net Name=NetD6_1 New Net Name=NetD7_2
+Change Net Name : Old Net Name=NetD7_2 New Net Name=NetD9_2
+Change Net Name : Old Net Name=NetD8_1 New Net Name=NetD10_2
+Change Net Name : Old Net Name=NetD9_1 New Net Name=NetD12_2
+Change Net Name : Old Net Name=NetR14_1 New Net Name=NetR15_1
+Change Net Name : Old Net Name=NetR15_2 New Net Name=NetR16_2
+Change Net Name : Old Net Name=NetR19_1 New Net Name=NetR21_1
+Change Net Name : Old Net Name=NetR20_2 New Net Name=NetR22_2
+Change Net Name : Old Net Name=NetR21_1 New Net Name=NetR24_1
+Change Net Name : Old Net Name=NetR22_2 New Net Name=NetR25_2
+Change Net Name : Old Net Name=NetR23_1 New Net Name=NetR27_1
+Change Net Name : Old Net Name=NetR24_2 New Net Name=NetR28_2
+Added Pin To Net: NetName=NetD5_1 Pin=D5-1
+Added Pin To Net: NetName=NetD5_1 Pin=R13-1
+Added Net: Name=NetD5_1
+Added Pin To Net: NetName=NetD7_1 Pin=D7-1
+Added Pin To Net: NetName=NetD7_1 Pin=R19-1
+Added Net: Name=NetD7_1
+Added Pin To Net: NetName=NetD10_1 Pin=D10-1
+Added Pin To Net: NetName=NetD10_1 Pin=R23-1
+Added Net: Name=NetD10_1
+Added Pin To Net: NetName=NetD12_1 Pin=D12-1
+Added Pin To Net: NetName=NetD12_1 Pin=R26-1
+Added Net: Name=NetD12_1
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D10 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D11 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D12 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D13 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R26 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R27 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R28 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R29 10K

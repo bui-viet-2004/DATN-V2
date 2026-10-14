@@ -1,0 +1,37 @@
+Change Component Designator: OldDesignator=J10 NewDesignator=J11
+Change Component Designator: OldDesignator=R21 NewDesignator=R22
+Change Component Designator: OldDesignator=R22 NewDesignator=R24
+Added Component: Designator=J10(JST-2.00-3P)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C5175231"; VariantName = "[No Variations]"
+Added Component: Designator=R21(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R23(RESSITOR_PTH_12.5mm)
+Added Pin To Net: NetName=+5 Pin=J10-1
+Added Pin To Net: NetName=GND Pin=J10-3
+Added Pin To Net: NetName=GND Pin=R23-1
+Change Net Name : Old Net Name=NetJ10_4 New Net Name=NetJ11_4
+Added Pin To Net: NetName=NetJ10_2 Pin=J10-2
+Added Pin To Net: NetName=NetJ10_2 Pin=R21-2
+Added Net: Name=NetJ10_2
+Added Pin To Net: NetName=OUT_ACS712 Pin=R21-1
+Added Pin To Net: NetName=OUT_ACS712 Pin=R23-2
+Added Pin To Net: NetName=OUT_ACS712 Pin=U1-11
+Added Net: Name=OUT_ACS712
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C1 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C2 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C7 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C8 10uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C9 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C11 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C12 10uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C13 CAPACITOR 0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C16 100uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C17 47uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D4 1N5822
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J7 TFT 2.8 inh
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J11 MQ_2
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R10 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R23 2K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R24 2K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U5 BUZZER
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U6 KBP210G
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U7 RELE

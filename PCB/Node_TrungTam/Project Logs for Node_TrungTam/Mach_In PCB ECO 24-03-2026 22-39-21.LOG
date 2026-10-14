@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=CS Pin=U1-14
+Removed Pin From Net: NetName=SCK Pin=U1-15
+Removed Pin From Net: NetName=DC_TFT Pin=U1-16
+Removed Pin From Net: NetName=BUTTON_1 Pin=U1-18
+Removed Pin From Net: NetName=BUTTON_2 Pin=U1-19
+Removed Pin From Net: NetName=BUTTON_3 Pin=U1-20
+Removed Pin From Net: NetName=RESET_TFT Pin=U1-29
+Added Pin To Net: NetName=SCK Pin=U1-16
+Added Pin To Net: NetName=DC_TFT Pin=U1-18
+Added Pin To Net: NetName=RESET_TFT Pin=U1-19
+Added Pin To Net: NetName=CS Pin=U1-20

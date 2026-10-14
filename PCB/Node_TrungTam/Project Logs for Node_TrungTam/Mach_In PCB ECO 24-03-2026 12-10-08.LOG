@@ -1,0 +1,2 @@
+Removed Pin From Net: NetName=UART1_STM_RX Pin=U3-10
+Added Pin To Net: NetName=UART2_STM_RX Pin=U3-10

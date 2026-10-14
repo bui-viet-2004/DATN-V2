@@ -1,0 +1,334 @@
+diff --git a/Components/hal/target/CC2530ZNP/hal_board_cfg.h b/Components/hal/target/CC2530ZNP/hal_board_cfg.h
+index 4af8164..4be21ca 100644
+--- a/Components/hal/target/CC2530ZNP/hal_board_cfg.h
++++ b/Components/hal/target/CC2530ZNP/hal_board_cfg.h
+@@ -314,7 +314,7 @@ extern unsigned char znpCfg0;
+  */
+ 
+ /* ----------- RF-frontend Connection Initialization ---------- */
+-#if defined HAL_PA_LNA || defined HAL_PA_LNA_CC2590
++#if defined HAL_PA_LNA || defined HAL_PA_LNA_CC2590 || defined HAL_PA_LNA_CC2592
+ extern void MAC_RfFrontendSetup(void);
+ #define HAL_BOARD_RF_FRONTEND_SETUP() MAC_RfFrontendSetup()
+ #else
+@@ -343,7 +343,7 @@ extern void MAC_RfFrontendSetup(void);
+ #endif
+ 
+ /* ----------- Board Initialization ---------- */
+-#if defined (HAL_BOARD_CC2530EB_REV17) && !defined (HAL_PA_LNA) && !defined (HAL_PA_LNA_CC2590)
++#if defined (HAL_BOARD_CC2530EB_REV17) && !defined (HAL_PA_LNA) && !defined (HAL_PA_LNA_CC2590) && !defined (HAL_PA_LNA_CC2592)
+ 
+ #define HAL_BOARD_INIT() st                                      \
+ (                                                                \
+@@ -362,7 +362,7 @@ extern void MAC_RfFrontendSetup(void);
+   PREFETCH_ENABLE();                                             \
+ )
+ 
+-#elif defined (HAL_BOARD_CC2530EB_REV13) || defined (HAL_PA_LNA) || defined (HAL_PA_LNA_CC2590)
++#elif defined (HAL_BOARD_CC2530EB_REV13) || defined (HAL_PA_LNA) || defined (HAL_PA_LNA_CC2590) || defined (HAL_PA_LNA_CC2592)
+ 
+ #ifdef HAL_ENABLE_WIFI_COEX_PINS
+ #define HAL_BOARD_ENABLE_WIFI_COEX_PINS() st                                      \
+diff --git a/Components/mt/MT_SYS.c b/Components/mt/MT_SYS.c
+index aa57766..f80e1e5 100644
+--- a/Components/mt/MT_SYS.c
++++ b/Components/mt/MT_SYS.c
+@@ -2141,6 +2141,21 @@ static void MT_SysSnifferParameters( uint8 *pBuf )
+  *****************************************************************************/
+ static void powerOffSoc(void)
+ {
++#if defined(FIRMWARE_CC2530) || defined(FIRMWARE_CC2530_CC2591) || defined(FIRMWARE_CC2530_CC2592)
++  HAL_DISABLE_INTERRUPTS();
++  STIF = 0; //HAL_SLEEP_TIMER_CLEAR_INT;
++  if (ZNP_CFG1_UART == znpCfg1)
++  {
++    HalUARTSuspend();
++  }
++
++  /* Prep CC2530 power mode */
++  //HAL_SLEEP_PREP_POWER_MODE(3);
++  SLEEPCMD &= ~PMODE; /* clear mode bits */
++  SLEEPCMD |= 3;      /* set mode bits  to PM3 */
++  while (!(STLOAD & LDRDY));
++  SystemReset();
++#else
+   HAL_DISABLE_INTERRUPTS();
+ 
+   /* turn off the RF front end device */
+@@ -2181,6 +2196,7 @@ static void powerOffSoc(void)
+     PCON = halSleepPconValue;
+     asm("NOP");
+   }
++#endif
+ }
+ #endif
+ 
+diff --git a/Components/mt/MT_VERSION.c b/Components/mt/MT_VERSION.c
+index f374554..720a8fe 100644
+--- a/Components/mt/MT_VERSION.c
++++ b/Components/mt/MT_VERSION.c
+@@ -21,7 +21,7 @@
+   its documentation for any purpose.
+ 
+   YOU FURTHER ACKNOWLEDGE AND AGREE THAT THE SOFTWARE AND DOCUMENTATION ARE
+-  PROVIDED “AS IS” WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
++  PROVIDED ï¿½AS ISï¿½ WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED,
+   INCLUDING WITHOUT LIMITATION, ANY WARRANTY OF MERCHANTABILITY, TITLE,
+   NON-INFRINGEMENT AND FITNESS FOR A PARTICULAR PURPOSE. IN NO EVENT SHALL
+   TEXAS INSTRUMENTS OR ITS LICENSORS BE LIABLE OR OBLIGATED UNDER CONTRACT,
+@@ -69,7 +69,7 @@
+  *****************************************************************************/
+ const uint8 MTVersionString[] = {
+                                    2,  /* Transport protocol revision */
+-                                   0,  /* Product ID */
++                                   2,  /* Product ID */
+                                    2,  /* Software major release number */
+                                    7,  /* Software minor release number */
+                                    2,  /* Software maintenance release number */
+diff --git a/Components/mt/revision_info.h b/Components/mt/revision_info.h
+new file mode 100644
+index 0000000..34cd616
+--- /dev/null
++++ b/Components/mt/revision_info.h
+@@ -0,0 +1 @@
++#define CODE_REVISION_NUMBER 20190523
+\ No newline at end of file
+diff --git a/Components/stack/af/AF.c b/Components/stack/af/AF.c
+index 5e54237..988416f 100644
+--- a/Components/stack/af/AF.c
++++ b/Components/stack/af/AF.c
+@@ -405,10 +405,18 @@ void afIncomingData( aps_FrameFormat_t *aff, zAddrType_t *SrcAddress, uint16 Src
+ #if !defined ( APS_NO_GROUPS )
+     // Find the first endpoint for this group
+     grpEp = aps_FindGroupForEndpoint( aff->GroupID, APS_GROUPS_FIND_FIRST );
+-    if ( grpEp == APS_GROUPS_EP_NOT_FOUND )
+-      return;   // No endpoint found
++    if ( grpEp == APS_GROUPS_EP_NOT_FOUND ) {
++      // No endpoint found, default to endpoint 1.
++      // In the original source code there is a return here. 
++      // This prevent the messags from being forwarded.
++      // For our use-case we want to capture all messages. 
++      // Even if the coordinator is not in the group.
++      epDesc = afFindEndPointDesc( 1 );
++    }
++    else {
++      epDesc = afFindEndPointDesc( grpEp );
++    }
+ 
+-    epDesc = afFindEndPointDesc( grpEp );
+     if ( epDesc == NULL )
+       return;   // Endpoint descriptor not found
+ 
+@@ -425,6 +433,12 @@ void afIncomingData( aps_FrameFormat_t *aff, zAddrType_t *SrcAddress, uint16 Src
+       epDesc = pList->epDesc;
+     }
+   }
++  else if ( aff->DstEndPoint == 10 || aff->DstEndPoint == 11 ) {
++    if ( (epDesc = afFindEndPointDesc( 1 )) )
++    {
++      pList = afFindEndPointDescList( epDesc->endPoint );
++    }
++  }
+   else if ( (epDesc = afFindEndPointDesc( aff->DstEndPoint )) )
+   {
+     pList = afFindEndPointDescList( epDesc->endPoint );
+diff --git a/Components/stack/sys/ZGlobals.c b/Components/stack/sys/ZGlobals.c
+index d170283..292659a 100644
+--- a/Components/stack/sys/ZGlobals.c
++++ b/Components/stack/sys/ZGlobals.c
+@@ -212,7 +212,11 @@ uint8 zgEndDeviceConfiguration = END_DEV_CONFIGURATION;
+ //
+ // NOTICE:  Before enabling Child Aging make sure to review all the related
+ // definitions in this file, especially zgNwkParentInformation.
+-uint8 zgChildAgingEnable = TRUE;
++
++/**
++ * Disable child aging, otherwise Xiaomi devices are being kicked off the network.
++ */
++uint8 zgChildAgingEnable = FALSE;
+ 
+ //==========    TouchLink NWK configuration    ===============
+ // Values used by Router when starts a network as initiator
+diff --git a/Projects/zstack/ZMain/TI2530ZNP/OnBoard.c b/Projects/zstack/ZMain/TI2530ZNP/OnBoard.c
+index eebe038..dcc2618 100644
+--- a/Projects/zstack/ZMain/TI2530ZNP/OnBoard.c
++++ b/Projects/zstack/ZMain/TI2530ZNP/OnBoard.c
+@@ -149,8 +149,17 @@ void InitBoard( uint8 level )
+ 
+ #if defined CC2531ZNP
+     znpCfg1 = ZNP_CFG1_UART;
++#elif defined FIRMWARE_CC2530_CC2591 || defined(FIRMWARE_CC2530_CC2592)
++    znpCfg1 = ZNP_CFG1_UART;
++    znpCfg0 = ZNP_CFG0_32K_OSC;
+ #elif defined CC2530_MK
++    
++  #if defined FIRMWARE_CC2530
++    znpCfg1 = ZNP_CFG1_UART;
++  #else
+     znpCfg1 = ZNP_CFG1_SPI;
++  #endif
++    
+     znpCfg0 = ZNP_CFG0_32K_OSC;
+ #else
+     znpCfg1 = P2_0;
+diff --git a/Projects/zstack/ZNP/Source/preinclude.h b/Projects/zstack/ZNP/Source/preinclude.h
+new file mode 100644
+index 0000000..2f5a0c6
+--- /dev/null
++++ b/Projects/zstack/ZNP/Source/preinclude.h
+@@ -0,0 +1,95 @@
++#if defined FIRMWARE_SBL
++  #define MAKE_CRC_SHDW
++#else
++  #define FAKE_CRC_SHDW
++#endif
++
++// Shared accross all firmwares
++#define TC_LINKKEY_JOIN
++#define ASSERT_RESET
++#define INCLUDE_REVISION_INFORMATION
++#define SECURE 1
++#define BDB_FINDING_BINDING_CAPABILITY_ENABLED 0
++#define ZDSECMGR_TC_DEVICE_MAX 40
++#define DISABLE_GREENPOWER_BASIC_PROXY
++#define MT_SYS_KEY_MANAGEMENT 1
++#define TP2_LEGACY_ZC
++
++// Increase NWK_LINK_STATUS_PERIOD to reduce amount of messages on the network
++#define NWK_LINK_STATUS_PERIOD 60
++
++// Save memory
++#undef NWK_MAX_BINDING_ENTRIES
++#define NWK_MAX_BINDING_ENTRIES 1
++#undef APS_MAX_GROUPS
++#define APS_MAX_GROUPS 1
++
++// Disabling MULTICAST is required in order for proper group support.
++// If MULTICAST is not disabled, the group adress is not included in the APS header
++#define MULTICAST_ENABLED FALSE
++
++// Save memory, see swra635.pdf
++#define HAL_LCD FALSE
++#define HAL_ADC FALSE
++
++/**
++ * Reduce BCAST_DELIVERY_TIME and increase MAX_BCAST time.
++ * BCAST_DELIVERY_TIME is the length of time a broadcast message is kept in the broadcast table
++ * MAX_BCAST is the max number of messages that are in the broadcast table
++ * If e.g. BCAST_DELIVERY_TIME = 1 second and MAX_BCAST = 10; 10 broadcast messages per second can be send.
++ * 
++ * Zigbee2mqtt has a fixed delay of 170ms between each command.
++ * Therefore a BCAST_DELIVERY_TIME = 20 (= 2 seconds) and MAX_BCAST = 12 allows us to send
++ * 2 / 12 = 1 group command per 166ms, which is just below the zigbee2mqtt delay.
++ * Therefore the broadcast table will never get full.
++ */
++#define BCAST_DELIVERY_TIME 20
++#undef MAX_BCAST // avoids incompatible redefinition of macro warning
++#define MAX_BCAST 12
++
++/** 
++ * Enable MTO routing, but disable source routing.
++ * https://github.com/Koenkk/zigbee2mqtt/issues/1408
++ */
++#define CONCENTRATOR_ENABLE TRUE
++#define CONCENTRATOR_ROUTE_CACHE FALSE
++#define CONCENTRATOR_DISCOVERY_TIME 120
++#define MAX_RTG_SRC_ENTRIES 1 // Source table is not used, reduce to minimal size
++#undef MAX_RTG_ENTRIES
++#define MAX_RTG_ENTRIES 40
++#define MAX_NEIGHBOR_ENTRIES 8
++
++// CC2531
++#if defined FIRMWARE_CC2531
++  #define NWK_MAX_DEVICE_LIST 15
++  #define CC2531ZNP
++  #define MAXMEMHEAP 3203 
++
++// CC2530
++#elif defined FIRMWARE_CC2530
++  #define HAL_UART_DMA_RX_MAX 128
++  #define ENABLE_MT_SYS_RESET_SHUTDOWN
++  #define ZTOOL_P1
++  #define CC2530_MK
++  #define NWK_MAX_DEVICE_LIST 10
++  #define MAXMEMHEAP 3225
++
++// CC2530 + CC2591
++#elif defined FIRMWARE_CC2530_CC2591
++  #define ENABLE_MT_SYS_RESET_SHUTDOWN
++  #define ZTOOL_P1
++  #define HAL_UART_DMA_RX_MAX 128
++  #define HAL_PA_LNA
++  #define NWK_MAX_DEVICE_LIST 10
++  #define MAXMEMHEAP 3223
++
++// CC2530 + CC2592
++#elif defined FIRMWARE_CC2530_CC2592
++  #define ENABLE_MT_SYS_RESET_SHUTDOWN
++  #define ZTOOL_P1
++  #define HAL_UART_DMA_RX_MAX 128
++  #define HAL_PA_LNA_CC2592
++  #define NWK_MAX_DEVICE_LIST 10
++  #define MAXMEMHEAP 3223
++
++#endif
+\ No newline at end of file
+diff --git a/Projects/zstack/ZNP/Source/znp.cfg b/Projects/zstack/ZNP/Source/znp.cfg
+index 2b8d56d..adb5e42 100644
+--- a/Projects/zstack/ZNP/Source/znp.cfg
++++ b/Projects/zstack/ZNP/Source/znp.cfg
+@@ -107,3 +107,4 @@
+ -DMT_APP_FUNC
+ -DMT_APP_CNF_FUNC
+ 
++--preinclude=preinclude.h
+\ No newline at end of file
+diff --git a/Projects/zstack/ZNP/Source/znp_app.c b/Projects/zstack/ZNP/Source/znp_app.c
+index 31b115e..e8bd3ab 100644
+--- a/Projects/zstack/ZNP/Source/znp_app.c
++++ b/Projects/zstack/ZNP/Source/znp_app.c
+@@ -390,12 +390,23 @@ static void npInit(void)
+     halUARTCfg_t uartConfig;
+ 
+     uartConfig.configured           = TRUE;
++    
++#if defined(FIRMWARE_CC2530) || defined(FIRMWARE_CC2530_CC2591) || defined(FIRMWARE_CC2530_CC2592)
++    uartConfig.baudRate             = HAL_UART_BR_115200;
++#else
+     uartConfig.baudRate             = ZNP_UART_BAUD;
+-#ifdef ZNP_ALT
++#endif
++
++#if defined(FIRMWARE_CC2530) || defined(FIRMWARE_CC2530_CC2591) || defined(FIRMWARE_CC2530_CC2592)
+     uartConfig.flowControl          = FALSE;
+ #else
++  #ifdef ZNP_ALT
++    uartConfig.flowControl          = FALSE;
++  #else
+     uartConfig.flowControl          = TRUE;
++  #endif
+ #endif
++ 
+     uartConfig.flowControlThreshold = HAL_UART_FLOW_THRESHOLD;
+     uartConfig.rx.maxBufSize        = HAL_UART_RX_BUF_SIZE;
+     uartConfig.tx.maxBufSize        = HAL_UART_TX_BUF_SIZE;
+@@ -405,11 +416,14 @@ static void npInit(void)
+     HalUARTOpen(HAL_UART_PORT, &uartConfig);
+     MT_UartRegisterTaskID(znpTaskId);
+ 
+-#ifdef HAL_PA_LNA_CC2592
+-   ZMacSetTransmitPower(TX_PWR_PLUS_19);
+-#else
+-   ZMacSetTransmitPower(TX_PWR_PLUS_4);
+-#endif 
++#if defined FIRMWARE_CC2530_CC2591 || defined(FIRMWARE_CC2530_CC2592)
++    //Add TX Setting
++    #if defined HAL_PA_LNA || defined HAL_PA_LNA_CC2592
++      ZMacSetTransmitPower(TX_PWR_PLUS_19);
++    #else
++      ZMacSetTransmitPower(TX_PWR_PLUS_4);
++    #endif
++#endif
+   }
+   else
+   {

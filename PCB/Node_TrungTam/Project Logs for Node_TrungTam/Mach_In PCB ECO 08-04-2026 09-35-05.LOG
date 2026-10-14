@@ -1,0 +1,39 @@
+Removed Pin From Net: NetName=+3.3 Pin=R20-1
+Removed Pin From Net: NetName=RESET_SYSTEM Pin=R20-2
+Removed Pin From Net: NetName=RESET_SYSTEM Pin=S7-1
+Removed Pin From Net: NetName=RESET_SYSTEM Pin=S7-1
+Change Component Designator: OldDesignator=R13 NewDesignator=R14
+Change Component Designator: OldDesignator=R14 NewDesignator=R13
+Change Component Designator: OldDesignator=R19 NewDesignator=R20
+Change Component Designator: OldDesignator=R23 NewDesignator=R24
+Change Component Designator: OldDesignator=R24 NewDesignator=R25
+Change Component Designator: OldDesignator=R25 NewDesignator=R26
+Change Component Designator: OldDesignator=R26 NewDesignator=R27
+Change Component Designator: OldDesignator=R27 NewDesignator=R28
+Change Component Designator: OldDesignator=R28 NewDesignator=R29
+Change Component Designator: OldDesignator=R29 NewDesignator=R30
+Added Component: Designator=R19(RESISTOR_0805)
+Added Component: Designator=R23(RESISTOR_0805)
+Added Component: Designator=S8(PUSH_BUTTON_12X12_RED)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+3.3 Pin=R19-1
+Added Pin To Net: NetName=+3.3 Pin=R23-1
+Added Pin To Net: NetName=RESET_SYSTEM Pin=R23-2
+Added Pin To Net: NetName=RESET_SYSTEM Pin=S8-1
+Added Pin To Net: NetName=RESET_SYSTEM Pin=S8-1
+Added Pin To Net: NetName=GND Pin=S8-2
+Added Pin To Net: NetName=GND Pin=S8-2
+Change Net Name : Old Net Name=NetR24_1 New Net Name=NetR25_1
+Change Net Name : Old Net Name=NetR25_2 New Net Name=NetR26_2
+Change Net Name : Old Net Name=NetR27_1 New Net Name=NetR28_1
+Change Net Name : Old Net Name=NetR28_2 New Net Name=NetR29_2
+Added Pin To Net: NetName=BUTTON_4 Pin=R19-2
+Added Pin To Net: NetName=BUTTON_4 Pin=S7-1
+Added Pin To Net: NetName=BUTTON_4 Pin=S7-1
+Added Pin To Net: NetName=BUTTON_4 Pin=U1-12
+Added Net: Name=BUTTON_4
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R19 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R23 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R30 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S8 PUSH_BUTTON_12X12

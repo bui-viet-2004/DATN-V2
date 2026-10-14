@@ -1,0 +1,18 @@
+Removed Pin From Net: NetName=UART1_STM_TX Pin=U1-30
+Removed Pin From Net: NetName=UART1_STM_RX Pin=U1-31
+Removed Pin From Net: NetName=UART3_STM_RX Pin=U3-10
+Removed Pin From Net: NetName=UART3_STM_TX Pin=U3-11
+Added Pin To Net: NetName=UART3_STM_TX Pin=U1-30
+Added Pin To Net: NetName=UART3_STM_RX Pin=U1-31
+Added Pin To Net: NetName=UART1_STM_RX Pin=U3-10
+Added Pin To Net: NetName=UART1_STM_TX Pin=U3-11
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C3 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C10 CAPACITOR 0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C13 CAPACITOR 0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C14 CAPACITOR 0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D3 M7
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R7 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R8 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R11 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S3 PUSH_BUTTON_SMD_3X4X2
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U6 J3Y

@@ -1,0 +1,3 @@
+Remove Pin=U1A-29 From Net=DATA_DHT
+Change Component Footprint: Designator=U18 Old Footprint=DHT11 New Footprint=DHT22_90
+Change Component Comment: Designator=U18 Old Comment=DHT11 New Comment=DHT22

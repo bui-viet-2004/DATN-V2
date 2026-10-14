@@ -1,0 +1,122 @@
+Added Component: Designator=DS1(TFT 2.4 Inch)
+Added Pin To Net: NetName=TFT_LED Pin=DS1-7
+Added Pin To Net: NetName=SCK Pin=DS1-8
+Added Pin To Net: NetName=SDI(MOSI) Pin=DS1-9
+Added Pin To Net: NetName=DC_TFT Pin=DS1-10
+Added Pin To Net: NetName=RESET_TFT Pin=DS1-11
+Added Pin To Net: NetName=CS Pin=DS1-12
+Added Pin To Net: NetName=GND Pin=DS1-13
+Added Pin To Net: NetName=+5 Pin=DS1-14
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C1 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C2 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C3 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C4 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C5 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C6 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C7 10uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C8 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C9 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C10 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C11 10uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C12 CAPACITOR 0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C13 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C14 220uF/16V
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C15 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C16 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C17 220uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C18 47uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C19 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C20 47uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C21 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C22 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C23 220uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D1 M7
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D2 M7
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D3 M7
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D4 LED_RGB
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D5 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D6 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D7 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D8 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D9 SS34
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D10 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D11 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D12 LED_5mm_RED
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D13 1N4007
+Added Member To Class: ClassName=Nguyen_Ly Member=Component DS1 TFT 2.4 Inch
+Added Member To Class: ClassName=Nguyen_Ly Member=Component F1 F1A
+Added Member To Class: ClassName=Nguyen_Ly Member=Component I1 1260
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J1 CC DEBUGGER
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J2 ST LINK
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J3 USB TTL
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J4 12AC
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J5 BORNE-5.00-3P
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J6 BORNE-5.00-3P
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J7 BORNE-5.00-3P
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J8 BORNE-5.00-3P
+Added Member To Class: ClassName=Nguyen_Ly Member=Component Q1 C9014
+Added Member To Class: ClassName=Nguyen_Ly Member=Component Q2 C9014
+Added Member To Class: ClassName=Nguyen_Ly Member=Component Q3 C9014
+Added Member To Class: ClassName=Nguyen_Ly Member=Component Q4 C9014
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R1 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R2 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R3 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R4 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R5 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R6 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R7 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R8 33
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R9 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R10 33
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R11 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R12 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R13 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R14 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R15 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R16 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R17 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R18 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R19 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R20 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R21 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R22 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R23 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R24 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R25 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R26 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R27 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R28 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R29 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R30 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R31 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R32 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R33 1K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R34 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S1 PUSH_BUTTON_SMD_3X4X2
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S2 PUSH_BUTTON_SMD_3X4X2
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S3 PUSH_BUTTON_SMD_3X4X2
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S4 PUSH_BUTTON_SMD_3X4X2
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S5 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S6 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S7 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S8 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S9 PUSH_BUTTON_6X6
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U1 STM32F103C8T6
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U2 ESP32-WROOM-32D
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U3 E18-MS1-PCB
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U4 8 MHz
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U5 BUZZER
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U6 J3Y
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U7 DB107S
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U8 RELE
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U9 PC817
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U10 RELE
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U11 PC817
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U12 LM2596
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U13 RELE
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U14 PC817
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U15 AP3P080N
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U16 AMS1117 TO-252
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U17 RELE
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U18 PC817
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U19 DHT11

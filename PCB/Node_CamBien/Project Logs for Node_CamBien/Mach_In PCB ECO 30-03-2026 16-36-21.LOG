@@ -1,0 +1,20 @@
+Change Component Designator: OldDesignator=C5 NewDesignator=C6
+Change Component Designator: OldDesignator=C6 NewDesignator=C7
+Change Component Designator: OldDesignator=C7 NewDesignator=C8
+Added Component: Designator=C5(CAPACITOR 0805)
+Added Component: Designator=R8(RESISTOR_0805)
+Added Component: Designator=R9(RESISTOR_0805)
+Added Pin To Net: NetName=GND Pin=C5-1
+Added Pin To Net: NetName=GND Pin=J5-2
+Added Pin To Net: NetName=PIN + Pin=R8-2
+Added Pin To Net: NetName=GND Pin=R9-1
+Added Pin To Net: NetName=GND Pin=U3-2
+Added Pin To Net: NetName=DL_PIN Pin=C5-2
+Added Pin To Net: NetName=DL_PIN Pin=R8-1
+Added Pin To Net: NetName=DL_PIN Pin=R9-2
+Added Pin To Net: NetName=DL_PIN Pin=U1-21
+Added Net: Name=DL_PIN
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C8 10uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R8 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R9 10K
+Added Rule: Name=Schematic Supply Nets_2

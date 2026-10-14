@@ -1,0 +1,26 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [Node_CamBien.PrjPcb]
+   Generated File[Mach_In.GTO]
+   Generated File[Mach_In.GTP]
+   Generated File[Mach_In.GTS]
+   Generated File[Mach_In.GTL]
+   Generated File[Mach_In.GBL]
+   Generated File[Mach_In.GBS]
+   Generated File[Mach_In.GBP]
+   Generated File[Mach_In.GBO]
+   Generated File[Mach_In.GM1]
+   Generated File[Mach_In.GM13]
+   Generated File[Mach_In.GM15]
+   Generated File[Mach_In.GM16]
+   Generated File[Mach_In.GM24]
+   Generated File[Mach_In.GD1]
+   Generated File[Mach_In.GM]
+   Generated File[Mach_In.EXTREP]
+   Generated File[Mach_In.REP]
+
+
+Files Generated   : 17
+Documents Printed : 0
+
+Finished Output Generation At 01:42:58 On 27/03/2026

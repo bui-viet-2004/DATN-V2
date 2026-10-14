@@ -1,0 +1,29 @@
+Add component: Footprint Not Found E18-MS1-PCB_BYT
+Add component: Footprint Not Found SOIC_B107S_RTN
+Added Component: Designator=U16(DPAK457P1010X238-3N)
+Add component (AddParameter): Name = "Availability"; Value = "In Stock"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Check_prices"; Value = "https://www.snapeda.com/parts/AZ1117D-3.3TRE1/Diodes+Inc./view-part/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = "Diodes Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "AZ1117D-3.3TRE1"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "TO-252-2 Diodes Inc."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Purchase-URL"; Value = "https://pricing.snapeda.com/search/part/AZ1117D-3.3TRE1/?ref=eda"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "SnapEDA_Link"; Value = "https://www.snapeda.com/parts/AZ1117D-3.3TRE1/Diodes+Inc./view-part/?ref=snap"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin U3-1
+Add Pin To Net: Unknown Pin: Pin U3-2
+Add Pin To Net: Unknown Pin: Pin U3-3
+Add Pin To Net: Unknown Pin: Pin U3-4
+Add Pin To Net: Unknown Pin: Pin U3-20
+Add Pin To Net: Unknown Pin: Pin U3-21
+Add Pin To Net: Unknown Pin: Pin U3-24
+Add Pin To Net: Unknown Pin: Pin U7-1
+Add Pin To Net: Unknown Pin: Pin U7-2
+Add Pin To Net: Unknown Pin: Pin U7-3
+Add Pin To Net: Unknown Pin: Pin U7-4
+Added Pin To Net: NetName=GND Pin=U16-1
+Added Pin To Net: NetName=+3.3 Pin=U16-2
+Added Pin To Net: NetName=+5 Pin=U16-3
+Add Class Member: Failed to add class member : Component U3 E18-MS1-PCB
+Add Class Member: Failed to add class member : Component U7 DB107S
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U16 AMS1117 TO-252

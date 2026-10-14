@@ -1,0 +1,53 @@
+    {
+      "type": "$TYPE_LIGHT_LEVEL_SENSOR",
+      "restapi": "/sensors",
+      "uuid": [
+        "$address.ext",
+        "_endpoint_hex_",
+        "0x0400"
+      ],
+      "items": [
+        {"name": "attr/id"},
+        {"name": "attr/lastannounced"},
+        {"name": "attr/lastseen"},
+        {"name": "attr/manufacturername"},
+        {"name": "attr/modelid"},
+        {"name": "attr/name"},
+        {"name": "attr/swversion"},
+        {"name": "attr/type"},
+        {"name": "attr/uniqueid"},
+        {"name": "config/on"},
+        {"name": "config/reachable"},
+        {
+          "name": "config/tholddark",
+          "description": "Specifies at which <code class=\"api-attribute\">lightlevel</code> the <code class=\"api-attribute\">dark</code> attribute turns false.",
+          "default": 12000
+        },
+        {
+          "name": "config/tholdoffset",
+          "description": "Relative offset to <code class=\"api-attribute\">tholddark</code>. Sets <code class=\"api-attribute\">daylight</code> attribute to true when when lightlevel is at or above (tholddark + tholdoffset).",
+          "default": 7000
+        },
+        {
+          "name": "state/dark",
+          "description": "True when <code class=\"api-attribute\">lightlevel</code> is lower than <code class=\"api-attribute\">tholddark</code>.",
+          "default": false
+        },
+        {
+          "name": "state/daylight",
+          "description": "True when <code class=\"api-attribute\">lightlevel</code> suits daylight according <code class=\"api-attribute\">tholddark</code> and <code class=\"api-attribute\">tholdoffset</code> configuration.",
+          "default": false
+        },
+        {"name": "state/lastupdated"},
+        {
+          "name": "state/lightlevel",
+          "description": "The current Light level in 10000 log10 (lux) + 1.",
+          "default": 0
+        },
+        {
+          "name": "state/lux",
+          "description": "The current Light level in lux.",
+          "default": 0
+        }
+      ]
+    }

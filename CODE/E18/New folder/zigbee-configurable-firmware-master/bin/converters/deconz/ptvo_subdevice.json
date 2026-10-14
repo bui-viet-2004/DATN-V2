@@ -1,0 +1,24 @@
+    {
+      "type": "$TYPE_CONSUMPTION_SENSOR",
+      "restapi": "/sensors",
+      "uuid": [
+        "$address.ext",
+        "_endpoint_hex_",
+        "_cluster_hex_"
+      ],
+      "items": [
+        {"name": "attr/id"},
+        {"name": "attr/lastannounced"},
+        {"name": "attr/lastseen"},
+        {"name": "attr/manufacturername"},
+        {"name": "attr/modelid"},
+        {"name": "attr/name"},
+        {"name": "attr/swversion"},
+        {"name": "attr/type"},
+        {"name": "attr/uniqueid"},
+        {"name": "config/on"},
+        {"name": "config/reachable"},
+        {"name": "state/lastupdated"},
+_items_
+      ]
+    }

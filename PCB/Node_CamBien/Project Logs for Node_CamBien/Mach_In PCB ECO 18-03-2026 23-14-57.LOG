@@ -1,0 +1,86 @@
+Removed Pin From Net: NetName=+3.3 Pin=C4-2
+Removed Pin From Net: NetName=GND Pin=D1-1
+Removed Pin From Net: NetName=+3.3 Pin=J4-1
+Removed Pin From Net: NetName=GND Pin=J4-2
+Removed Pin From Net: NetName=RUNG Pin=J4-3
+Removed Pin From Net: NetName=VCC_DS18B20 Pin=Q1-2
+Removed Pin From Net: NetName=ON/OFF DS18B20 Pin=R2-1
+Removed Pin From Net: NetName=ON/OFF DS18B20 Pin=U1-19
+Removed Member From Class: ClassName=Nguyen_Ly Member=Q1
+Change Component Footprint: Designator=C4 Old Footprint=0.22uF/50V New Footprint=CAPACITOR 0805
+Change Component Footprint: Designator=D1 Old Footprint=DO201AD New Footprint=LED_0805_RED
+Change Component Footprint: Designator=J4 Old Footprint=JST-2.54-3P New Footprint=BORNE-5.00-2P
+Change Component Comment : Designator=D1 Old Comment=1N5822 New Comment=LED_0805_RED
+Change Component Comment : Designator=R4 Old Comment=4K7 New Comment=10K
+Change Component Comment : Designator=C4 Old Comment=47uF New Comment=100nF
+Change Component Comment : Designator=R2 Old Comment=220 New Comment=10K
+Change Component Comment : Designator=J4 Old Comment=SW 420 New Comment=SCT 013
+Change Component Designator: OldDesignator=J1 NewDesignator=J3
+Change Component Designator: OldDesignator=J2 NewDesignator=J5
+Change Component Designator: OldDesignator=J3 NewDesignator=J1
+Change Component Designator: OldDesignator=U2 NewDesignator=U4
+Change component parameters: Designator = "D1" ("D1"); Footprint = "DO201AD"; UniqueID = "\ZGRNLTUX" ("\ZGRNLTUX")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C113551"; VariantName = "[No Variations]"
+Change component parameters: Designator = "J4" ("J4"); Footprint = "JST-2.54-3P"; UniqueID = "\MJLPSDZI" ("\MJLPSDZI")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C91153"; VariantName = "[No Variations]"
+Added Component: Designator=C5(ALUMINUM_4mm)
+Added Component: Designator=D2(DIODE_SMA)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey PN"; Value = "SS34FSTR-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB"; Value = "C2909963"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "512-SS34"; VariantName = "[No Variations]"
+Added Component: Designator=J2(BORNE-5.00-4P)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C2915641"; VariantName = "[No Variations]"
+Added Component: Designator=R5(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R6(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R7(RESSITOR_PTH_12.5mm)
+Added Component: Designator=U2(SOT23-3)
+Added Pin To Net: NetName=+3.3 Pin=C5-1
+Added Pin To Net: NetName=GND Pin=C5-2
+Added Pin To Net: NetName=GND Pin=D1-2
+Added Pin To Net: NetName=GND Pin=D2-1
+Added Pin To Net: NetName=+3.3 Pin=J2-1
+Added Pin To Net: NetName=RUNG Pin=J2-2
+Added Pin To Net: NetName=GND Pin=J2-3
+Added Pin To Net: NetName=ON/OFF DS18B20 Pin=R2-2
+Added Pin To Net: NetName=+3.3 Pin=R3-2
+Added Pin To Net: NetName=+3.3 Pin=R5-1
+Added Pin To Net: NetName=GND Pin=R6-2
+Added Pin To Net: NetName=ON/OFF DS18B20 Pin=U1-18
+Added Pin To Net: NetName=VCC_DS18B20 Pin=U2-D
+Added Pin To Net: NetName=+3.3 Pin=U2-S
+Added Pin To Net: NetName=DONG Pin=J4-1
+Added Pin To Net: NetName=DONG Pin=U1-22
+Added Net: Name=DONG
+Added Pin To Net: NetName=LED Pin=R7-2
+Added Pin To Net: NetName=LED Pin=U1-14
+Added Net: Name=LED
+Added Pin To Net: NetName=MD RUNG Pin=J2-4
+Added Pin To Net: NetName=MD RUNG Pin=U1-23
+Added Net: Name=MD RUNG
+Added Pin To Net: NetName=NetC4_2 Pin=C4-2
+Added Pin To Net: NetName=NetC4_2 Pin=J4-2
+Added Pin To Net: NetName=NetC4_2 Pin=R5-2
+Added Pin To Net: NetName=NetC4_2 Pin=R6-1
+Added Net: Name=NetC4_2
+Added Pin To Net: NetName=NetD1_1 Pin=D1-1
+Added Pin To Net: NetName=NetD1_1 Pin=R7-1
+Added Net: Name=NetD1_1
+Added Pin To Net: NetName=NetD2_2 Pin=D2-2
+Added Pin To Net: NetName=NetD2_2 Pin=I1-1
+Added Pin To Net: NetName=NetD2_2 Pin=U3-2
+Added Net: Name=NetD2_2
+Added Pin To Net: NetName=NetR2_1 Pin=R2-1
+Added Pin To Net: NetName=NetR2_1 Pin=R3-1
+Added Pin To Net: NetName=NetR2_1 Pin=U2-G
+Added Net: Name=NetR2_1
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C2 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C5 10uF/16V
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D2 SS34
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J5 PIN
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R5 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R6 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R7 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U2 AP3P080N
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U4 TP4056_6PINS

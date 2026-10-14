@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=J7 Old Footprint=MALE-2.54-10P New Footprint=MALE-2.54-14P
+Change Component Comment : Designator=J7 Old Comment=TFT 2.8 inh New Comment=TFT 2.8
+Change component parameters: Designator = "J7" ("J7"); Footprint = "MALE-2.54-10P"; UniqueID = "\LTXERMIB" ("\LTXERMIB")

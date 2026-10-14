@@ -1,0 +1,62 @@
+    {
+      "type": "$TYPE_CONSUMPTION_SENSOR",
+      "restapi": "/sensors",
+      "uuid": [
+        "$address.ext",
+        "_endpoint_hex_",
+        "_cluster_hex_"
+      ],
+      "fingerprint": {
+        "profile": "0x0104",
+        "device": "0xFFFE",
+        "endpoint": "_endpoint_hex_",
+        "in": [
+          "_cluster_hex_"
+        ]
+      },
+      "items": [
+        {"name": "attr/id"},
+        {"name": "attr/lastannounced"},
+        {"name": "attr/lastseen"},
+        {"name": "attr/manufacturername"},
+        {"name": "attr/modelid"},
+        {"name": "attr/name"},
+        {"name": "attr/swversion"},
+        {"name": "attr/type"},
+        {"name": "attr/uniqueid"},
+        {"name": "config/on"},
+        {"name": "config/reachable"},
+        {
+          "name": "config/scale",
+          "public": false,
+          "description": "Scale all analog values by X to get the necessary numbers after a decimal point in REST API.",
+          "default": 1000
+        },
+        {"name": "state/lastupdated"},
+_items_
+        ,{
+          "name": "state/consumption",
+          "description": "Measured raw value",
+          "read": {
+            "fn": "none",
+            "at": "0x0055",
+            "cl": "0x000C",
+            "ep": _endpoint_
+          },
+          "write": {
+            "fn": "none",
+            "at": "0x0055",
+            "cl": "0x000C",
+            "ep": _endpoint_
+          },
+          "parse": {
+            "at": "0x0055",
+            "cl": "0x000C",
+            "ep": _endpoint_,
+            "script": "ptvo_deconz.js",
+            "fn": "zcl:attr"
+          },
+          "default": 0
+        }
+      ]
+    }

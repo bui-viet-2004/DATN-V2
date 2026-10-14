@@ -1,0 +1,20 @@
+Change Component Footprint: Designator=S4 Old Footprint=PUSH_BUTTON_6X6 New Footprint=PUSH_BUTTON_12X12_BLUE
+Change Component Footprint: Designator=S5 Old Footprint=PUSH_BUTTON_6X6 New Footprint=PUSH_BUTTON_12X12_GREEN
+Change Component Footprint: Designator=S6 Old Footprint=PUSH_BUTTON_6X6 New Footprint=PUSH_BUTTON_12X12_RED
+Change Component Footprint: Designator=S7 Old Footprint=PUSH_BUTTON_6X6 New Footprint=PUSH_BUTTON_12X12_YELLOW
+Change Component Comment : Designator=S4 Old Comment=PUSH_BUTTON_6X6 New Comment=PUSH_BUTTON_12X12
+Change Component Comment : Designator=S5 Old Comment=PUSH_BUTTON_6X6 New Comment=PUSH_BUTTON_12X12
+Change Component Comment : Designator=S6 Old Comment=PUSH_BUTTON_6X6 New Comment=PUSH_BUTTON_12X12
+Change Component Comment : Designator=S7 Old Comment=PUSH_BUTTON_6X6 New Comment=PUSH_BUTTON_12X12
+Change component parameters: Designator = "S4" ("S4"); Footprint = "PUSH_BUTTON_6X6"; UniqueID = "\JLRHFJKN" ("\JLRHFJKN")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Change component parameters: Designator = "S5" ("S5"); Footprint = "PUSH_BUTTON_6X6"; UniqueID = "\FFAGHKAX" ("\FFAGHKAX")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Change component parameters: Designator = "S6" ("S6"); Footprint = "PUSH_BUTTON_6X6"; UniqueID = "\OJWOTLWD" ("\OJWOTLWD")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Change component parameters: Designator = "S7" ("S7"); Footprint = "PUSH_BUTTON_6X6"; UniqueID = "\EJHDZDNE" ("\EJHDZDNE")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"

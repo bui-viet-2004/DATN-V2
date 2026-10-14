@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=U18 Old Footprint=DHT22_90 New Footprint=DHT11
+Change Component Comment : Designator=U18 Old Comment=DHT22 New Comment=DHT11
+Added Pin To Net: NetName=DATA_DHT Pin=U1-29

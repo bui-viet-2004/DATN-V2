@@ -1,0 +1,14 @@
+Removed Pin From Net: NetName=GND Pin=C17-1
+Removed Pin From Net: NetName=+5 Pin=C17-2
+Change Component Footprint: Designator=C17 Old Footprint=0.22uF/50V New Footprint=ALUMINUM_5mm
+Change Component Footprint: Designator=D7 Old Footprint=DO201AD New Footprint=DIODE_SMA
+Change Component Comment : Designator=D7 Old Comment=1N5822 New Comment=SS34
+Change Component Comment : Designator=C17 Old Comment=47uF New Comment=10uF/25V
+Change component parameters: Designator = "D7" ("D7"); Footprint = "DO201AD"; UniqueID = "\NCBWZSIX" ("\NCBWZSIX")
+Change component parameters (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "ComponentLink1URL"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Digikey PN"; Value = "SS34FSTR-ND"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "JLCPCB"; Value = "C2909963"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Mouser PN"; Value = "512-SS34"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=+5 Pin=C17-1
+Added Pin To Net: NetName=GND Pin=C17-2

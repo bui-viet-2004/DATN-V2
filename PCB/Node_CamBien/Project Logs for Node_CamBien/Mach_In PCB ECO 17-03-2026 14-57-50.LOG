@@ -1,0 +1,105 @@
+Removed Member From Class: ClassName=Nguyen_Ly Member=J?
+Change Component Designator: OldDesignator=C? NewDesignator=C1
+Change Component Designator: OldDesignator=C? NewDesignator=C2
+Change Component Designator: OldDesignator=C? NewDesignator=C3
+Change Component Designator: OldDesignator=J? NewDesignator=J1
+Change Component Designator: OldDesignator=J? NewDesignator=J3
+Change Component Designator: OldDesignator=R? NewDesignator=R1
+Change Component Designator: OldDesignator=S? NewDesignator=S1
+Change Component Designator: OldDesignator=U? NewDesignator=U1
+Change Component Designator: OldDesignator=U? NewDesignator=U2
+Added Component: Designator=C4(0.22uF/50V)
+Added Component: Designator=D1(DO201AD)
+Add component (AddParameter): Name = "Digikey PN"; Value = "497-11370-1-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C3018526"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "511-1N5822"; VariantName = "[No Variations]"
+Added Component: Designator=I1(1260)
+Added Component: Designator=J2(JST-2.54-2P)
+Added Component: Designator=J4(JST-2.54-3P)
+Added Component: Designator=Q1(QTO-220)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Manufacturer Link"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "http://www.irf.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink2URL"; Value = "http://www.irf.com/product-info/datasheets/data/irf9540.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "DatasheetVersion"; Value = "PD-9.421C"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Note"; Value = "Pin 2 is electrically connected to pin 4."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "TO, Thru-Hole, Vertical, Heatsink Mounted; 3 In-Line Leads; Pitch 2.54 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "TO-220AB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageVersion"; Value = "Feb-1997"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Component: Designator=R2(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R3(RESSITOR_PTH_12.5mm)
+Added Component: Designator=R4(RESSITOR_PTH_12.5mm)
+Added Component: Designator=U3(LM2596)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.ti.com/lit/ds/symlink/lm2596.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey PN"; Value = "4518-LM2596S-ADJCT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C2980822"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "863-LM2596DSADJG"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=C4-1
+Added Pin To Net: NetName=+3.3 Pin=C4-2
+Added Pin To Net: NetName=GND Pin=D1-1
+Added Pin To Net: NetName=+3.3 Pin=I1-2
+Added Pin To Net: NetName=GND Pin=J3-2
+Added Pin To Net: NetName=+3.3 Pin=J4-1
+Added Pin To Net: NetName=GND Pin=J4-2
+Added Pin To Net: NetName=+3.3 Pin=R4-1
+Added Pin To Net: NetName=GND Pin=U2-1
+Added Pin To Net: NetName=GND Pin=U3-3
+Added Pin To Net: NetName=+3.3 Pin=U3-4
+Added Pin To Net: NetName=GND Pin=U3-5
+Added Pin To Net: NetName=GND Pin=U3-6
+Added Pin To Net: NetName=+5 Pin=Q1-3
+Added Pin To Net: NetName=+5 Pin=R3-1
+Added Net: Name=+5
+Added Pin To Net: NetName=NetD1_2 Pin=D1-2
+Added Pin To Net: NetName=NetD1_2 Pin=I1-1
+Added Pin To Net: NetName=NetD1_2 Pin=U3-2
+Added Net: Name=NetD1_2
+Added Pin To Net: NetName=NetQ1_1 Pin=Q1-1
+Added Pin To Net: NetName=NetQ1_1 Pin=R2-2
+Added Pin To Net: NetName=NetQ1_1 Pin=R3-2
+Added Net: Name=NetQ1_1
+Added Pin To Net: NetName=NHIET Pin=J3-3
+Added Pin To Net: NetName=NHIET Pin=R4-2
+Added Pin To Net: NetName=NHIET Pin=U1-21
+Added Net: Name=NHIET
+Added Pin To Net: NetName=ON/OFF DS18B20 Pin=R2-1
+Added Pin To Net: NetName=ON/OFF DS18B20 Pin=U1-19
+Added Net: Name=ON/OFF DS18B20
+Added Pin To Net: NetName=OUT + Pin=U2-4
+Added Pin To Net: NetName=OUT + Pin=U3-1
+Added Net: Name=OUT +
+Added Pin To Net: NetName=PIN + Pin=J2-1
+Added Pin To Net: NetName=PIN + Pin=U2-3
+Added Net: Name=PIN +
+Added Pin To Net: NetName=PIN - Pin=J2-2
+Added Pin To Net: NetName=PIN - Pin=U2-2
+Added Net: Name=PIN -
+Added Pin To Net: NetName=RUNG Pin=J4-3
+Added Pin To Net: NetName=RUNG Pin=U1-13
+Added Net: Name=RUNG
+Added Pin To Net: NetName=VCC_DS18B20 Pin=J3-1
+Added Pin To Net: NetName=VCC_DS18B20 Pin=Q1-2
+Added Net: Name=VCC_DS18B20
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C1 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C3 10uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C4 47uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D1 1N5822
+Added Member To Class: ClassName=Nguyen_Ly Member=Component I1 1260
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J1 CC DEBUGGER
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J2 PIN
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J3 DS18B20
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J4 SW 420
+Added Member To Class: ClassName=Nguyen_Ly Member=Component Q1 IRF9540
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R2 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R3 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R4 4K7
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U1 E18-MS1-PCB
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U3 LM2596
+Added Rule: Name=Schematic Supply Nets_2
+Added Rule: Name=Schematic Supply Nets_3
+Added Rule: Name=Schematic Supply Nets_4

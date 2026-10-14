@@ -1,0 +1,11 @@
+Added Component: Designator=DS1(TFT 2.4 Inch)
+Added Pin To Net: NetName=TFT_LED Pin=DS1-7
+Added Pin To Net: NetName=SCK Pin=DS1-8
+Added Pin To Net: NetName=SDI(MOSI) Pin=DS1-9
+Added Pin To Net: NetName=DC_TFT Pin=DS1-10
+Added Pin To Net: NetName=RESET_TFT Pin=DS1-11
+Added Pin To Net: NetName=CS Pin=DS1-12
+Added Pin To Net: NetName=GND Pin=DS1-13
+Added Pin To Net: NetName=+5 Pin=DS1-14
+Added Member To Class: ClassName=Nguyen_Ly Member=Component DS1 TFT 2.4 Inch
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J8 BORNE-5.00-3P

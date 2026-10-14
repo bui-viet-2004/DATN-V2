@@ -1,0 +1,740 @@
+[Languages]
+$EN=#1
+$BR=Portuguese
+Default=BR
+Charset=Windows-1252
+Locale=0x0416
+
+EN:>1-wire
+BR:>1 fio
+
+EN:>16 channels
+BR:>16 canais
+
+EN:>1st: P13 or P16%0D%0A2nd: P10 or P20%0D%0A3rd: P14 or P17%0D%0A4th: P11 or P23%0D%0A5th (in the premium version): P03, P04, P05 or P06
+BR:>1º: P13 ou P16%0D%0A2º: P10 ou P20%0D%0A3º: P14 ou P17%0D%0A4º: P11 ou P23%0D%0A5º (na versão premium): P03, P04, P05 ou P06
+
+EN:>2-wire
+BR:>2 fios
+
+EN:>3-wire
+BR:>3 fios
+
+EN:>The current configuration has the following notes
+BR:>A configuração atual possui as seguintes notas
+
+EN:>The input immediately controls the state of the corresponding output. Otherwise the input is independent.
+BR:>A entrada controla imediatamente o estado da saída correspondente. Caso contrário, a entrada é independente.
+
+EN:>The input is a switch (not a push button).
+BR:>A entrada é um interruptor (não um botão).
+
+EN:>Cron scheduler
+BR:>Agendador Cron
+
+EN:>Wait for commands after a report in PSM
+BR:>Aguarde comandos após um relatório no PSM
+
+EN:>Pin
+BR:>Alfinete
+
+EN:>Toggle
+BR:>Alternar
+
+EN:>HEX files
+BR:>Arquivos HEX
+
+EN:>JS files
+BR:>Arquivos JS
+
+EN:>JSON files
+BR:>Arquivos JSON
+
+EN:>Python files
+BR:>Arquivos Python
+
+EN:>Binary files
+BR:>Arquivos binários
+
+EN:>OTA binary files
+BR:>Arquivos binários OTA
+
+EN:>LED strip pattern shortcut
+BR:>Atalho de padrão de faixa de LED
+
+EN:>Enable watchdog timer
+BR:>Ativar temporizador de watchdog
+
+EN:>Activate SBL in exiting HEX
+BR:>Ative SBL ao sair do HEX
+
+EN:>Wake-up delay
+BR:>Atraso no despertar
+
+EN:>Update firmware's timestamp
+BR:>Atualizar carimbo de data/hora do firmware
+
+EN:>Blue
+BR:>Azul
+
+EN:>White
+BR:>Branco
+
+EN:>White (warm)
+BR:>Branco (quente)
+
+EN:>LED strip brightness
+BR:>Brilho da faixa de LED
+
+EN:>Auto-calibration
+BR:>Calibração automática
+
+EN:>Channel
+BR:>Canal
+
+EN:>Serial bootloader (SBL)
+BR:>Carregador de inicialização serial (SBL)
+
+EN:>License key
+BR:>Chave de licença
+
+EN:>Network security key
+BR:>Chave de segurança de rede
+
+EN:>Button clicks
+BR:>Cliques de botão
+
+EN:>Rotary encoder
+BR:>Codificador rotativo
+
+EN:>With off
+BR:>Com desligado
+
+EN:>Bind command
+BR:>Comando de vinculação
+
+EN:>Successfully completed.
+BR:>Completado com sucesso.
+
+EN:>Buy me a coffee
+BR:>Compre-me um café
+
+EN:>Length
+BR:>Comprimento
+
+EN:>Direct LED connection|External N-type driver|External P-type driver
+BR:>Conexão direta de LED|Driver externo tipo N|Driver externo tipo P
+
+EN:>Firmware Configuration
+BR:>Configuração de Firmware
+
+EN:>LED strip remote configuration
+BR:>Configuração remota de faixa de LED
+
+EN:>Counter
+BR:>Contador
+
+EN:>LED count
+BR:>Contagem de LEDs
+
+EN:>External sensor power control
+BR:>Controle de energia do sensor externo
+
+EN:>Level control
+BR:>Controle de nível
+
+EN:>Power amplifier control
+BR:>Controle do amplificador de potência
+
+EN:>Set default reporting interval (s)
+BR:>Definir intervalo(s) de relatório padrão
+
+EN:>Disable resetting of a device by a power on/off cycle
+BR:>Desabilitar a redefinição de um dispositivo por meio de um ciclo de ligar/desligar
+
+EN:>Disable periodic reports
+BR:>Desabilitar relatórios periódicos
+
+EN:>Disable OTA
+BR:>Desativar OTA
+
+EN:>Disable configuring the interval remotely in run-time
+BR:>Desative a configuração remota do intervalo em tempo de execução
+
+EN:>Location description
+BR:>Descrição do local
+
+EN:>Sorry, but you cannot use two sensors on the same endpoint #%d. But you can combine GPIO and a sensor.
+BR:>Desculpe, mas você não pode usar dois sensores no mesmo endpoint #%d. Mas você pode combinar GPIO e um sensor.
+
+EN:>Memory offset
+BR:>Deslocamento de memória
+
+EN:>External wake-up
+BR:>Despertar externo
+
+EN:>Unlinked
+BR:>Desvinculado
+
+EN:>Auto-detect
+BR:>Detecção automática
+
+EN:>Auto-detect
+BR:>Detecção automática
+
+EN:>End device without routing
+BR:>Dispositivo final sem roteamento
+
+EN:>Remaining devices
+BR:>Dispositivos restantes
+
+EN:>Donate (buy me a coffee)
+BR:>Doe (me compre um café)
+
+EN:>Duration
+BR:>Duração
+
+EN:>Address (dec)
+BR:>Endereço (dec)
+
+EN:>Device IEEE address
+BR:>Endereço IEEE do dispositivo
+
+EN:>Linked input
+BR:>Entrada vinculada
+
+EN:>Sending reports
+BR:>Envio de relatórios
+
+EN:>Expert
+BR:>Especialista
+
+EN:>Initial state
+BR:>Estado inicial
+
+EN:>This feature is not available on a CC253x.
+BR:>Este recurso não está disponível em um CC253x.
+
+EN:>This feature is not available on a CC253x router.
+BR:>Este recurso não está disponível em um roteador CC253x.
+
+EN:>Exactly 16 hexadecimal bytes
+BR:>Exatamente 16 bytes hexadecimais
+
+EN:>LED strip
+BR:>Faixa de LED
+
+EN:>Scale factor
+BR:>Fator de escala
+
+EN:>Packet end
+BR:>Fim do pacote
+
+EN:>Regular PTVO firmware
+BR:>Firmware PTVO regular
+
+EN:>LED edition firmware
+BR:>Firmware da edição LED
+
+EN:>External SPI flash
+BR:>Flash SPI externo
+
+EN:>Unknown firmware format.
+BR:>Formato de firmware desconhecido.
+
+EN:>Failed.
+BR:>Fracassado.
+
+EN:>Frequency
+BR:>Frequência
+
+EN:>Generic
+BR:>Genérico
+
+EN:>Generic|Contact|Gas|Noise detected|Occupancy|Presence|Smoke|SOS|Tamper|Vibration|Water leak
+BR:>Genérico|Contato|Gás|Ruído detectado|Ocupação|Presença|Fumaça|SOS|Violação|Vibração|Vazamento de água
+
+EN:>Pulse generator
+BR:>Gerador de pulso
+
+EN:>Would you like to use an embedded image without external files (data URI encoding)?
+BR:>Gostaria de usar uma imagem incorporada sem arquivos externos (codificação URI de dados)?
+
+EN:>Enable high PA
+BR:>Habilitar PA alto
+
+EN:>Enable SBL
+BR:>Habilitar SBL
+
+EN:>Receive enable (RXEN)
+BR:>Habilitação de recebimento (RXEN)
+
+EN:>Transmit enable (TXEN)
+BR:>Habilitação de transmissão (TXEN)
+
+EN:>Manufacturer ID
+BR:>ID do fabricante
+
+EN:>Model ID
+BR:>ID do modelo
+
+EN:>Sensor ID (optional, hex)
+BR:>ID do sensor (opcional, hexadecimal)
+
+EN:>Fixed ID
+BR:>ID fixo
+
+EN:>Impulse
+BR:>Impulso
+
+EN:>Incompatible with PSM.
+BR:>Incompatível com PSM.
+
+EN:>Pulse switch
+BR:>Interruptor de pulso
+
+EN:>Switch
+BR:>Interruptor
+
+EN:>Limit switch
+BR:>Interruptor de limite
+
+EN:>Interlock
+BR:>Intertravamento
+
+EN:>Interlock inverted
+BR:>Intertravamento invertido
+
+EN:>Value equal
+BR:>Valor igual
+
+EN:>Value great or equal
+BR:>Valor maior ou igual
+
+EN:>Value less or equal
+BR:>Valor menor ou igual
+
+EN:>Value in range
+BR:>Valor no intervalo
+
+EN:>Debounce interval
+BR:>Intervalo de rejeição
+
+EN:>Default reporting interval (s)
+BR:>Intervalo(s) de relatório padrão
+
+EN:>Inversed
+BR:>Invertido
+
+EN:>Isolated
+BR:>Isolado
+
+EN:>Joining or errors
+BR:>Junção ou erros
+
+EN:>LED
+BR:>LED
+
+EN:>Status LED
+BR:>LED de status
+
+EN:>Read settings from firmware
+BR:>Leia as configurações do firmware
+
+EN:>Remember state
+BR:>Lembre-se do estado
+
+EN:>Read settings from a file
+BR:>Ler configurações de um arquivo
+
+EN:>Link to out
+BR:>Link para sair
+
+EN:>Long
+BR:>Longo
+
+EN:>Light
+BR:>Luz
+
+EN:>Always on mode
+BR:>Modo sempre ligado
+
+EN:>Shift
+BR:>Mudança
+
+EN:>Change to state after interval
+BR:>Mudar para estado após intervalo
+
+EN:>Maximum
+BR:>Máximo
+
+EN:>Minimum
+BR:>Mínimo
+
+EN:>Manufacturer name
+BR:>Nome do fabricante
+
+EN:>Usually, the selected pin is used for an external oscillator 32 KHz.
+BR:>Normalmente, o pino selecionado é usado para um oscilador externo de 32 KHz.
+
+EN:>Usually, the selected pin is used by a built-in power amplifier control.
+BR:>Normalmente, o pino selecionado é usado por um controle de amplificador de potência integrado.
+
+EN:>Unable to load firmware
+BR:>Não foi possível carregar o firmware
+
+EN:>Unable to create the HEX file.
+BR:>Não foi possível criar o arquivo HEX.
+
+EN:>Unable to make the destination file at step #
+BR:>Não foi possível criar o arquivo de destino na etapa #
+
+EN:>Unable to save the created HEX file
+BR:>Não foi possível salvar o arquivo HEX criado
+
+EN:>Unable to save the created JS file
+BR:>Não foi possível salvar o arquivo JS criado
+
+EN:>Unable to activate SBL in the generated HEX file. Please contact the author.
+BR:>Não é possível ativar o SBL no arquivo HEX gerado. Entre em contato com o autor.
+
+EN:>Cannot write to the selected file.
+BR:>Não é possível gravar no arquivo selecionado.
+
+EN:>Non-isolated
+BR:>Não isolado
+
+EN:>Changes level
+BR:>Nível de alterações
+
+EN:>Signal strength level (0-20)
+BR:>Nível de intensidade do sinal (0-20)
+
+EN:>RF signal level
+BR:>Nível de sinal de RF
+
+EN:>Number of _values_
+BR:>Número de _valores_
+
+EN:>The firmware file does not exist
+BR:>O arquivo de firmware não existe
+
+EN:>The chip with an amplifier. High power consumption.
+BR:>O chip com um amplificador. Alto consumo de energia.
+
+EN:>The very long click (10000 ms) also resets the device. The device will re-join to a coordinator.
+BR:>O clique muito longo (10000 ms) também reinicia o dispositivo. O dispositivo se juntará novamente a um coordenador.
+
+EN:>The firmware toggles the linked output when a switch state changes. The physical switch position may differ with the output state if you change it from a coordinator.
+BR:>O firmware alterna a saída vinculada quando o estado do switch muda. A posição da chave física pode diferir do estado de saída se você alterá-la em um coordenador.
+
+EN:>The firmware handles double clicks (max 500 ms between clicks).
+BR:>O firmware lida com cliques duplos (máximo de 500 ms entre cliques).
+
+EN:>The firmware handles long clicks (2000 ms).
+BR:>O firmware lida com cliques longos (2000 ms).
+
+EN:>The firmware handles triple clicks (max 500 ms between clicks).
+BR:>O firmware lida com cliques triplos (máximo de 500 ms entre cliques).
+
+EN:>The firmware saves the output state to NVRAM, and restores it after power off/on.
+BR:>O firmware salva o estado de saída na NVRAM e o restaura após desligar/ligar.
+
+EN:>SDA pin should be defined first.
+BR:>O pino SDA deve ser definido primeiro.
+
+EN:>The selected pin is used for %s
+BR:>O pino selecionado é usado para %s
+
+EN:>The Serial bootloader feature allows you to flash firmware via UART without the special flash programmer
+BR:>O recurso Serial bootloader permite que você atualize o firmware via UART sem o programador flash especial
+
+EN:>The Over-the-Air (OTA) firmware update feature provides a standard mechanism for wirelessly upgrading a Zigbee device’s firmware
+BR:>O recurso de atualização de firmware Over-the-Air (OTA) fornece um mecanismo padrão para atualizar sem fio o firmware de um dispositivo Zigbee
+
+EN:>The internal pull-up or pull-down resistor secures high power consumption. Please consider using an external pull-up 5 MOhm.
+BR:>O resistor pull-up ou pull-down interno garante alto consumo de energia. Considere usar um pull-up externo de 5 MOhm.
+
+EN:>The internal temperature sensor cannot coexist with an output, counter or generator on P00 and P01.
+BR:>O sensor de temperatura interna não pode coexistir com saída, contador ou gerador em P00 e P01.
+
+EN:>Get key usage info
+BR:>Obtenha informações importantes de uso
+
+EN:>RGB order
+BR:>Ordem RGB
+
+EN:>The following features do not work or have limited functionality in the power saving mode. Please check your configuration.
+BR:>Os seguintes recursos não funcionam ou têm funcionalidade limitada no modo de economia de energia. Por favor, verifique sua configuração.
+
+EN:>Hardware PWM with low frequencies is available on the pins P03, P04, P05, or P06, and it is incompatible with UART.
+BR:>PWM de hardware com baixas frequências está disponível nos pinos P03, P04, P05 ou P06 e é incompatível com UART.
+
+EN:>Pattern
+BR:>Padrão
+
+EN:>LED strip pattern
+BR:>Padrão de faixa de LED
+
+EN:>Role
+BR:>Papel
+
+EN:>Periodic (every 30 seconds)
+BR:>Periódico (a cada 30 segundos)
+
+EN:>Periodic (every 5 seconds)
+BR:>Periódico (a cada 5 segundos)
+
+EN:>Custom (dec)
+BR:>Personalizado (dec)
+
+EN:>Transition time
+BR:>Período de transição
+
+EN:>Poll for queued commands (s)
+BR:>Pesquisa de comandos na fila (s)
+
+EN:>SBL mode activation pin
+BR:>Pino de ativação do modo SBL
+
+EN:>Input pins
+BR:>Pinos de entrada
+
+EN:>Output pins
+BR:>Pinos de saída
+
+EN:>Please, specify the IEEE address of your device. The program will connect to a server on the Internet and check your permissions.
+BR:>Por favor, especifique o endereço IEEE do seu dispositivo. O programa se conectará a um servidor na Internet e verificará suas permissões.
+
+EN:>Need help or more info?
+BR:>Precisa de ajuda ou mais informações?
+
+EN:>Software
+BR:>Programas
+
+EN:>External pull-down
+BR:>Pull-down externo
+
+EN:>External pull-up
+BR:>Pull-up externo
+
+EN:>Pull-down
+BR:>Puxar para baixo
+
+EN:>Pull-up
+BR:>Puxar para cima
+
+EN:>Reset to defaults
+BR:>Redefinir para os padrões
+
+EN:>Input registers
+BR:>Registros de entrada
+
+EN:>Reporting|Read|Write|Read/Write
+BR:>Relatório|Leitura|Escrita|Leitura/Escrita
+
+EN:>Recall scene
+BR:>Relembrar cena
+
+EN:>Bistable relay
+BR:>Relé biestável
+
+EN:>RTC clock
+BR:>Relógio RTC
+
+EN:>Report a bug
+BR:>Reportar um erro
+
+EN:>Resolution
+BR:>Resolução
+
+EN:>Restore after power off
+BR:>Restaurar após desligar
+
+EN:>Router
+BR:>Roteador
+
+EN:>Save configuration update
+BR:>Salvar atualização de configuração
+
+EN:>Save firmware upgrade
+BR:>Salvar atualização de firmware
+
+EN:>Save settings to a file
+BR:>Salvar configurações em um arquivo
+
+EN:>Save custom converter
+BR:>Salvar conversor personalizado
+
+EN:>Output
+BR:>Saída
+
+EN:>Monitor output
+BR:>Saída do monitor
+
+EN:>Holding registers
+BR:>Segurando registros
+
+EN:>Get Premium
+BR:>Seja Premium
+
+EN:>Select the firmware type
+BR:>Selecione o tipo de firmware
+
+EN:>Sensitivity
+BR:>Sensibilidade
+
+EN:>UART sensor
+BR:>Sensor UART
+
+EN:>Temperature sensor
+BR:>Sensor de temperatura
+
+EN:>Temperature sensor (1-wire)
+BR:>Sensor de temperatura (1 fio)
+
+EN:>Soil moisture sensor
+BR:>Sensor de umidade do solo
+
+EN:>Your configuration has the following warnings.
+BR:>Sua configuração possui os seguintes avisos.
+
+EN:>Your configuration is too large for this device. Please consider removing some functions.
+BR:>Sua configuração é muito grande para este dispositivo. Por favor, considere remover algumas funções.
+
+EN:>Internal temperature
+BR:>Temperatura interna
+
+EN:>Uptime
+BR:>Tempo de atividade
+
+EN:>Voltage
+BR:>Tensão
+
+EN:>Source voltage
+BR:>Tensão da fonte
+
+EN:>Device type
+BR:>Tipo de dispositivo
+
+EN:>Board type
+BR:>Tipo de placa
+
+EN:>Tripple
+BR:>Triplicar
+
+EN:>Group switch
+BR:>Troca de grupo
+
+EN:>Switch
+BR:>Trocar
+
+EN:>UART uses pins P02 and P03. You cannot use these pins on %s.
+BR:>UART usa pinos P02 e P03. Você não pode usar esses pinos em %s.
+
+EN:>A higher level system identifies the device using the value. Any change breaks support of the device.
+BR:>Um sistema de nível superior identifica o dispositivo usando o valor. Qualquer alteração quebra o suporte do dispositivo.
+
+EN:>Once used, you cannot revoke the specified IEEE address from your account.
+BR:>Uma vez usado, você não poderá revogar o endereço IEEE especificado da sua conta.
+
+EN:>Used for IEEE
+BR:>Usado para IEEE
+
+EN:>Analog value
+BR:>Valor analógico
+
+EN:>Reference value
+BR:>Valor de referência
+
+EN:>Invalid value
+BR:>Valor inválido
+
+EN:>Green
+BR:>Verde
+
+EN:>Red
+BR:>Vermelho
+
+EN:>You must use the following pins for UART, MZH19, SenseAir, and other UART-based sensors:
+BR:>Você deve usar os seguintes pinos para UART, MZH19, SenseAir e outros sensores baseados em UART:
+
+EN:>You must use the following pins for ADC:
+BR:>Você deve usar os seguintes pinos para ADC:
+
+EN:>You must use a unique ModelId for your device.
+BR:>Você deve usar um ModelId exclusivo para o seu dispositivo.
+
+EN:>Would you like to continue?
+BR:>Você gostaria de continuar?
+
+EN:>You didn't activate the SBL feature in your firmware. You will not be able to reflash your chip later using UART.
+BR:>Você não ativou o recurso SBL no seu firmware. Você não poderá atualizar seu chip posteriormente usando UART.
+
+EN:>You cannot add more than 5 PWM in the Premium version.
+BR:>Você não pode adicionar mais de 5 PWM na versão Premium.
+
+EN:>You cannot add more than %d sensors.
+BR:>Você não pode adicionar mais de sensores %d.
+
+EN:>You cannot use a different programmable pull-up/down mode for pins on the same port (e.g. P0x,P1x,P2x).
+BR:>Você não pode usar um modo pull-up/down programável diferente para pinos na mesma porta (por exemplo, P0x,P1x,P2x).
+
+EN:>You can add up to four hardware PWM to the firmware.%0D%0AHardware PWM is available on the following pins:
+BR:>Você pode adicionar até quatro PWM de hardware ao firmware.%0D%0AHardware PWM está disponível nos seguintes pinos:
+
+EN:>You may ignore this error and continue.
+BR:>Você pode ignorar este erro e continuar.
+
+EN:>You can have only one switch on a port (P0x, P1x, or P2x). For example, P01, P11, or P20.
+BR:>Você pode ter apenas um switch em uma porta (P0x, P1x ou P2x). Por exemplo, P01, P11 ou P20.
+
+EN:>You can have only one switch on a port (P0x, P1x, or P2x). For example, P01, P17, or P20.
+BR:>Você pode ter apenas um switch em uma porta (P0x, P1x ou P2x). Por exemplo, P01, P17 ou P20.
+
+EN:>Multiple on bus
+BR:>Vários no ônibus
+
+EN:>like CC2531 dongle or Sonoff BasicZBR3
+BR:>como dongle CC2531 ou Sonoff BasicZBR3
+
+EN:>configure PA control pins!!!
+BR:>configure os pinos de controle do PA!!!
+
+EN:>Hz
+BR:>hertz
+
+EN:>lux
+BR:>lux
+
+EN:>meters
+BR:>metros
+
+EN:>ms
+BR:>ms
+
+EN:>max 3.3V
+BR:>máx. 3,3V
+
+EN:>don't use
+BR:>não use
+
+EN:>accurate, max 1.15V
+BR:>preciso, máximo 1.15V
+
+EN:>sec
+BR:>segundo
+
+EN:>without external oscillator
+BR:>sem oscilador externo
+
+EN:>raw value, max 3.3V
+BR:>valor bruto, máximo 3.3V
+
+EN:>Icon (file or data URI)
+BR:>Ícone (URI de arquivo ou dados)
+
+EN:>Last|Off|On|Physical switch state
+BR:>Último|Desligado|Ligado|Estado do interruptor físico
+
+

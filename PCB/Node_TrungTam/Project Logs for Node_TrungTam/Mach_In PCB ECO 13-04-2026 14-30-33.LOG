@@ -1,0 +1,10 @@
+Change Component Footprint: Designator=S8 Old Footprint=PUSH_BUTTON_12X12_WHITE New Footprint=PUSH_BUTTON_6X6
+Change Component Comment : Designator=S8 Old Comment=PUSH_BUTTON_12X12 New Comment=PUSH_BUTTON_6X6
+Change component parameters: Designator = "S8" ("S8"); Footprint = "PUSH_BUTTON_12X12_WHITE"; UniqueID = "\RNNNRUOG" ("\RNNNRUOG")
+Change component parameters (AddParameter): Name = "JLCPCB PN"; Value = "C255811"; VariantName = "[No Variations]"
+Add Component: Footprint Not Found SOIC_B107S_RTN
+Add Pin To Net: Unknown Pin: Pin U7-1
+Add Pin To Net: Unknown Pin: Pin U7-2
+Add Pin To Net: Unknown Pin: Pin U7-3
+Add Pin To Net: Unknown Pin: Pin U7-4
+Add Class Member: Failed to add class member : Component U7 DB107S

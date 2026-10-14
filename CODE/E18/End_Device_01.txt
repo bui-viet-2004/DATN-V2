@@ -1,0 +1,12 @@
+Board type: CC2530
+Device type: End device without routing
+Status LED: P12, Sending reports
+Set default reporting interval (s): 5
+
+Output pins:
+P00: Output 1, GPIO, Pull-up (Role: Generic)
+
+Input pins:
+P02: Input 1, DS18B20, External pull-up
+P03: Input 2, ADC (max 3.3V)
+P01: Input 3, ADC (max 3.3V)

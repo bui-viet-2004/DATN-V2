@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=UART3_STM_TX Pin=U2-30
+Removed Pin From Net: NetName=UART3_STM_RX Pin=U2-31
+Added Pin To Net: NetName=UART3_STM_RX Pin=U2-30
+Added Pin To Net: NetName=UART3_STM_TX Pin=U2-31

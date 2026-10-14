@@ -1,0 +1,13 @@
+Removed Pin From Net: NetName=GND Pin=J1-2
+Removed Pin From Net: NetName=NHIET Pin=J1-3
+Removed Pin From Net: NetName=RUNG Pin=J2-2
+Removed Pin From Net: NetName=GND Pin=J2-3
+Added Pin To Net: NetName=NHIET Pin=J1-2
+Added Pin To Net: NetName=GND Pin=J1-3
+Added Pin To Net: NetName=GND Pin=J2-2
+Added Pin To Net: NetName=RUNG Pin=J2-3
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C1 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R1 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R2 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R3 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R4 10K

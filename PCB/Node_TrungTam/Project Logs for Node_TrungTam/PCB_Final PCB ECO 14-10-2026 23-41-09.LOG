@@ -1,0 +1,23 @@
+Removed Pin From Net: NetName=+5 Pin=J8-1
+Removed Pin From Net: NetName=GND Pin=J8-2
+Removed Pin From Net: NetName=CS Pin=J8-3
+Removed Pin From Net: NetName=RESET_TFT Pin=J8-4
+Removed Pin From Net: NetName=DC_TFT Pin=J8-5
+Removed Pin From Net: NetName=SDI(MOSI) Pin=J8-6
+Removed Pin From Net: NetName=SCK Pin=J8-7
+Removed Pin From Net: NetName=TFT_LED Pin=J8-8
+Removed Member From Class: ClassName=Nguyen_Ly Member=J9
+Change Component Designator: OldDesignator=J9 NewDesignator=J8
+Add component: Footprint Not Found TFT 2.4 Inch
+Add Pin To Net: Unknown Pin: Pin DS1-7
+Add Pin To Net: Unknown Pin: Pin DS1-8
+Add Pin To Net: Unknown Pin: Pin DS1-9
+Add Pin To Net: Unknown Pin: Pin DS1-10
+Add Pin To Net: Unknown Pin: Pin DS1-11
+Add Pin To Net: Unknown Pin: Pin DS1-12
+Add Pin To Net: Unknown Pin: Pin DS1-13
+Add Pin To Net: Unknown Pin: Pin DS1-14
+Change Net Name : Old Net Name=NetJ9_1 New Net Name=NetJ8_1
+Change Net Name : Old Net Name=NetJ9_2 New Net Name=NetJ8_2
+Change Net Name : Old Net Name=NetJ9_3 New Net Name=NetJ8_3
+Add Class Member: Failed to add class member : Component DS1 TFT 2.4 Inch

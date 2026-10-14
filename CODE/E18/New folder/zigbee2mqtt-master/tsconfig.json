@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+        "allowSyntheticDefaultImports": true,
+        "module": "NodeNext",
+        "esModuleInterop": true,
+        "target": "esnext",
+        "lib": ["esnext"],
+        "strict": true,
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "declaration": true,
+        "declarationMap": true,
+        "outDir": "dist",
+        "baseUrl": ".",
+        "rootDir": "lib",
+        "inlineSourceMap": true,
+        "resolveJsonModule": true,
+        "experimentalDecorators": true,
+        "composite": true
+    },
+    "include": ["./lib/**/*", "./lib/util/settings.schema.json"]
+}

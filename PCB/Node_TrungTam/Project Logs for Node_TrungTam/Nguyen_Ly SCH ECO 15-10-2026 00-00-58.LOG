@@ -1,0 +1,5 @@
+Remove Pin=U3-3 From Net=DC
+Remove Pin=U3-4 From Net=DD
+Remove Pin=U3-20 From Net=UART1_STM_RX
+Remove Pin=U3-21 From Net=UART1_STM_TX
+Remove Pin=U3-24 From Net=RS_ZB

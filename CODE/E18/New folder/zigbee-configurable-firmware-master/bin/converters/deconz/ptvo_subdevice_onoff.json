@@ -1,0 +1,47 @@
+    {
+      "type": "$TYPE_ON_OFF_OUTPUT",
+      "restapi": "/lights",
+      "uuid": [
+        "$address.ext",
+        "_endpoint_hex_"
+      ],
+      "items": [
+        {"name": "attr/id"},
+        {"name": "attr/lastannounced"},
+        {"name": "attr/lastseen"},
+        {"name": "attr/manufacturername"},
+        {"name": "attr/modelid"},
+        {"name": "attr/name"},
+        {"name": "attr/swversion"},
+        {"name": "attr/type"},
+        {"name": "attr/uniqueid"},
+        {"name": "config/reachable"},
+        {"name": "state/lastupdated"},
+        {
+          "name": "state/on",
+          "description": "_desc_",
+          "refresh.interval": 6,
+          "read": {
+            "at": "0x0000",
+            "cl": "0x0006",
+            "ep": _endpoint_,
+            "fn": "zcl"
+          },
+          "parse": {
+            "at": "0x0000",
+            "cl": "0x0006",
+            "ep": _endpoint_,
+            "fn": "zcl",
+            "eval": "Item.val = Attr.val"
+          },
+          "write": {
+            "at": "0x0000",
+            "cl": "0x0006",
+            "ep": _endpoint_,
+            "fn": "zcl",
+            "dt": "0x10",
+            "eval": "Item.val"
+          }
+        }
+      ]
+    }
