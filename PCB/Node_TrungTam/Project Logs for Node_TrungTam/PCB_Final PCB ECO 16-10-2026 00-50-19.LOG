@@ -1,0 +1,68 @@
+Add component: Footprint Not Found 1260
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found PUSH_BUTTON_12X12_BLUE
+Add component: Footprint Not Found PUSH_BUTTON_12X12_GREEN
+Add component: Footprint Not Found PUSH_BUTTON_12X12_RED
+Add component: Footprint Not Found PUSH_BUTTON_12X12_YELLOW
+Add component: Footprint Not Found PUSH_BUTTON_6X6
+Add Pin To Net: Unknown Pin: Pin I1-1
+Add Pin To Net: Unknown Pin: Pin I1-2
+Add Pin To Net: Unknown Pin: Pin Q1-1
+Add Pin To Net: Unknown Pin: Pin Q1-2
+Add Pin To Net: Unknown Pin: Pin Q1-3
+Add Pin To Net: Unknown Pin: Pin Q2-1
+Add Pin To Net: Unknown Pin: Pin Q2-2
+Add Pin To Net: Unknown Pin: Pin Q2-3
+Add Pin To Net: Unknown Pin: Pin Q3-1
+Add Pin To Net: Unknown Pin: Pin Q3-2
+Add Pin To Net: Unknown Pin: Pin Q3-3
+Add Pin To Net: Unknown Pin: Pin Q4-1
+Add Pin To Net: Unknown Pin: Pin Q4-2
+Add Pin To Net: Unknown Pin: Pin Q4-3
+Add Pin To Net: Unknown Pin: Pin R4-1
+Add Pin To Net: Unknown Pin: Pin R4-2
+Add Pin To Net: Unknown Pin: Pin R15-1
+Add Pin To Net: Unknown Pin: Pin R15-2
+Add Pin To Net: Unknown Pin: Pin R19-1
+Add Pin To Net: Unknown Pin: Pin R19-2
+Add Pin To Net: Unknown Pin: Pin R20-1
+Add Pin To Net: Unknown Pin: Pin R20-2
+Add Pin To Net: Unknown Pin: Pin R22-1
+Add Pin To Net: Unknown Pin: Pin R22-2
+Add Pin To Net: Unknown Pin: Pin R25-1
+Add Pin To Net: Unknown Pin: Pin R25-2
+Add Pin To Net: Unknown Pin: Pin S5-1
+Add Pin To Net: Unknown Pin: Pin S5-2
+Add Pin To Net: Unknown Pin: Pin S6-1
+Add Pin To Net: Unknown Pin: Pin S6-2
+Add Pin To Net: Unknown Pin: Pin S7-1
+Add Pin To Net: Unknown Pin: Pin S7-2
+Add Pin To Net: Unknown Pin: Pin S8-1
+Add Pin To Net: Unknown Pin: Pin S8-2
+Add Pin To Net: Unknown Pin: Pin S9-1
+Add Pin To Net: Unknown Pin: Pin S9-2
+Add Class Member: Failed to add class member : Component I1 1260
+Add Class Member: Failed to add class member : Component Q1 C9014
+Add Class Member: Failed to add class member : Component Q2 C9014
+Add Class Member: Failed to add class member : Component Q3 C9014
+Add Class Member: Failed to add class member : Component Q4 C9014
+Add Class Member: Failed to add class member : Component R4 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R15 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R19 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R20 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R22 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R25 RESISTOR_0805
+Add Class Member: Failed to add class member : Component S5 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S6 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S7 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S8 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S9 PUSH_BUTTON_6X6

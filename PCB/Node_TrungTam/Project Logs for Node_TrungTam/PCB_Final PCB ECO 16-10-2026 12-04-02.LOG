@@ -1,0 +1,2 @@
+Change Component Footprint: Designator=U19 Old Footprint=DHT11 New Footprint=DHT22_90
+Change Component Comment : Designator=U19 Old Comment=DHT11 New Comment=DHT22

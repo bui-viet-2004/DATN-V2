@@ -1,0 +1,158 @@
+Added Component: Designator=C14(ALUMINUM_7mm)
+Added Component: Designator=C15(CAPACITOR 0805)
+Added Component: Designator=C16(CAPACITOR 0805)
+Added Component: Designator=C17(ALUMINUM_7mm)
+Add component: Footprint Not Found ALUMINUM_5mm
+Add component: Footprint Not Found CAPACITOR 0805
+Added Component: Designator=C20(ALUMINUM_5mm)
+Added Component: Designator=C21(CAPACITOR 0805)
+Added Component: Designator=C22(CAPACITOR 0805)
+Added Component: Designator=C23(ALUMINUM_7mm)
+Added Component: Designator=D9(DIODE_SMA)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey PN"; Value = "SS34FSTR-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB"; Value = "C2909963"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "512-SS34"; VariantName = "[No Variations]"
+Add component: Footprint Not Found TFT 2.4 Inch
+Add component: Footprint Not Found 1260
+Added Component: Designator=J4(BORNE-5.00-2P)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C91153"; VariantName = "[No Variations]"
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found PUSH_BUTTON_12X12_BLUE
+Add component: Footprint Not Found PUSH_BUTTON_12X12_GREEN
+Add component: Footprint Not Found PUSH_BUTTON_12X12_RED
+Add component: Footprint Not Found PUSH_BUTTON_12X12_YELLOW
+Add component: Footprint Not Found PUSH_BUTTON_6X6
+Add component: Footprint Not Found SOIC_B107S_RTN
+Added Component: Designator=U12(LM2596)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = "https://www.ti.com/lit/ds/symlink/lm2596.pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey PN"; Value = "4518-LM2596S-ADJCT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C2980822"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "863-LM2596DSADJG"; VariantName = "[No Variations]"
+Add component: Footprint Not Found SOT23-3
+Add component: Footprint Not Found DPAK457P1010X238-3N
+Add component: Footprint Not Found DHT11
+Added Pin To Net: NetName=+12 Pin=C14-1
+Added Pin To Net: NetName=GND Pin=C14-2
+Added Pin To Net: NetName=GND Pin=C15-1
+Added Pin To Net: NetName=+12 Pin=C15-2
+Added Pin To Net: NetName=GND Pin=C16-1
+Added Pin To Net: NetName=+5 Pin=C16-2
+Added Pin To Net: NetName=+5 Pin=C17-1
+Added Pin To Net: NetName=GND Pin=C17-2
+Add Pin To Net: Unknown Pin: Pin C18-1
+Add Pin To Net: Unknown Pin: Pin C18-2
+Add Pin To Net: Unknown Pin: Pin C19-1
+Add Pin To Net: Unknown Pin: Pin C19-2
+Added Pin To Net: NetName=+5 Pin=C20-1
+Added Pin To Net: NetName=GND Pin=C20-2
+Added Pin To Net: NetName=GND Pin=C21-1
+Added Pin To Net: NetName=+5 Pin=C21-2
+Added Pin To Net: NetName=GND Pin=C22-1
+Added Pin To Net: NetName=+3.3 Pin=C22-2
+Added Pin To Net: NetName=+3.3 Pin=C23-1
+Added Pin To Net: NetName=GND Pin=C23-2
+Added Pin To Net: NetName=GND Pin=D9-1
+Added Pin To Net: NetName=NetD9_2 Pin=D9-2
+Add Pin To Net: Unknown Pin: Pin DS1-7
+Add Pin To Net: Unknown Pin: Pin DS1-8
+Add Pin To Net: Unknown Pin: Pin DS1-9
+Add Pin To Net: Unknown Pin: Pin DS1-10
+Add Pin To Net: Unknown Pin: Pin DS1-11
+Add Pin To Net: Unknown Pin: Pin DS1-12
+Add Pin To Net: Unknown Pin: Pin DS1-13
+Add Pin To Net: Unknown Pin: Pin DS1-14
+Add Pin To Net: Unknown Pin: Pin I1-1
+Add Pin To Net: Unknown Pin: Pin I1-2
+Added Pin To Net: NetName=NetJ4_1 Pin=J4-1
+Added Pin To Net: NetName=NetF1_1 Pin=J4-2
+Add Pin To Net: Unknown Pin: Pin R4-1
+Add Pin To Net: Unknown Pin: Pin R4-2
+Add Pin To Net: Unknown Pin: Pin R15-1
+Add Pin To Net: Unknown Pin: Pin R15-2
+Add Pin To Net: Unknown Pin: Pin R19-1
+Add Pin To Net: Unknown Pin: Pin R19-2
+Add Pin To Net: Unknown Pin: Pin R20-1
+Add Pin To Net: Unknown Pin: Pin R20-2
+Add Pin To Net: Unknown Pin: Pin R22-1
+Add Pin To Net: Unknown Pin: Pin R22-2
+Add Pin To Net: Unknown Pin: Pin R25-1
+Add Pin To Net: Unknown Pin: Pin R25-2
+Add Pin To Net: Unknown Pin: Pin R29-1
+Add Pin To Net: Unknown Pin: Pin R29-2
+Add Pin To Net: Unknown Pin: Pin R30-1
+Add Pin To Net: Unknown Pin: Pin R30-2
+Add Pin To Net: Unknown Pin: Pin R34-1
+Add Pin To Net: Unknown Pin: Pin R34-2
+Add Pin To Net: Unknown Pin: Pin S5-1
+Add Pin To Net: Unknown Pin: Pin S5-2
+Add Pin To Net: Unknown Pin: Pin S6-1
+Add Pin To Net: Unknown Pin: Pin S6-2
+Add Pin To Net: Unknown Pin: Pin S7-1
+Add Pin To Net: Unknown Pin: Pin S7-2
+Add Pin To Net: Unknown Pin: Pin S8-1
+Add Pin To Net: Unknown Pin: Pin S8-2
+Add Pin To Net: Unknown Pin: Pin S9-1
+Add Pin To Net: Unknown Pin: Pin S9-2
+Add Pin To Net: Unknown Pin: Pin U7-1
+Add Pin To Net: Unknown Pin: Pin U7-2
+Add Pin To Net: Unknown Pin: Pin U7-3
+Add Pin To Net: Unknown Pin: Pin U7-4
+Added Pin To Net: NetName=+12 Pin=U12-1
+Added Pin To Net: NetName=NetD9_2 Pin=U12-2
+Added Pin To Net: NetName=GND Pin=U12-3
+Added Pin To Net: NetName=+5 Pin=U12-4
+Added Pin To Net: NetName=GND Pin=U12-5
+Added Pin To Net: NetName=GND Pin=U12-6
+Add Pin To Net: Unknown Pin: Pin U15-D
+Add Pin To Net: Unknown Pin: Pin U15-G
+Add Pin To Net: Unknown Pin: Pin U15-S
+Add Pin To Net: Unknown Pin: Pin U16-1
+Add Pin To Net: Unknown Pin: Pin U16-2
+Add Pin To Net: Unknown Pin: Pin U16-3
+Add Pin To Net: Unknown Pin: Pin U19-1
+Add Pin To Net: Unknown Pin: Pin U19-2
+Add Pin To Net: Unknown Pin: Pin U19-4
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C14 220uF/16V
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C15 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C16 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C17 220uF
+Add Class Member: Failed to add class member : Component C18 47uF
+Add Class Member: Failed to add class member : Component C19 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C20 47uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C21 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C22 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C23 220uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D9 SS34
+Add Class Member: Failed to add class member : Component DS1 TFT 2.4 Inch
+Add Class Member: Failed to add class member : Component I1 1260
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J4 12AC
+Add Class Member: Failed to add class member : Component R4 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R15 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R19 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R20 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R22 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R25 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R29 220
+Add Class Member: Failed to add class member : Component R30 10K
+Add Class Member: Failed to add class member : Component R34 10K
+Add Class Member: Failed to add class member : Component S5 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S6 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S7 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S8 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S9 PUSH_BUTTON_6X6
+Add Class Member: Failed to add class member : Component U7 DB107S
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U12 LM2596
+Add Class Member: Failed to add class member : Component U15 AP3P080N
+Add Class Member: Failed to add class member : Component U16 AMS1117 TO-252
+Add Class Member: Failed to add class member : Component U19 DHT11

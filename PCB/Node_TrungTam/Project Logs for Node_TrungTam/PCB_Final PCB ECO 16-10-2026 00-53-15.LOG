@@ -1,0 +1,28 @@
+Add component: Footprint Not Found 1260
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add Pin To Net: Unknown Pin: Pin I1-1
+Add Pin To Net: Unknown Pin: Pin I1-2
+Add Pin To Net: Unknown Pin: Pin R4-1
+Add Pin To Net: Unknown Pin: Pin R4-2
+Add Pin To Net: Unknown Pin: Pin R15-1
+Add Pin To Net: Unknown Pin: Pin R15-2
+Add Pin To Net: Unknown Pin: Pin R19-1
+Add Pin To Net: Unknown Pin: Pin R19-2
+Add Pin To Net: Unknown Pin: Pin R20-1
+Add Pin To Net: Unknown Pin: Pin R20-2
+Add Pin To Net: Unknown Pin: Pin R22-1
+Add Pin To Net: Unknown Pin: Pin R22-2
+Add Pin To Net: Unknown Pin: Pin R25-1
+Add Pin To Net: Unknown Pin: Pin R25-2
+Add Class Member: Failed to add class member : Component I1 1260
+Add Class Member: Failed to add class member : Component R4 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R15 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R19 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R20 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R22 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R25 RESISTOR_0805

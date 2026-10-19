@@ -1,0 +1,9 @@
+Removed Pin From Net: NetName=BUTTON_4 Pin=-10
+Removed Pin From Net: NetName=BUTTON_3 Pin=-11
+Removed Pin From Net: NetName=BUTTON_2 Pin=-12
+Removed Pin From Net: NetName=BUTTON_1 Pin=-13
+Change Component Designator: OldDesignator= NewDesignator=U1
+Added Pin To Net: NetName=BUTTON_1 Pin=U1-25
+Added Pin To Net: NetName=BUTTON_2 Pin=U1-26
+Added Pin To Net: NetName=BUTTON_3 Pin=U1-27
+Added Pin To Net: NetName=BUTTON_4 Pin=U1-28

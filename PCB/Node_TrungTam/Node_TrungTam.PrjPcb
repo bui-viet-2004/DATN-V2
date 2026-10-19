@@ -84,24 +84,7 @@ GenerateClassCluster=0
 DocumentUniqueId=VYOUDNQY
 
 [Document3]
-DocumentPath=..\..\..\..\Embedded_IoT\Shared_Libraries\Thư viện ALtium\MyComponents.IntLib
-AnnotationEnabled=1
-AnnotateStartValue=1
-AnnotationIndexControlEnabled=0
-AnnotateSuffix=
-AnnotateScope=All
-AnnotateOrder=-1
-DoLibraryUpdate=1
-DoDatabaseUpdate=1
-ClassGenCCAutoEnabled=1
-ClassGenCCAutoRoomEnabled=0
-ClassGenNCAutoScope=None
-DItemRevisionGUID=
-GenerateClassCluster=0
-DocumentUniqueId=
-
-[Document4]
-DocumentPath=..\..\..\..\Embedded_IoT\Shared_Libraries\Thư viện ALtium\Thuvien3D.IntLib
+DocumentPath=..\..\..\..\Shared_Libraries\Thư viện ALtium\Thuvien3D.IntLib
 AnnotationEnabled=1
 AnnotateStartValue=1
 AnnotationIndexControlEnabled=0

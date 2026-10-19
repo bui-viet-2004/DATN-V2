@@ -1,9 +1,0 @@
-{
-    "extends": "../tsconfig",
-    "include": ["./**/*", "vitest.config.mts"],
-    "compilerOptions": {
-        "rootDir": "..",
-        "noEmit": true
-    },
-    "references": [{"path": ".."}]
-}

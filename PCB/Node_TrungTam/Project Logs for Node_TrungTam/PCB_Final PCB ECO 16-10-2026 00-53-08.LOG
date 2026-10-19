@@ -1,0 +1,67 @@
+Add component: Footprint Not Found 1260
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Added Component: Designator=S5(PUSH_BUTTON_12X12_BLUE)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Added Component: Designator=S6(PUSH_BUTTON_12X12_GREEN)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Added Component: Designator=S7(PUSH_BUTTON_12X12_RED)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Added Component: Designator=S8(PUSH_BUTTON_12X12_YELLOW)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C84931"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "992-BUTT-12-5"; VariantName = "[No Variations]"
+Added Component: Designator=S9(PUSH_BUTTON_6X6)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C255811"; VariantName = "[No Variations]"
+Add Pin To Net: Unknown Pin: Pin I1-1
+Add Pin To Net: Unknown Pin: Pin I1-2
+Add Pin To Net: Unknown Pin: Pin R4-1
+Add Pin To Net: Unknown Pin: Pin R4-2
+Add Pin To Net: Unknown Pin: Pin R15-1
+Add Pin To Net: Unknown Pin: Pin R15-2
+Add Pin To Net: Unknown Pin: Pin R19-1
+Add Pin To Net: Unknown Pin: Pin R19-2
+Add Pin To Net: Unknown Pin: Pin R20-1
+Add Pin To Net: Unknown Pin: Pin R20-2
+Add Pin To Net: Unknown Pin: Pin R22-1
+Add Pin To Net: Unknown Pin: Pin R22-2
+Add Pin To Net: Unknown Pin: Pin R25-1
+Add Pin To Net: Unknown Pin: Pin R25-2
+Added Pin To Net: NetName=BUTTON_1 Pin=S5-1
+Added Pin To Net: NetName=BUTTON_1 Pin=S5-1
+Added Pin To Net: NetName=GND Pin=S5-2
+Added Pin To Net: NetName=GND Pin=S5-2
+Added Pin To Net: NetName=BUTTON_2 Pin=S6-1
+Added Pin To Net: NetName=BUTTON_2 Pin=S6-1
+Added Pin To Net: NetName=GND Pin=S6-2
+Added Pin To Net: NetName=GND Pin=S6-2
+Added Pin To Net: NetName=BUTTON_3 Pin=S7-1
+Added Pin To Net: NetName=BUTTON_3 Pin=S7-1
+Added Pin To Net: NetName=GND Pin=S7-2
+Added Pin To Net: NetName=GND Pin=S7-2
+Added Pin To Net: NetName=BUTTON_4 Pin=S8-1
+Added Pin To Net: NetName=BUTTON_4 Pin=S8-1
+Added Pin To Net: NetName=GND Pin=S8-2
+Added Pin To Net: NetName=GND Pin=S8-2
+Added Pin To Net: NetName=RESET_SYSTEM Pin=S9-1
+Added Pin To Net: NetName=RESET_SYSTEM Pin=S9-1
+Added Pin To Net: NetName=GND Pin=S9-2
+Added Pin To Net: NetName=GND Pin=S9-2
+Add Class Member: Failed to add class member : Component I1 1260
+Add Class Member: Failed to add class member : Component R4 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R15 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R19 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R20 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R22 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R25 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S5 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S6 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S7 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S8 PUSH_BUTTON_12X12
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S9 PUSH_BUTTON_6X6

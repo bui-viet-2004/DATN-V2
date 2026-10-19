@@ -1,0 +1,377 @@
+Added Component: Designator=C1(CAPACITOR 0805)
+Added Component: Designator=C6(CAPACITOR 0805)
+Added Component: Designator=C7(CAPACITOR 0805)
+Add component: Footprint Not Found ALUMINUM_7mm
+Add component: Footprint Not Found CAPACITOR 0805
+Add component: Footprint Not Found CAPACITOR 0805
+Add component: Footprint Not Found ALUMINUM_7mm
+Add component: Footprint Not Found ALUMINUM_5mm
+Add component: Footprint Not Found CAPACITOR 0805
+Add component: Footprint Not Found ALUMINUM_5mm
+Add component: Footprint Not Found CAPACITOR 0805
+Add component: Footprint Not Found CAPACITOR 0805
+Add component: Footprint Not Found ALUMINUM_7mm
+Added Component: Designator=D1(DIODE_SMA)
+Add component (AddParameter): Name = "ComponentLink1Description"; Value = "Datasheet"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "ComponentLink1URL"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Digikey PN"; Value = "3191-M7CT-ND"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C330214"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Mouser PN"; Value = "637-M7"; VariantName = "[No Variations]"
+Add component: Footprint Not Found LED_RGB_5mm
+Add component: Footprint Not Found LED_5mm_RED
+Add component: Footprint Not Found 1N4007
+Add component: Footprint Not Found LED_5mm_RED
+Add component: Footprint Not Found 1N4007
+Add component: Footprint Not Found DIODE_SMA
+Add component: Footprint Not Found LED_5mm_RED
+Add component: Footprint Not Found 1N4007
+Add component: Footprint Not Found LED_5mm_RED
+Add component: Footprint Not Found 1N4007
+Add component: Footprint Not Found TFT 2.4 Inch
+Add component: Footprint Not Found 1260
+Added Component: Designator=J1(MALE-2.54-5P)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C492404"; VariantName = "[No Variations]"
+Add component: Footprint Not Found BORNE-5.00-2P
+Add component: Footprint Not Found BORNE-5.00-3P
+Add component: Footprint Not Found BORNE-5.00-3P
+Add component: Footprint Not Found BORNE-5.00-3P
+Add component: Footprint Not Found BORNE-5.00-3P
+Added Component: Designator=R1(RESISTOR_0805)
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_PTH_9.5mm
+Add component: Footprint Not Found RESISTOR_0805
+Added Component: Designator=S1(PUSH_BUTTON_SMD_3X4X2)
+Add component (AddParameter): Name = "JLCPCB PN"; Value = "C231644"; VariantName = "[No Variations]"
+Add component: Footprint Not Found PUSH_BUTTON_12X12_BLUE
+Add component: Footprint Not Found PUSH_BUTTON_12X12_GREEN
+Add component: Footprint Not Found PUSH_BUTTON_12X12_RED
+Add component: Footprint Not Found PUSH_BUTTON_12X12_YELLOW
+Add component: Footprint Not Found PUSH_BUTTON_6X6
+Added Component: Designator=U3(E18-MS1-PCB_BYT)
+Add component (AddParameter): Name = "Copyright"; Value = "Copyright (C) 2026 Ultra Librarian. All rights reserved."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Name"; Value = "Chengdu Ebyte Elec Tech"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer_Part_Number"; Value = "E18-MS1-PCB"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "RefDes"; Value = "RefDes"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Type"; Value = "Type"; VariantName = "[No Variations]"
+Add component: Footprint Not Found BUZZER_12mm
+Add component: Footprint Not Found J3Y
+Add component: Footprint Not Found SOIC_B107S_RTN
+Add component: Footprint Not Found RELE
+Add component: Footprint Not Found PC817_DIP
+Add component: Footprint Not Found RELE
+Add component: Footprint Not Found PC817_DIP
+Add component: Footprint Not Found LM2596
+Add component: Footprint Not Found RELE
+Add component: Footprint Not Found PC817_DIP
+Add component: Footprint Not Found SOT23-3
+Add component: Footprint Not Found DPAK457P1010X238-3N
+Add component: Footprint Not Found RELE
+Add component: Footprint Not Found PC817_DIP
+Add component: Footprint Not Found DHT11
+Added Pin To Net: NetName=GND Pin=C1-1
+Added Pin To Net: NetName=RS_ZB Pin=C1-2
+Added Pin To Net: NetName=GND Pin=C6-1
+Added Pin To Net: NetName=+3.3 Pin=C6-2
+Added Pin To Net: NetName=GND Pin=C7-1
+Added Pin To Net: NetName=+3.3 Pin=C7-2
+Add Pin To Net: Unknown Pin: Pin C14-1
+Add Pin To Net: Unknown Pin: Pin C14-2
+Add Pin To Net: Unknown Pin: Pin C15-1
+Add Pin To Net: Unknown Pin: Pin C15-2
+Add Pin To Net: Unknown Pin: Pin C16-1
+Add Pin To Net: Unknown Pin: Pin C16-2
+Add Pin To Net: Unknown Pin: Pin C17-1
+Add Pin To Net: Unknown Pin: Pin C17-2
+Add Pin To Net: Unknown Pin: Pin C18-1
+Add Pin To Net: Unknown Pin: Pin C18-2
+Add Pin To Net: Unknown Pin: Pin C19-1
+Add Pin To Net: Unknown Pin: Pin C19-2
+Add Pin To Net: Unknown Pin: Pin C20-1
+Add Pin To Net: Unknown Pin: Pin C20-2
+Add Pin To Net: Unknown Pin: Pin C21-1
+Add Pin To Net: Unknown Pin: Pin C21-2
+Add Pin To Net: Unknown Pin: Pin C22-1
+Add Pin To Net: Unknown Pin: Pin C22-2
+Add Pin To Net: Unknown Pin: Pin C23-1
+Add Pin To Net: Unknown Pin: Pin C23-2
+Added Pin To Net: NetName=RS_ZB Pin=D1-1
+Added Pin To Net: NetName=RESET_SYSTEM Pin=D1-2
+Add Pin To Net: Unknown Pin: Pin D4-1
+Add Pin To Net: Unknown Pin: Pin D4-2
+Add Pin To Net: Unknown Pin: Pin D4-3
+Add Pin To Net: Unknown Pin: Pin D4-4
+Add Pin To Net: Unknown Pin: Pin D5-1
+Add Pin To Net: Unknown Pin: Pin D5-2
+Add Pin To Net: Unknown Pin: Pin D6-1
+Add Pin To Net: Unknown Pin: Pin D6-2
+Add Pin To Net: Unknown Pin: Pin D7-1
+Add Pin To Net: Unknown Pin: Pin D7-2
+Add Pin To Net: Unknown Pin: Pin D8-1
+Add Pin To Net: Unknown Pin: Pin D8-2
+Add Pin To Net: Unknown Pin: Pin D9-1
+Add Pin To Net: Unknown Pin: Pin D9-2
+Add Pin To Net: Unknown Pin: Pin D10-1
+Add Pin To Net: Unknown Pin: Pin D10-2
+Add Pin To Net: Unknown Pin: Pin D11-1
+Add Pin To Net: Unknown Pin: Pin D11-2
+Add Pin To Net: Unknown Pin: Pin D12-1
+Add Pin To Net: Unknown Pin: Pin D12-2
+Add Pin To Net: Unknown Pin: Pin D13-1
+Add Pin To Net: Unknown Pin: Pin D13-2
+Add Pin To Net: Unknown Pin: Pin DS1-7
+Add Pin To Net: Unknown Pin: Pin DS1-8
+Add Pin To Net: Unknown Pin: Pin DS1-9
+Add Pin To Net: Unknown Pin: Pin DS1-10
+Add Pin To Net: Unknown Pin: Pin DS1-11
+Add Pin To Net: Unknown Pin: Pin DS1-12
+Add Pin To Net: Unknown Pin: Pin DS1-13
+Add Pin To Net: Unknown Pin: Pin DS1-14
+Add Pin To Net: Unknown Pin: Pin I1-1
+Add Pin To Net: Unknown Pin: Pin I1-2
+Added Pin To Net: NetName=RS_ZB Pin=J1-1
+Added Pin To Net: NetName=DD Pin=J1-2
+Added Pin To Net: NetName=DC Pin=J1-3
+Added Pin To Net: NetName=GND Pin=J1-4
+Added Pin To Net: NetName=+3.3 Pin=J1-5
+Add Pin To Net: Unknown Pin: Pin J4-1
+Add Pin To Net: Unknown Pin: Pin J4-2
+Add Pin To Net: Unknown Pin: Pin J5-1
+Add Pin To Net: Unknown Pin: Pin J5-2
+Add Pin To Net: Unknown Pin: Pin J5-3
+Add Pin To Net: Unknown Pin: Pin J6-1
+Add Pin To Net: Unknown Pin: Pin J6-2
+Add Pin To Net: Unknown Pin: Pin J6-3
+Add Pin To Net: Unknown Pin: Pin J7-1
+Add Pin To Net: Unknown Pin: Pin J7-2
+Add Pin To Net: Unknown Pin: Pin J7-3
+Add Pin To Net: Unknown Pin: Pin J8-1
+Add Pin To Net: Unknown Pin: Pin J8-2
+Add Pin To Net: Unknown Pin: Pin J8-3
+Added Pin To Net: NetName=RS_ZB Pin=R1-1
+Added Pin To Net: NetName=+3.3 Pin=R1-2
+Add Pin To Net: Unknown Pin: Pin R4-1
+Add Pin To Net: Unknown Pin: Pin R4-2
+Add Pin To Net: Unknown Pin: Pin R11-1
+Add Pin To Net: Unknown Pin: Pin R11-2
+Add Pin To Net: Unknown Pin: Pin R12-1
+Add Pin To Net: Unknown Pin: Pin R12-2
+Add Pin To Net: Unknown Pin: Pin R13-1
+Add Pin To Net: Unknown Pin: Pin R13-2
+Add Pin To Net: Unknown Pin: Pin R14-1
+Add Pin To Net: Unknown Pin: Pin R14-2
+Add Pin To Net: Unknown Pin: Pin R15-1
+Add Pin To Net: Unknown Pin: Pin R15-2
+Add Pin To Net: Unknown Pin: Pin R16-1
+Add Pin To Net: Unknown Pin: Pin R16-2
+Add Pin To Net: Unknown Pin: Pin R17-1
+Add Pin To Net: Unknown Pin: Pin R17-2
+Add Pin To Net: Unknown Pin: Pin R18-1
+Add Pin To Net: Unknown Pin: Pin R18-2
+Add Pin To Net: Unknown Pin: Pin R19-1
+Add Pin To Net: Unknown Pin: Pin R19-2
+Add Pin To Net: Unknown Pin: Pin R20-1
+Add Pin To Net: Unknown Pin: Pin R20-2
+Add Pin To Net: Unknown Pin: Pin R21-1
+Add Pin To Net: Unknown Pin: Pin R21-2
+Add Pin To Net: Unknown Pin: Pin R22-1
+Add Pin To Net: Unknown Pin: Pin R22-2
+Add Pin To Net: Unknown Pin: Pin R23-1
+Add Pin To Net: Unknown Pin: Pin R23-2
+Add Pin To Net: Unknown Pin: Pin R24-1
+Add Pin To Net: Unknown Pin: Pin R24-2
+Add Pin To Net: Unknown Pin: Pin R25-1
+Add Pin To Net: Unknown Pin: Pin R25-2
+Add Pin To Net: Unknown Pin: Pin R26-1
+Add Pin To Net: Unknown Pin: Pin R26-2
+Add Pin To Net: Unknown Pin: Pin R27-1
+Add Pin To Net: Unknown Pin: Pin R27-2
+Add Pin To Net: Unknown Pin: Pin R28-1
+Add Pin To Net: Unknown Pin: Pin R28-2
+Add Pin To Net: Unknown Pin: Pin R29-1
+Add Pin To Net: Unknown Pin: Pin R29-2
+Add Pin To Net: Unknown Pin: Pin R30-1
+Add Pin To Net: Unknown Pin: Pin R30-2
+Add Pin To Net: Unknown Pin: Pin R31-1
+Add Pin To Net: Unknown Pin: Pin R31-2
+Add Pin To Net: Unknown Pin: Pin R32-1
+Add Pin To Net: Unknown Pin: Pin R32-2
+Add Pin To Net: Unknown Pin: Pin R33-1
+Add Pin To Net: Unknown Pin: Pin R33-2
+Add Pin To Net: Unknown Pin: Pin R34-1
+Add Pin To Net: Unknown Pin: Pin R34-2
+Added Pin To Net: NetName=GND Pin=S1-1
+Added Pin To Net: NetName=RS_ZB Pin=S1-2
+Add Pin To Net: Unknown Pin: Pin S5-1
+Add Pin To Net: Unknown Pin: Pin S5-2
+Add Pin To Net: Unknown Pin: Pin S6-1
+Add Pin To Net: Unknown Pin: Pin S6-2
+Add Pin To Net: Unknown Pin: Pin S7-1
+Add Pin To Net: Unknown Pin: Pin S7-2
+Add Pin To Net: Unknown Pin: Pin S8-1
+Add Pin To Net: Unknown Pin: Pin S8-2
+Add Pin To Net: Unknown Pin: Pin S9-1
+Add Pin To Net: Unknown Pin: Pin S9-2
+Added Pin To Net: NetName=GND Pin=U3-1
+Added Pin To Net: NetName=+3.3 Pin=U3-2
+Add Pin To Net: Unknown Pin: Pin U5-1
+Add Pin To Net: Unknown Pin: Pin U5-2
+Add Pin To Net: Unknown Pin: Pin U6-1
+Add Pin To Net: Unknown Pin: Pin U6-2
+Add Pin To Net: Unknown Pin: Pin U6-3
+Add Pin To Net: Unknown Pin: Pin U7-1
+Add Pin To Net: Unknown Pin: Pin U7-2
+Add Pin To Net: Unknown Pin: Pin U7-3
+Add Pin To Net: Unknown Pin: Pin U7-4
+Add Pin To Net: Unknown Pin: Pin U8-1
+Add Pin To Net: Unknown Pin: Pin U8-2
+Add Pin To Net: Unknown Pin: Pin U8-3
+Add Pin To Net: Unknown Pin: Pin U8-4
+Add Pin To Net: Unknown Pin: Pin U8-5
+Add Pin To Net: Unknown Pin: Pin U9-1
+Add Pin To Net: Unknown Pin: Pin U9-2
+Add Pin To Net: Unknown Pin: Pin U9-3
+Add Pin To Net: Unknown Pin: Pin U9-4
+Add Pin To Net: Unknown Pin: Pin U10-1
+Add Pin To Net: Unknown Pin: Pin U10-2
+Add Pin To Net: Unknown Pin: Pin U10-3
+Add Pin To Net: Unknown Pin: Pin U10-4
+Add Pin To Net: Unknown Pin: Pin U10-5
+Add Pin To Net: Unknown Pin: Pin U11-1
+Add Pin To Net: Unknown Pin: Pin U11-2
+Add Pin To Net: Unknown Pin: Pin U11-3
+Add Pin To Net: Unknown Pin: Pin U11-4
+Add Pin To Net: Unknown Pin: Pin U12-1
+Add Pin To Net: Unknown Pin: Pin U12-2
+Add Pin To Net: Unknown Pin: Pin U12-3
+Add Pin To Net: Unknown Pin: Pin U12-4
+Add Pin To Net: Unknown Pin: Pin U12-5
+Add Pin To Net: Unknown Pin: Pin U12-6
+Add Pin To Net: Unknown Pin: Pin U13-1
+Add Pin To Net: Unknown Pin: Pin U13-2
+Add Pin To Net: Unknown Pin: Pin U13-3
+Add Pin To Net: Unknown Pin: Pin U13-4
+Add Pin To Net: Unknown Pin: Pin U13-5
+Add Pin To Net: Unknown Pin: Pin U14-1
+Add Pin To Net: Unknown Pin: Pin U14-2
+Add Pin To Net: Unknown Pin: Pin U14-3
+Add Pin To Net: Unknown Pin: Pin U14-4
+Add Pin To Net: Unknown Pin: Pin U15-D
+Add Pin To Net: Unknown Pin: Pin U15-G
+Add Pin To Net: Unknown Pin: Pin U15-S
+Add Pin To Net: Unknown Pin: Pin U16-1
+Add Pin To Net: Unknown Pin: Pin U16-2
+Add Pin To Net: Unknown Pin: Pin U16-3
+Add Pin To Net: Unknown Pin: Pin U17-1
+Add Pin To Net: Unknown Pin: Pin U17-2
+Add Pin To Net: Unknown Pin: Pin U17-3
+Add Pin To Net: Unknown Pin: Pin U17-4
+Add Pin To Net: Unknown Pin: Pin U17-5
+Add Pin To Net: Unknown Pin: Pin U18-1
+Add Pin To Net: Unknown Pin: Pin U18-2
+Add Pin To Net: Unknown Pin: Pin U18-3
+Add Pin To Net: Unknown Pin: Pin U18-4
+Add Pin To Net: Unknown Pin: Pin U19-1
+Add Pin To Net: Unknown Pin: Pin U19-2
+Add Pin To Net: Unknown Pin: Pin U19-4
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C1 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C6 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C7 10uF
+Add Class Member: Failed to add class member : Component C14 220uF/16V
+Add Class Member: Failed to add class member : Component C15 100nF
+Add Class Member: Failed to add class member : Component C16 100nF
+Add Class Member: Failed to add class member : Component C17 220uF
+Add Class Member: Failed to add class member : Component C18 47uF
+Add Class Member: Failed to add class member : Component C19 100nF
+Add Class Member: Failed to add class member : Component C20 47uF
+Add Class Member: Failed to add class member : Component C21 100nF
+Add Class Member: Failed to add class member : Component C22 100nF
+Add Class Member: Failed to add class member : Component C23 220uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component D1 M7
+Add Class Member: Failed to add class member : Component D4 LED_RGB
+Add Class Member: Failed to add class member : Component D5 LED_5mm_RED
+Add Class Member: Failed to add class member : Component D6 1N4007
+Add Class Member: Failed to add class member : Component D7 LED_5mm_RED
+Add Class Member: Failed to add class member : Component D8 1N4007
+Add Class Member: Failed to add class member : Component D9 SS34
+Add Class Member: Failed to add class member : Component D10 LED_5mm_RED
+Add Class Member: Failed to add class member : Component D11 1N4007
+Add Class Member: Failed to add class member : Component D12 LED_5mm_RED
+Add Class Member: Failed to add class member : Component D13 1N4007
+Add Class Member: Failed to add class member : Component DS1 TFT 2.4 Inch
+Add Class Member: Failed to add class member : Component I1 1260
+Added Member To Class: ClassName=Nguyen_Ly Member=Component J1 CC DEBUGGER
+Add Class Member: Failed to add class member : Component J4 12AC
+Add Class Member: Failed to add class member : Component J5 BORNE-5.00-3P
+Add Class Member: Failed to add class member : Component J6 BORNE-5.00-3P
+Add Class Member: Failed to add class member : Component J7 BORNE-5.00-3P
+Add Class Member: Failed to add class member : Component J8 BORNE-5.00-3P
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R1 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R4 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R11 220
+Add Class Member: Failed to add class member : Component R12 220
+Add Class Member: Failed to add class member : Component R13 1K
+Add Class Member: Failed to add class member : Component R14 220
+Add Class Member: Failed to add class member : Component R15 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R16 220
+Add Class Member: Failed to add class member : Component R17 1K
+Add Class Member: Failed to add class member : Component R18 1K
+Add Class Member: Failed to add class member : Component R19 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R20 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R21 220
+Add Class Member: Failed to add class member : Component R22 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R23 1K
+Add Class Member: Failed to add class member : Component R24 1K
+Add Class Member: Failed to add class member : Component R25 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R26 220
+Add Class Member: Failed to add class member : Component R27 1K
+Add Class Member: Failed to add class member : Component R28 1K
+Add Class Member: Failed to add class member : Component R29 220
+Add Class Member: Failed to add class member : Component R30 10K
+Add Class Member: Failed to add class member : Component R31 220
+Add Class Member: Failed to add class member : Component R32 1K
+Add Class Member: Failed to add class member : Component R33 1K
+Add Class Member: Failed to add class member : Component R34 10K
+Added Member To Class: ClassName=Nguyen_Ly Member=Component S1 PUSH_BUTTON_SMD_3X4X2
+Add Class Member: Failed to add class member : Component S5 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S6 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S7 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S8 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S9 PUSH_BUTTON_6X6
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U3 E18-MS1-PCB
+Add Class Member: Failed to add class member : Component U5 BUZZER
+Add Class Member: Failed to add class member : Component U6 J3Y
+Add Class Member: Failed to add class member : Component U7 DB107S
+Add Class Member: Failed to add class member : Component U8 RELE
+Add Class Member: Failed to add class member : Component U9 PC817
+Add Class Member: Failed to add class member : Component U10 RELE
+Add Class Member: Failed to add class member : Component U11 PC817
+Add Class Member: Failed to add class member : Component U12 LM2596
+Add Class Member: Failed to add class member : Component U13 RELE
+Add Class Member: Failed to add class member : Component U14 PC817
+Add Class Member: Failed to add class member : Component U15 AP3P080N
+Add Class Member: Failed to add class member : Component U16 AMS1117 TO-252
+Add Class Member: Failed to add class member : Component U17 RELE
+Add Class Member: Failed to add class member : Component U18 PC817
+Add Class Member: Failed to add class member : Component U19 DHT11

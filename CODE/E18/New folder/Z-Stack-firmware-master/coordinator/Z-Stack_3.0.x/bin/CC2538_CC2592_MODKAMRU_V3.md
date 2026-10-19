@@ -1,1 +1,0 @@
-Firmwares are hosted [here](https://github.com/jethome-ru/zigbee-firmware/tree/master/ti/coordinator/cc2538_cc2592).

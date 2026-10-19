@@ -1,0 +1,108 @@
+Added Component: Designator=C18(ALUMINUM_5mm)
+Added Component: Designator=C19(CAPACITOR 0805)
+Added Component: Designator=DS1(TFT 2.4 Inch)
+Add component: Footprint Not Found 1260
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found QTO-92
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found RESISTOR_0805
+Added Component: Designator=R29(RESISTOR_0805)
+Added Component: Designator=R30(RESISTOR_0805)
+Add component: Footprint Not Found RESISTOR_0805
+Add component: Footprint Not Found PUSH_BUTTON_12X12_BLUE
+Add component: Footprint Not Found PUSH_BUTTON_12X12_GREEN
+Add component: Footprint Not Found PUSH_BUTTON_12X12_RED
+Add component: Footprint Not Found PUSH_BUTTON_12X12_YELLOW
+Add component: Footprint Not Found PUSH_BUTTON_6X6
+Added Component: Designator=U15(SOT23-3)
+Add component: Footprint Not Found DHT11
+Added Pin To Net: NetName=+5 Pin=C18-1
+Added Pin To Net: NetName=GND Pin=C18-2
+Added Pin To Net: NetName=GND Pin=C19-1
+Added Pin To Net: NetName=+5 Pin=C19-2
+Added Pin To Net: NetName=TFT_LED Pin=DS1-7
+Added Pin To Net: NetName=SCK Pin=DS1-8
+Added Pin To Net: NetName=SDI(MOSI) Pin=DS1-9
+Added Pin To Net: NetName=DC_TFT Pin=DS1-10
+Added Pin To Net: NetName=RESET_TFT Pin=DS1-11
+Added Pin To Net: NetName=CS Pin=DS1-12
+Added Pin To Net: NetName=GND Pin=DS1-13
+Added Pin To Net: NetName=+5 Pin=DS1-14
+Add Pin To Net: Unknown Pin: Pin I1-1
+Add Pin To Net: Unknown Pin: Pin I1-2
+Add Pin To Net: Unknown Pin: Pin Q1-1
+Add Pin To Net: Unknown Pin: Pin Q1-2
+Add Pin To Net: Unknown Pin: Pin Q1-3
+Add Pin To Net: Unknown Pin: Pin Q2-1
+Add Pin To Net: Unknown Pin: Pin Q2-2
+Add Pin To Net: Unknown Pin: Pin Q2-3
+Add Pin To Net: Unknown Pin: Pin Q3-1
+Add Pin To Net: Unknown Pin: Pin Q3-2
+Add Pin To Net: Unknown Pin: Pin Q3-3
+Add Pin To Net: Unknown Pin: Pin Q4-1
+Add Pin To Net: Unknown Pin: Pin Q4-2
+Add Pin To Net: Unknown Pin: Pin Q4-3
+Add Pin To Net: Unknown Pin: Pin R4-1
+Add Pin To Net: Unknown Pin: Pin R4-2
+Add Pin To Net: Unknown Pin: Pin R15-1
+Add Pin To Net: Unknown Pin: Pin R15-2
+Add Pin To Net: Unknown Pin: Pin R19-1
+Add Pin To Net: Unknown Pin: Pin R19-2
+Add Pin To Net: Unknown Pin: Pin R20-1
+Add Pin To Net: Unknown Pin: Pin R20-2
+Add Pin To Net: Unknown Pin: Pin R22-1
+Add Pin To Net: Unknown Pin: Pin R22-2
+Add Pin To Net: Unknown Pin: Pin R25-1
+Add Pin To Net: Unknown Pin: Pin R25-2
+Added Pin To Net: NetName=NetR29_1 Pin=R29-1
+Added Pin To Net: NetName=LED_TFT Pin=R29-2
+Added Pin To Net: NetName=+3.3 Pin=R30-1
+Added Pin To Net: NetName=NetR29_1 Pin=R30-2
+Add Pin To Net: Unknown Pin: Pin R34-1
+Add Pin To Net: Unknown Pin: Pin R34-2
+Add Pin To Net: Unknown Pin: Pin S5-1
+Add Pin To Net: Unknown Pin: Pin S5-2
+Add Pin To Net: Unknown Pin: Pin S6-1
+Add Pin To Net: Unknown Pin: Pin S6-2
+Add Pin To Net: Unknown Pin: Pin S7-1
+Add Pin To Net: Unknown Pin: Pin S7-2
+Add Pin To Net: Unknown Pin: Pin S8-1
+Add Pin To Net: Unknown Pin: Pin S8-2
+Add Pin To Net: Unknown Pin: Pin S9-1
+Add Pin To Net: Unknown Pin: Pin S9-2
+Added Pin To Net: NetName=TFT_LED Pin=U15-D
+Added Pin To Net: NetName=NetR29_1 Pin=U15-G
+Added Pin To Net: NetName=+3.3 Pin=U15-S
+Add Pin To Net: Unknown Pin: Pin U19-1
+Add Pin To Net: Unknown Pin: Pin U19-2
+Add Pin To Net: Unknown Pin: Pin U19-4
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C18 47uF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component C19 100nF
+Added Member To Class: ClassName=Nguyen_Ly Member=Component DS1 TFT 2.4 Inch
+Add Class Member: Failed to add class member : Component I1 1260
+Add Class Member: Failed to add class member : Component Q1 C9014
+Add Class Member: Failed to add class member : Component Q2 C9014
+Add Class Member: Failed to add class member : Component Q3 C9014
+Add Class Member: Failed to add class member : Component Q4 C9014
+Add Class Member: Failed to add class member : Component R4 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R15 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R19 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R20 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R22 RESISTOR_0805
+Add Class Member: Failed to add class member : Component R25 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R29 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R30 10K
+Add Class Member: Failed to add class member : Component R34 10K
+Add Class Member: Failed to add class member : Component S5 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S6 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S7 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S8 PUSH_BUTTON_12X12
+Add Class Member: Failed to add class member : Component S9 PUSH_BUTTON_6X6
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U15 AP3P080N
+Add Class Member: Failed to add class member : Component U19 DHT11

@@ -1,0 +1,14 @@
+Added Pin To Net: NetName=DC Pin=U3-3
+Added Pin To Net: NetName=DD Pin=U3-4
+Added Pin To Net: NetName=UART1_STM_RX Pin=U3-20
+Added Pin To Net: NetName=UART1_STM_TX Pin=U3-21
+Added Pin To Net: NetName=RS_ZB Pin=U3-24
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R14 220
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R15 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U10 MMBT2222A
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U12 PC817
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U14 MMBT2222A
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U15 RELE
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U16 PC817
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U17 AP3P080N
+Added Member To Class: ClassName=Nguyen_Ly Member=Component U18 MMBT2222A

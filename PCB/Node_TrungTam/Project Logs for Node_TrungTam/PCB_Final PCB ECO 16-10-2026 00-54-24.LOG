@@ -1,0 +1,24 @@
+Add component: Footprint Not Found RESISTOR_0805
+Added Component: Designator=R15(RESISTOR_0805)
+Added Component: Designator=R19(RESISTOR_0805)
+Added Component: Designator=R20(RESISTOR_0805)
+Added Component: Designator=R22(RESISTOR_0805)
+Added Component: Designator=R25(RESISTOR_0805)
+Add Pin To Net: Unknown Pin: Pin R4-1
+Add Pin To Net: Unknown Pin: Pin R4-2
+Added Pin To Net: NetName=+3.3 Pin=R15-1
+Added Pin To Net: NetName=BUTTON_1 Pin=R15-2
+Added Pin To Net: NetName=+3.3 Pin=R19-1
+Added Pin To Net: NetName=BUTTON_2 Pin=R19-2
+Added Pin To Net: NetName=+3.3 Pin=R20-1
+Added Pin To Net: NetName=BUTTON_3 Pin=R20-2
+Added Pin To Net: NetName=+3.3 Pin=R22-1
+Added Pin To Net: NetName=BUTTON_4 Pin=R22-2
+Added Pin To Net: NetName=+3.3 Pin=R25-1
+Added Pin To Net: NetName=RESET_SYSTEM Pin=R25-2
+Add Class Member: Failed to add class member : Component R4 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R15 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R19 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R20 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R22 RESISTOR_0805
+Added Member To Class: ClassName=Nguyen_Ly Member=Component R25 RESISTOR_0805
